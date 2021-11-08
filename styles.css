@@ -40,7 +40,7 @@ h1 {
     
 }
 
-#trackList > span {
+#trackList > span, .track-select {
     display: flex;
     flex-direction: column;
 }
