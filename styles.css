@@ -1,22 +1,46 @@
 body {
-    background-color: #f1f3f4;
+    background-color: #25b6ff;
+}
+
+header {
+    width: 100%;
+    /* padding: 0 5px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 h1 {
-    font-size: 4vmax;
+    width:100%;
+    font-size: 50px;
     margin-top: 0;
+    letter-spacing: 50px;
+    /* letter-spacing: calc(-10px + (100vw)); */
 }
 
-h2 {
-    font-size: 2vmax;
+#nowPlaying {
+    font-size: 30px;
+    letter-spacing: 100px;
+    padding-left: 10px;
+    border-left: 5px solid cyan;
     margin-top: 0;
+
 }
-
-
 
 .player {
-    width: 1300px;
-    background-color: cyan;
+    width: 100%;
+    background-color: transparent;
     border-radius: 0px;
-    border-style: groove;
+    
+}
+
+#trackList {
+    border-top: 2px solid black;
+    
+}
+
+#trackList > span {
+    display: flex;
+    flex-direction: column;
 }
