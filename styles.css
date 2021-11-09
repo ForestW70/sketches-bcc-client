@@ -1,5 +1,5 @@
 body {
-    background-color: #25b6ff;
+    background-color: #f1f3f4;
 }
 
 header {
@@ -12,7 +12,7 @@ header {
 }
 
 h1 {
-    width:100%;
+    width: 100%;
     font-size: 50px;
     margin-top: 0;
     letter-spacing: 50px;
@@ -36,11 +36,65 @@ h1 {
 }
 
 #trackList {
-    border-top: 2px solid black;
-    
-}
-
-#trackList > span, .track-select {
+    margin: 0 250px;
+    border: 10px outset grey;
+    /* border-color: grey;
+    border-style: groove; */
     display: flex;
     flex-direction: column;
+    align-items: center;
+    background-color: #dadada;
+}
+
+.track-select {
+    font-size: 35px;
+    border-radius: 15px;
+
+    font-family: system-ui, serif;
+    margin: 2px;
+    padding: 5px 50px;
+    border: none;
+    color: white;
+    /* mix-blend-mode: overlay; */
+}
+
+.track-select:hover {
+    background-color: #0095e0;
+    padding: 0px 45px;
+    border: 5px solid #0351ff;
+    border-style: inset;
+    border-radius: 20px;
+
+}
+
+#selectedSong {
+    background-color: hotpink;
+    border-radius: 9001px;
+    padding: 0px 45px;
+    border: 5px solid purple;
+    border-style: inset;
+}
+
+
+
+audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* We use flex-start here to ensure that the play button is visible even
+     * if we are too small to show all controls.
+     */
+    justify-content: flex-start;
+    -webkit-user-select: none;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+    text-align: right;
+    bottom: auto;
+    height: auto;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-radius: 5px;
+    /* The duration is also specified in MediaControlElements.cpp and LayoutTests/media/media-controls.js */
+    transition: opacity 0.3s;
 }
