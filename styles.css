@@ -21,7 +21,7 @@ h1 {
 
 #nowPlaying {
     font-size: 30px;
-    letter-spacing: 100px;
+    letter-spacing: -1px;
     padding-left: 10px;
     border-left: 5px solid cyan;
     margin-top: 0;
@@ -47,12 +47,12 @@ h1 {
 }
 
 .track-select {
-    font-size: 35px;
+    font-size: 30px;
     border-radius: 15px;
 
     font-family: system-ui, serif;
     margin: 2px;
-    padding: 5px 50px;
+    padding: 25px 70px;
     border: none;
     color: white;
     /* mix-blend-mode: overlay; */
@@ -60,7 +60,7 @@ h1 {
 
 .track-select:hover {
     background-color: #0095e0;
-    padding: 0px 45px;
+    padding: 20px 65px;
     border: 5px solid #0351ff;
     border-style: inset;
     border-radius: 20px;
@@ -69,9 +69,9 @@ h1 {
 
 #selectedSong {
     background-color: hotpink;
-    border-radius: 9001px;
-    padding: 0px 45px;
-    border: 5px solid purple;
+    border-radius: 30px;
+    padding: 15px 60px;
+    border: 10px solid palevioletred;
     border-style: inset;
 }
 
@@ -93,7 +93,7 @@ audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
     text-align: right;
     bottom: auto;
     height: auto;
-    background-color: rgba(20, 20, 20, 0.8);
+    background-color: transparent;
     border-radius: 5px;
     /* The duration is also specified in MediaControlElements.cpp and LayoutTests/media/media-controls.js */
     transition: opacity 0.3s;

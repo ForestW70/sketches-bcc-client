@@ -24,13 +24,76 @@ const trkList = [
     "Faultline"
 ];
 
-const bcc = [
-    {
-        trkNum: 1,
+const bcc = {
+    1: {
         title: "Hotmess",
         src: "./music/A1"
+    },
+    2: {
+        title: "Quarantine (but it's ok)",
+        src: "./music/A1"
+    },
+    3: {
+        title: "Amanda",
+        src: "./music/A1"
+    },
+    4: {
+        title: "Atmosphere Interlude",
+        src: "./music/A1"
+    },
+    5: {
+        title: "Stickyhold",
+        src: "./music/A1"
+    },
+    6: {
+        title: "Stargate (reprise)",
+        src: "./music/A1"
+    },
+    7: {
+        title: "Rap",
+        src: "./music/A1"
+    },
+    8: {
+        title: "Dare2bare",
+        src: "./music/A1"
+    },
+    9: {
+        title: "Almostinato",
+        src: "./music/A1"
+    },
+    10: {
+        title: "27th&girard",
+        src: "./music/A1"
+    },
+    11: {
+        title: "5d",
+        src: "./music/A1"
+    },
+    12: {
+        title: "Probably wrong",
+        src: "./music/A1"
+    },
+    13: {
+        title: "Dr. Balachander",
+        src: "./music/A1"
+    },
+    14: {
+        title: "Boc Interlude",
+        src: "./music/A1"
+    },
+    15: {
+        title: "Toothpicks",
+        src: "./music/A1"
+    },
+    16: {
+        title: "Pilotdrone",
+        src: "./music/A1"
+    },
+    17: {
+        title: "Faultline",
+        src: "./music/A1"
     }
-]
+}
 
 const setSelectedSong = (tracktitle) => {
     nowPlaying.innerText = tracktitle
