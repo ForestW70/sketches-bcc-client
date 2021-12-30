@@ -64,91 +64,91 @@ const sketches = [
                 length: '2:53',
                 url: '/music/dare2bare.mp3',
             },
-            
+
         ]
     },
-    // {
-    //     title: 'sketches2',
-    //     artLink: 'https://picsum.photos/200',
-    //     trackList: [
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //     ]
-    // },
-    // {
-    //     title: 'sketches3',
-    //     artLink: 'https://picsum.photos/200',
-    //     trackList: [
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //     ]
-    // },
+    {
+        title: 'sketches2',
+        artLink: 'https://picsum.photos/199',
+        trackList: [
+            {
+                track: 'Amanda Morph',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Sara Tonin',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Bailey melody 07',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Oh techre!',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Go to feather',
+                length: '',
+                url: '',
+            },
+            {
+                track: '(I am aware of the) black box',
+                length: '',
+                url: '',
+            },
+            {
+                track: '1800harp',
+                length: '',
+                url: '',
+            },
+        ]
+    },
+    {
+        title: 'sketches3',
+        artLink: 'https://picsum.photos/198',
+        trackList: [
+            {
+                track: 'Froggy',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Hello grommet',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Live from the polls',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Case of the cookies',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Is it forever?',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'BBBB',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Silly Singing silicon',
+                length: '',
+                url: '',
+            },
+        ]
+    },
     // {
     //     title: 'sketches4',
     //     artLink: 'https://picsum.photos/200',
@@ -312,28 +312,37 @@ const setSelectedSong = (tracktitle) => {
 
 const discoButtons = [];
 
-sketches.map(album =>{
+sketches.map(album => {
     const albumDiv = document.createElement("div");
     const trackCont = document.createElement("div");
+    const timeCont = document.createElement("div");
     const titleSpan = document.createElement("span");
     const albumArt = document.createElement("img");
-    
+
+    albumDiv.classList.add("disco-item");
+
     album.trackList.map(singleTrack => {
         const tTitle = document.createElement("span");
-        tTitle.innerText = singleTrack.track
+        const tTime = document.createElement("span");
+        tTitle.innerText = singleTrack.track;
+        tTime.innerText = singleTrack.length;
+        tTitle.classList.add("album-track");
+        tTime.classList.add("track-time");
         trackCont.appendChild(tTitle);
+        timeCont.appendChild(tTime);
     })
-    
-    
-        titleSpan.innerText = album.title;
-        albumArt.src = album.artLink;
 
 
-    albumDiv.appendChild(titleSpan);
+    titleSpan.innerText = album.title;
+    albumArt.src = album.artLink;
+
+
     albumDiv.appendChild(albumArt)
+    albumDiv.appendChild(titleSpan);
+    albumDiv.appendChild(timeCont)
     albumDiv.appendChild(trackCont)
-    document.getElementById("nowPlaying").appendChild(albumDiv);
-    
+    document.getElementById("disco").appendChild(albumDiv);
+
 })
 
 const btnArry = [];

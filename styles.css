@@ -26,6 +26,57 @@ h1 {
 
 }
 
+#disco {
+    font-size: 20px;
+    margin-top: 50px;
+
+}
+
+
+.disco-item {
+    display: grid;
+    margin-left: 50px;
+    grid-template-columns: 1fr 4fr;
+}
+
+.disco-item > img {
+    
+    border-bottom: 5px double black;
+}
+
+.disco-item > span {
+    margin-left: 20px;
+    font-size: 30px;
+    font-family: cursive;
+    align-self: center;
+    border-left: 5px double black;
+}
+
+.album-track {
+    display: block;
+    padding-left: 15px;
+    text-align-last: justify;
+    width: 50%;
+}
+
+.album-track:first-child {
+    border-top: 2  px double black;
+}
+
+.track-time {
+    display: block;
+    text-align: right;
+    border-right: 5px double black;
+    padding-right: 15px; 
+}
+
+
+
+
+
+
+
+
 .player {
     width: 100%;
     background-color: transparent;
