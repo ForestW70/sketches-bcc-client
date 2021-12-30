@@ -24,6 +24,217 @@ const trkList = [
     "Faultline"
 ];
 
+const sketches = [
+    {
+        title: 'sketches1',
+        artLink: 'https://picsum.photos/200',
+        trackList: [
+            {
+                track: 'Quarantine (but its ok)',
+                length: '2:56',
+                url: '/music/quarantine.mp3',
+            },
+            {
+                track: '5d',
+                length: '3:01',
+                url: '/music/5d.mp3',
+            },
+            {
+                track: 'Sticky Hold',
+                length: '1:27',
+                url: '/music/stickyhold.mp3',
+            },
+            {
+                track: 'Probably Wrong',
+                length: '3:16',
+                url: '/music/probablywrong.mp3',
+            },
+            {
+                track: 'Stargate',
+                length: '?:??',
+                url: '/music/stargateog.mp3',
+            },
+            {
+                track: 'Rap (1896 mix)',
+                length: '0:56',
+                url: '/music/rap1896.mp3',
+            },
+            {
+                track: 'Dare 2 Bare',
+                length: '2:53',
+                url: '/music/dare2bare.mp3',
+            },
+            
+        ]
+    },
+    // {
+    //     title: 'sketches2',
+    //     artLink: 'https://picsum.photos/200',
+    //     trackList: [
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //     ]
+    // },
+    // {
+    //     title: 'sketches3',
+    //     artLink: 'https://picsum.photos/200',
+    //     trackList: [
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //     ]
+    // },
+    // {
+    //     title: 'sketches4',
+    //     artLink: 'https://picsum.photos/200',
+    //     trackList: [
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //     ]
+    // },
+    // {
+    //     title: 'sketches5',
+    //     artLink: 'https://picsum.photos/200',
+    //     trackList: [
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //         {
+    //             track: '',
+    //             length: '',
+    //             url: '',
+    //         },
+    //     ]
+    // },
+]
+
+
+
 const bcc = {
     1: {
         title: "Hotmess",
@@ -99,12 +310,38 @@ const setSelectedSong = (tracktitle) => {
     nowPlaying.innerText = tracktitle
 }
 
+const discoButtons = [];
+
+sketches.map(album =>{
+    const albumDiv = document.createElement("div");
+    const trackCont = document.createElement("div");
+    const titleSpan = document.createElement("span");
+    const albumArt = document.createElement("img");
+    
+    album.trackList.map(singleTrack => {
+        const tTitle = document.createElement("span");
+        tTitle.innerText = singleTrack.track
+        trackCont.appendChild(tTitle);
+    })
+    
+    
+        titleSpan.innerText = album.title;
+        albumArt.src = album.artLink;
+
+
+    albumDiv.appendChild(titleSpan);
+    albumDiv.appendChild(albumArt)
+    albumDiv.appendChild(trackCont)
+    document.getElementById("nowPlaying").appendChild(albumDiv);
+    
+})
+
 const btnArry = [];
 
 trkList.forEach(track => {
     const btn = document.createElement("button");
     btn.innerText = track;
-    btn.classList.add("track-select");
+    // btn.classList.add("track-select");
 
     btn.addEventListener("click", () => {
         btnArry.forEach(button => button.id = "");
@@ -114,6 +351,6 @@ trkList.forEach(track => {
     })
 
     btnArry.push(btn);
-    trackListContainer.appendChild(btn);
+    // trackListContainer.appendChild(btn);
     // console.log(btnArry)
 })

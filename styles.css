@@ -12,11 +12,9 @@ header {
 }
 
 h1 {
-    width: 100%;
+    
     font-size: 50px;
     margin-top: 0;
-    letter-spacing: 50px;
-    /* letter-spacing: calc(-10px + (100vw)); */
 }
 
 #nowPlaying {
