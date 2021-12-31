@@ -1,13 +1,12 @@
+/* top display */
 body {
     background-color: #f1f3f4;
 }
 
 header {
     width: 100%;
-    /* padding: 0 5px; */
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -17,64 +16,54 @@ h1 {
     margin-top: 0;
 }
 
-#nowPlaying {
-    font-size: 30px;
-    letter-spacing: -1px;
-    padding-left: 10px;
-    border-left: 5px solid cyan;
-    margin-top: 0;
 
-}
-
+/* albums */
 #disco {
     font-size: 20px;
     margin-top: 50px;
-
 }
-
 
 .disco-item {
+    margin-bottom: 50px;
+    border-top: 10px double #c1c2c3;
+}
+
+.info-container {
     display: grid;
     margin-left: 50px;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 2fr;
 }
 
-.disco-item > img {
-    
-    border-bottom: 5px double black;
-}
-
-.disco-item > span {
-    margin-left: 20px;
-    font-size: 30px;
-    font-family: cursive;
-    align-self: center;
-    border-left: 5px double black;
-}
-
-.album-track {
-    display: block;
-    padding-left: 15px;
-    text-align-last: justify;
-    width: 50%;
-    line-height: 2;
-}
-
-.album-track:first-child {
-    border-top: 2  px double black;
-}
-
-.track-time, .track-list-num {
-    display: block;
-    text-align: right;
-    border-right: 5px double black;
-    padding-right: 15px; 
+.info-container > img {
+    height: 300px;
+    width: 300px;
+    /* border: 5px double black; */
 }
 
 .track-container {
-    border: 2px solid black;
+    margin: 20px 0 20px 50px;
     display: flex;
-    
+    flex-direction: column;
+    /* border: 2px solid black; */
+}
+
+.t-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 10px
+}
+
+.track-num {
+    color: grey;
+    /* justify-self: right; */
+}
+
+.album-track {
+    justify-self: left;
+}
+
+.track-time {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 
@@ -84,6 +73,9 @@ h1 {
 
 
 
+
+
+/* player */
 .player {
     width: 100%;
     background-color: transparent;
@@ -91,55 +83,10 @@ h1 {
     
 }
 
-#trackList {
-    margin: 0 250px;
-    border: 10px outset grey;
-    /* border-color: grey;
-    border-style: groove; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #dadada;
-}
-
-.track-select {
-    font-size: 30px;
-    border-radius: 15px;
-
-    font-family: system-ui, serif;
-    margin: 2px;
-    padding: 25px 70px;
-    border: none;
-    color: white;
-    /* mix-blend-mode: overlay; */
-}
-
-.track-select:hover {
-    background-color: #0095e0;
-    padding: 20px 65px;
-    border: 5px solid #0351ff;
-    border-style: inset;
-    border-radius: 20px;
-
-}
-
-#selectedSong {
-    background-color: hotpink;
-    border-radius: 30px;
-    padding: 15px 60px;
-    border: 10px solid palevioletred;
-    border-style: inset;
-}
-
-
-
 audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* We use flex-start here to ensure that the play button is visible even
-     * if we are too small to show all controls.
-     */
     justify-content: flex-start;
     -webkit-user-select: none;
     position: relative;

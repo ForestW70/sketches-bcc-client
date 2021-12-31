@@ -1,32 +1,7 @@
-console.log('wddup');
-
-const nowPlaying = document.getElementById("nowPlaying");
-const trackListContainer = document.getElementById("trackList");
-const allSongsBtns = document.getElementsByClassName("track-select");
-
-const trkList = [
-    "Hotmess",
-    "Quarantine (but it's ok)",
-    "Amanda",
-    "Atmosphere Interlude",
-    "Stickyhold",
-    "Stargate (reprise)",
-    "Rap",
-    "Dare2bare",
-    "Almostinato",
-    "27th&girard",
-    "5d",
-    "Probably Wrong",
-    "Dr. Balachander",
-    "Boc Interlude",
-    "Toothpicks",
-    "Pilotdrone",
-    "Faultline"
-];
 
 const sketches = [
     {
-        title: 'sketches1',
+        title: 'Sketches & Other Failures Vol. 1',
         artLink: 'https://picsum.photos/200',
         trackList: [
             {
@@ -68,7 +43,7 @@ const sketches = [
         ]
     },
     {
-        title: 'sketches2',
+        title: 'Sketches & Other Failures II',
         artLink: 'https://picsum.photos/199',
         trackList: [
             {
@@ -109,7 +84,7 @@ const sketches = [
         ]
     },
     {
-        title: 'sketches3',
+        title: 'Sketches & Other Failures Part 3',
         artLink: 'https://picsum.photos/198',
         trackList: [
             {
@@ -149,47 +124,47 @@ const sketches = [
             },
         ]
     },
-    // {
-    //     title: 'sketches4',
-    //     artLink: 'https://picsum.photos/200',
-    //     trackList: [
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //     ]
-    // },
+    {
+        title: 'Sketches & Other Failures Chap. 4',
+        artLink: 'https://picsum.photos/200/199',
+        trackList: [
+            {
+                track: 'Amanda Alarm (wake up hunny)',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Sweet Dreams',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Doogood',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Exploitable Resources',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Looking at a Screen',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'Gimp',
+                length: '',
+                url: '',
+            },
+            {
+                track: 'It Is Forever',
+                length: '',
+                url: '',
+            },
+        ]
+    },
     // {
     //     title: 'sketches5',
     //     artLink: 'https://picsum.photos/200',
@@ -324,141 +299,62 @@ const sketches = [
     },
 ]
 
+const discoContainer = document.getElementById("disco");
 
-
-const bcc = {
-    1: {
-        title: "Hotmess",
-        src: "./music/A1"
-    },
-    2: {
-        title: "Quarantine (but it's ok)",
-        src: "./music/A1"
-    },
-    3: {
-        title: "Amanda",
-        src: "./music/A1"
-    },
-    4: {
-        title: "Atmosphere Interlude",
-        src: "./music/A1"
-    },
-    5: {
-        title: "Stickyhold",
-        src: "./music/A1"
-    },
-    6: {
-        title: "Stargate (reprise)",
-        src: "./music/A1"
-    },
-    7: {
-        title: "Rap",
-        src: "./music/A1"
-    },
-    8: {
-        title: "Dare2bare",
-        src: "./music/A1"
-    },
-    9: {
-        title: "Almostinato",
-        src: "./music/A1"
-    },
-    10: {
-        title: "27th&girard",
-        src: "./music/A1"
-    },
-    11: {
-        title: "5d",
-        src: "./music/A1"
-    },
-    12: {
-        title: "Probably wrong",
-        src: "./music/A1"
-    },
-    13: {
-        title: "Dr. Balachander",
-        src: "./music/A1"
-    },
-    14: {
-        title: "Boc Interlude",
-        src: "./music/A1"
-    },
-    15: {
-        title: "Toothpicks",
-        src: "./music/A1"
-    },
-    16: {
-        title: "Pilotdrone",
-        src: "./music/A1"
-    },
-    17: {
-        title: "Faultline",
-        src: "./music/A1"
-    }
+const handleTrackSelect = (e) => {
+    const selTrack = e.target.innerText;
+    
 }
 
-const setSelectedSong = (tracktitle) => {
-    nowPlaying.innerText = tracktitle
+const mapThruAlbums = () => {
+
+    sketches.map(album => {
+        // set up container variables and classes
+        const albumContainer = document.createElement("article");
+        const infoContainer = document.createElement("div");
+        const trackContainer = document.createElement("div");
+        const albumTitle = document.createElement("h3");
+        const albumArt = document.createElement("img");
+        albumContainer.classList.add("disco-item");
+        infoContainer.classList.add("info-container")
+        trackContainer.classList.add("track-container")
+        // 
+
+        albumTitle.innerText = album.title;
+        albumArt.src = album.artLink;
+
+        album.trackList.map((idvTrack, idx) => {
+            // set up track info
+            const trackRow = document.createElement("div")
+            const tTitle = document.createElement("span");
+            const tTime = document.createElement("span");
+            const tNum = document.createElement("span");
+            trackRow.classList.add("t-row")
+            tTitle.classList.add("album-track");
+            tTime.classList.add("track-time");
+            tNum.classList.add("track-num");
+            // 
+
+            tTitle.innerText = idvTrack.track;
+            tTime.innerText = idvTrack.length;
+            tNum.innerText = idx + 1;
+
+            trackRow.appendChild(tNum);
+            trackRow.appendChild(tTitle);
+            trackRow.appendChild(tTime);
+            trackContainer.appendChild(trackRow);
+        })
+
+        // write and append all info
+        infoContainer.appendChild(albumArt)
+        infoContainer.appendChild(albumTitle)
+        albumContainer.appendChild(infoContainer)
+        albumContainer.appendChild(trackContainer)
+        document.getElementById("disco").appendChild(albumContainer);
+
+    })
 }
 
-
-sketches.map(album => {
-    const albumDiv = document.createElement("div");
-    const trackCont = document.createElement("div");
-    const timeCont = document.createElement("div");
-    const titleSpan = document.createElement("span");
-    const albumArt = document.createElement("img");
-
-    albumDiv.classList.add("disco-item");
-    trackCont.classList.add("track-container")
-
-    album.trackList.map((singleTrack, idx) => {
-        const titleLine = document.createAttribute("article")
-        const tTitle = document.createElement("span");
-        const tTime = document.createElement("span");
-        const tNum = document.createElement("span")
-        tNum.classList.add("track-list-num")
-        tTitle.classList.add("album-track");
-        tTime.classList.add("track-time");
+mapThruAlbums();
 
 
-        tTitle.innerText = singleTrack.track;
-        tTime.innerText = singleTrack.length;
-        tNum.innerText = idx + 1;
-
-        trackCont.appendChild(tNum);
-        trackCont.appendChild(tTitle);
-        trackCont.appendChild(tTime);
-    })
-
-
-    titleSpan.innerText = album.title;
-    albumArt.src = album.artLink;
-
-
-    albumDiv.appendChild(albumArt)
-    albumDiv.appendChild(titleSpan);
-    albumDiv.appendChild(timeCont)
-    albumDiv.appendChild(trackCont)
-    document.getElementById("disco").appendChild(albumDiv);
-
-})
-
-const btnArry = [];
-
-trkList.forEach(track => {
-    const btn = document.createElement("button");
-    btn.innerText = track;
-    // btn.classList.add("track-select");
-
-    btn.addEventListener("click", () => {
-        btnArry.forEach(button => button.id = "");
-        btn.id = "selectedSong";
-        setSelectedSong(track)
-        console.log(btn.id)
-    })
-
-    btnArry.push(btn);
-    // trackListContainer.appendChild(btn);
-    // console.log(btnArry)
-})
