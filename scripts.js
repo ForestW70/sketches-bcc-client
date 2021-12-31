@@ -222,37 +222,37 @@ const sketches = [
             {
                 track: 'Amanda Morph',
                 length: '',
-                url: '/music/',
+                url: '',
             },
             {
                 track: 'Sara Tonin',
                 length: '',
-                url: '',
+                url: 'sara-tonin',
             },
             {
                 track: 'Bailey melody 07',
                 length: '',
-                url: '',
+                url: 'bailey-melody',
             },
             {
                 track: 'Oh techre!',
                 length: '',
-                url: '',
+                url: 'oh-techre',
             },
             {
                 track: 'Go to feather',
                 length: '',
-                url: '',
+                url: 'go2feather',
             },
             {
                 track: '(I am aware of the) black box',
                 length: '',
-                url: '',
+                url: 'black-box',
             },
             {
                 track: '1800harp',
                 length: '',
-                url: '',
+                url: '1800harp',
             },
         ]
     },
@@ -263,37 +263,37 @@ const sketches = [
             {
                 track: 'Froggy',
                 length: '',
-                url: '',
+                url: 'froggy',
             },
             {
                 track: 'Hello grommet',
                 length: '',
-                url: '',
+                url: 'hello-grommet',
             },
             {
                 track: 'Live from the polls',
                 length: '',
-                url: '',
+                url: 'polls',
             },
             {
                 track: 'Case of the cookies',
                 length: '',
-                url: '',
+                url: 'cookies',
             },
             {
                 track: 'Is it forever?',
                 length: '',
-                url: '',
+                url: 'is-it-forever',
             },
             {
                 track: 'BBBB',
                 length: '',
-                url: '',
+                url: 'bbbb',
             },
             {
                 track: 'Silly Singing silicon',
                 length: '',
-                url: '',
+                url: 'silly-singing',
             },
         ]
     },
