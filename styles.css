@@ -57,17 +57,24 @@ h1 {
     padding-left: 15px;
     text-align-last: justify;
     width: 50%;
+    line-height: 2;
 }
 
 .album-track:first-child {
     border-top: 2  px double black;
 }
 
-.track-time {
+.track-time, .track-list-num {
     display: block;
     text-align: right;
     border-right: 5px double black;
     padding-right: 15px; 
+}
+
+.track-container {
+    border: 2px solid black;
+    display: flex;
+    
 }
 
 

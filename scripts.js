@@ -231,6 +231,97 @@ const sketches = [
     //         },
     //     ]
     // },
+    {
+        title: 'sketches bcc',
+        artLink: 'https://picsum.photos/197',
+        trackList: [
+            {
+                track: 'Hotmess',
+                length: '3:04',
+                url: '',
+            },
+            {
+                track: 'Atmosphere (interlude)',
+                length: '0:35',
+                url: '',
+            },
+            {
+                track: 'Amanda',
+                length: '1:47',
+                url: '',
+            },
+            {
+                track: 'Dare2Bare',
+                length: '2:35',
+                url: '',
+            },
+            {
+                track: 'Quarantine (but its ok)',
+                length: '3:01',
+                url: '',
+            },
+            {
+                track: 'Stickyhold',
+                length: '1:27',
+                url: '',
+            },
+            {
+                track: 'Stargate (reprise)',
+                length: '1:26',
+                url: '',
+            },
+            {
+                track: 'Rap',
+                length: '0:54',
+                url: '',
+            },
+            {
+                track: '27th&girard',
+                length: '4:18',
+                url: '',
+            },
+            {
+                track: 'Almostinato',
+                length: '2:34',
+                url: '',
+            },
+            {
+                track: '5d',
+                length: '2:08',
+                url: '',
+            },
+            {
+                track: 'Probably Wrong',
+                length: '2:58',
+                url: '',
+            },
+            {
+                track: 'S. Balachander (broken from the beginning mix)',
+                length: '4:59',
+                url: '',
+            },
+            {
+                track: 'Boc (interlude)',
+                length: '1:22',
+                url: '',
+            },
+            {
+                track: 'Toothpicks',
+                length: '2:31',
+                url: '',
+            },
+            {
+                track: 'Pilotdrone',
+                length: '2:27',
+                url: '',
+            },
+            {
+                track: 'Faultline',
+                length: '4:54',
+                url: '',
+            },
+        ]
+    },
 ]
 
 
@@ -310,7 +401,6 @@ const setSelectedSong = (tracktitle) => {
     nowPlaying.innerText = tracktitle
 }
 
-const discoButtons = [];
 
 sketches.map(album => {
     const albumDiv = document.createElement("div");
@@ -320,16 +410,25 @@ sketches.map(album => {
     const albumArt = document.createElement("img");
 
     albumDiv.classList.add("disco-item");
+    trackCont.classList.add("track-container")
 
-    album.trackList.map(singleTrack => {
+    album.trackList.map((singleTrack, idx) => {
+        const titleLine = document.createAttribute("article")
         const tTitle = document.createElement("span");
         const tTime = document.createElement("span");
-        tTitle.innerText = singleTrack.track;
-        tTime.innerText = singleTrack.length;
+        const tNum = document.createElement("span")
+        tNum.classList.add("track-list-num")
         tTitle.classList.add("album-track");
         tTime.classList.add("track-time");
+
+
+        tTitle.innerText = singleTrack.track;
+        tTime.innerText = singleTrack.length;
+        tNum.innerText = idx + 1;
+
+        trackCont.appendChild(tNum);
         trackCont.appendChild(tTitle);
-        timeCont.appendChild(tTime);
+        trackCont.appendChild(tTime);
     })
 
 
