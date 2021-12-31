@@ -49,7 +49,7 @@ const sketches = [
             {
                 track: 'Amanda Morph',
                 length: '',
-                url: '',
+                url: '/music/',
             },
             {
                 track: 'Sara Tonin',
@@ -299,15 +299,25 @@ const sketches = [
     },
 ]
 
+const nowPlaying = document.getElementById("nowPlaying");
 const discoContainer = document.getElementById("disco");
 
+
 const handleTrackSelect = (e) => {
-    const selTrack = e.target.innerText;
-    
+    // track info
+    nowPlaying.innerHTML = ""
+    const dispTrack = document.createElement("h2");
+    const target = e.currentTarget;
+    const onNow = target.querySelector(".album-track");
+    dispTrack.innerText = onNow.innerText;
+    nowPlaying.appendChild(dispTrack);
+
+    // load music
+
 }
 
-const mapThruAlbums = () => {
 
+const mapThruAlbums = () => {
     sketches.map(album => {
         // set up container variables and classes
         const albumContainer = document.createElement("article");
@@ -329,6 +339,8 @@ const mapThruAlbums = () => {
             const tTitle = document.createElement("span");
             const tTime = document.createElement("span");
             const tNum = document.createElement("span");
+
+            trackRow.addEventListener("click", handleTrackSelect);
             trackRow.classList.add("t-row")
             tTitle.classList.add("album-track");
             tTime.classList.add("track-time");

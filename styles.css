@@ -53,6 +53,12 @@ h1 {
     margin-bottom: 10px
 }
 
+.t-row:hover {
+    margin-bottom: 9px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+
 .track-num {
     color: grey;
     /* justify-self: right; */
