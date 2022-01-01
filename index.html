@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,22 +16,34 @@
         <audio class="player" controls>
             <source src="/music/amanda-alarm.mp3" type="audio/mp3">
         </audio>
+
+        <article id="playingDropdown">
+            <button id="playingDropdownButton">Playing now</button>
+            <div id="nowPlaying" class="menu-flex">
+                <img id="albumPic" src="https://picsum.photos/200/199">
+                <article>
+                    <h2 id="artistName">Lukasz Mauro</h1>
+                        <h3 id="trackName">Almostinato
+                    </h2>
+                    <h5 id="albumName">sketches bcc</h3>
+                </article>
+            </div>
+        </article>
+
+        <article id="queueDropdown">
+            <p>Queued up</p>
+            <div id="queuedList">
+
+            </div>
+        </article>
     </Header>
 
-    <section id="nowPlaying">
-        <img id="albumPic" src="">
-        <article>
-            <h1 id="artistName">Lukasz Mauro</h1>
-            <h2 id="trackName"></h2>
-            <span id="trackTime"></span>
-            <h3 id="albumName"></h3>
-        </article>
-    </section>
-    
+
     <section id="disco"></section>
-    
+
 
 </body>
+
 </html>
 
 <script src="scripts.js"></script>

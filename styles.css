@@ -1,3 +1,5 @@
+
+
 /* top display */
 body {
     background-color: #f1f3f4;
@@ -7,7 +9,7 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* padding: 10px 50px; */
 }
 
 h1 {
@@ -16,6 +18,33 @@ h1 {
     margin-top: 0;
 }
 
+/* now playing */
+#playingDropdown, #queueDropdown {
+    margin-left: 20px
+}
+
+#nowPlaying, #queuedList {
+    /* display: none; */
+    margin: 20px 0;
+}
+
+#albumPic {
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
+}
+
+#artistName, #trackName, #albumName {
+    margin: 0px;
+}
+
+.menu-flex {
+    display: flex;
+}
+
+.menu-hide {
+    display: none;
+}
 
 /* albums */
 #disco {
@@ -84,26 +113,32 @@ h1 {
 /* player */
 .player {
     width: 100%;
-    background-color: transparent;
-    border-radius: 0px;
+    background-color: white;
+    border-radius: 2px;
     
 }
 
 audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: left;
     justify-content: flex-start;
     -webkit-user-select: none;
     position: relative;
     width: 100%;
     z-index: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-align: right;
     bottom: auto;
     height: auto;
-    background-color: transparent;
+    background-color: white;
     border-radius: 5px;
     /* The duration is also specified in MediaControlElements.cpp and LayoutTests/media/media-controls.js */
     transition: opacity 0.3s;
 }
+
+.hide {
+    display:none;
+}
+
+/* media @ 1000px */

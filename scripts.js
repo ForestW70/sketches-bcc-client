@@ -83,47 +83,6 @@ const sketches = [
             },
         ]
     },
-    // {
-    //     title: 'sketches5',
-    //     artLink: 'https://picsum.photos/200',
-    //     trackList: [
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //         {
-    //             track: '',
-    //             length: '',
-    //             url: '',
-    //         },
-    //     ]
-    // },
     {
         title: 'sketches bcc',
         artLink: 'https://picsum.photos/197',
@@ -300,7 +259,6 @@ const sketches = [
 ]
 
 const audioPlayer = document.querySelector(".player");
-const nowPlaying = document.getElementById("nowPlaying");
 const discoContainer = document.getElementById("disco");
 
 const currArtistName = document.getElementById("artistName");
@@ -313,19 +271,16 @@ const currAlbumPic = document.getElementById("albumPic");
 const handleTrackSelect = (e) => {
     // reset now playing
     const filterPlayer = (songRow) => {
-        currArtistName.innerText = ""
-        currTrackName.innerText = ""
-        currTrackTime.innerText = ""
-        currAlbumName.innerText = ""
+        currArtistName.innerText = "";
+        currTrackName.innerText = "";
+        currAlbumName.innerText = "";
         audioPlayer.src = "";
-        currAlbumPic.src = ""
+        currAlbumPic.src = "";
 
         currArtistName.innerText = "Lukasz Mauro"
         currTrackName.innerText = songRow.querySelector(".album-track").innerText;
-        currTrackTime.innerText = songRow.querySelector(".track-time").innerText;
         currAlbumName.innerText = songRow.dataset.epname;
         currAlbumPic.src = songRow.dataset.albumurl
-
     }
 
     // track info
@@ -398,5 +353,12 @@ const mapThruAlbums = () => {
 }
 
 mapThruAlbums();
+
+const nowPlaying = document.getElementById("nowPlaying");
+
+document.getElementById("playingDropdownButton").addEventListener("click", () => {
+    nowPlaying.classList.toggle('menu-hide')
+
+})
 
 
