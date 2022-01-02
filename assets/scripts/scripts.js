@@ -8,7 +8,7 @@ const sketches = [
     {
         title: 'S&OFV1',
         artLink: './assets/s&ofv1.jpg',
-        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv1.jpg',
+        webLink: 'https://forestw70.github.io/bcc/assets/images/s&ofv1.jpg',
         trackList: [
             {
                 track: 'Quarantine (but its ok)',
@@ -51,7 +51,7 @@ const sketches = [
     {
         title: 'S&OFV2',
         artLink: './assets/s&ofv2.jpg',
-        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv2.jpg',
+        webLink: 'https://forestw70.github.io/bcc/assets/images/s&ofv2.jpg',
         trackList: [
             {
                 track: 'Amanda Alarm (wake up hunny)',
@@ -93,7 +93,7 @@ const sketches = [
     {
         title: 'S&OFV3',
         artLink: './assets/s&ofv3.jpg',
-        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv3.jpg',
+        webLink: 'https://forestw70.github.io/bcc/assets/images/s&ofv3.jpg',
         trackList: [
             {
                 track: 'Amanda Morph',
@@ -135,7 +135,7 @@ const sketches = [
     {
         title: 'S&OFV4',
         artLink: './assets/s&ofv4.png',
-        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv4.png',
+        webLink: 'https://forestw70.github.io/bcc/assets/images/s&ofv4.png',
         trackList: [
             {
                 track: 'Froggy',
@@ -177,7 +177,7 @@ const sketches = [
     {
         title: 'BCC',
         artLink: './assets/bcc.png',
-        webLink: 'https://forestw70.github.io/bcc/assets/bcc.png',
+        webLink: 'https://forestw70.github.io/bcc/assets/images/bcc.png',
         trackList: [
             {
                 track: 'Hotmess',
@@ -354,7 +354,7 @@ const filterPlayer = () => {
     console.log("...Filtering to next track...")
     const wiperObj = songQueue.grabNext();
     
-    const songHome = `https://forestw70.github.io/bcc/music/${wiperObj.url}.mp3`
+    const songHome = `https://forestw70.github.io/bcc/assets/music/${wiperObj.url}.mp3`
 
     currArtistName.innerText = "";
     currTrackName.innerText = "";

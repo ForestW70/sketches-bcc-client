@@ -22,7 +22,7 @@ h1 {
 }
 
 #nowPlaying, #queuedList {
-    /* display: none; */
+    background-color: white;
     margin-bottom: 20px;
     border: 1px solid black;
 }
@@ -30,7 +30,7 @@ h1 {
 #albumPic {
     height: 100px;
     width: 100px;
-    margin-right: 20px;
+    margin: 5px 15px;
 }
 
 #artistName, #trackName, #albumName {
@@ -50,11 +50,37 @@ h1 {
 #queueList > button {
     background-color: white;
     border: none;
+    border-left: 10px dotted #c1c2c3;
+    cursor: pointer;
 }
 
 #queueList > button:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #c1c2c3;
+    border-top: 1px solid #c1c2c3;
 }
+
+/* buttons */
+#playingDropdownButton, #qButton {
+    font-size: 30px;
+    font-family: serif;
+    border: none;
+    padding: 5px;
+    background-color: #f1f3f4;
+    cursor: pointer;
+}
+
+#playingDropdownButton:hover, #qButton:hover {
+    background-color: white;
+    color: rgb(0, 217, 255);
+    
+}
+
+#nextTrack {
+    padding: 5px;
+    vertical-align: super;
+    background-color: darkorange;
+}
+
 
 /* toggle */
 .menu-flex {
@@ -75,7 +101,7 @@ h1 {
 
 .disco-item {
     margin-bottom: 50px;
-    border-top: 10px double #c1c2c3;
+    border-top: 3px solid #c1c2c3;
 }
 
 .info-container {
