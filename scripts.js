@@ -281,7 +281,7 @@ function SongQueue(pushbox = []) {
     }
 
     this.removeFromQueue = () => {
-        const currItem = this.container[0];
+        const currItem = this.container[1];
         const btnSearch = currItem.title + "~" + currItem.ep;
         document.getElementById(btnSearch).remove();
         return this.container.shift();
@@ -295,9 +295,6 @@ function SongQueue(pushbox = []) {
         return this.container.length;
     }
 
-    // this.removeButton = (t, e) => {
-    //     return document.getElementById(`${this.title}~${this.ep}`).remove()
-    // }
 }
 
 const songQueue = new SongQueue()
@@ -309,7 +306,7 @@ function Song(title, ep, art, url) {
     this.art = art;
     this.url = url;
 
-    this.add2local = () => {
+    this.add2queueList = () => {
         const item = {
             "artist": this.artist,
             "title": this.title,
@@ -318,7 +315,17 @@ function Song(title, ep, art, url) {
             "url": this.url,
         }
         songQueue.add2queue(item)
-        // localStorage.setItem(localStorage.length, JSON.stringify(item))
+    }
+
+    this.addSongButton = () => {
+        const item = {
+            "artist": this.artist,
+            "title": this.title,
+            "ep": this.ep,
+            "art": this.art,
+            "url": this.url,
+        }
+        songQueue.add2queue(item)
 
         const qBar = document.createElement("button");
         qBar.innerText = this.title + ' ~ ' + this.ep;
@@ -346,11 +353,7 @@ const currAlbumPic = document.getElementById("albumPic");
 const filterPlayer = () => {
     console.log("...Filtering to next track...")
     const wiperObj = songQueue.grabNext();
-    if (wiperObj.url.length < 2) {
-        console.log("Failed to Cycle.")
-        return;
-    }
-
+    
     const songHome = `https://forestw70.github.io/bcc/music/${wiperObj.url}.mp3`
 
     currArtistName.innerText = "";
@@ -375,7 +378,13 @@ const addToQueue = (songInfo) => {
     const albumPic = songInfo.dataset.albumurl;
     const songSrc = songInfo.dataset.url
     const qItem = new Song(title, album, albumPic, songSrc)
-    qItem.add2local();
+
+    if (songQueue.grabLength() === 0) {
+        qItem.add2queueList();
+    } else {
+        qItem.addSongButton();
+    }
+
 }
 
 const handleTrackSelect = (e) => {
@@ -489,14 +498,4 @@ document.getElementById("nextTrack").addEventListener("click", () => {
 
 window.onload = mapThruAlbums();
 
-
-
-if (window.performance) {
-    console.info("window.performance work's fine on this browser");
-}
-if (performance.navigation.type == 1) {
-    console.info("This page is reloaded");
-} else {
-    console.info("This page is not reloaded");
-}
 
