@@ -258,6 +258,7 @@ const sketches = [
     },
 ]
 
+
 const queueListDump = document.getElementById("queueList");
 const localQueue = window.localStorage
 
@@ -276,92 +277,74 @@ function Song(title, ep, art, url) {
             "art": this.art,
             "url": this.url,
         }
-        localStorage.setItem(localQueue.length + 1, JSON.stringify(item))
+        localStorage.setItem(localStorage.length, JSON.stringify(item))
 
         const qBar = document.createElement("button");
         qBar.innerText = this.title + '~' + this.ep;
         queueListDump.appendChild(qBar);
     }
 
-    this.add2local = () => {
-        return (
-            {
-                "artist": this.artist,
-                "title": this.title,
-                "ep": this.ep,
-                "art": this.art,
-                "url": this.url,
-            }
-        )
-    }
 }
 
+
+
+// track control
 const audioPlayer = document.querySelector(".player");
 const discoContainer = document.getElementById("disco");
-
 const currArtistName = document.getElementById("artistName");
 const currTrackName = document.getElementById("trackName");
 const currTrackTime = document.getElementById("trackTime");
 const currAlbumName = document.getElementById("albumName");
 const currAlbumPic = document.getElementById("albumPic");
 
-const queueList = document.getElementById("queueList");
 
+// reset now playing
+const filterPlayer = () => {
+    const wiperObj = JSON.parse(localQueue.getItem("0"))
+    const songHome = `/music/${wiperObj.url}.mp3`
 
-const queueArray = [];
+    currArtistName.innerText = "";
+    currTrackName.innerText = "";
+    currAlbumName.innerText = "";
+    currAlbumPic.src = "";
+    audioPlayer.src = "";
+    // 
+    currArtistName.innerText = wiperObj.artist;
+    currTrackName.innerText = wiperObj.title;
+    currAlbumName.innerText = wiperObj.ep;
+    currAlbumPic.src = wiperObj.art;
+    audioPlayer.src = songHome;
+}
+
+// queue functions
+const addToQueue = (songInfo) => {
+    // create new song and add to localstorage
+    const title = songInfo.querySelector(".album-track").innerText;
+    const album = songInfo.dataset.epname;
+    const albumPic = songInfo.dataset.albumurl;
+    const songSrc = songInfo.dataset.url
+    const qItem = new Song(title, album, albumPic, songSrc)
+    qItem.add2queue();
+}
 
 const handleTrackSelect = (e) => {
-    // reset now playing
-    const filterPlayer = () => {
-        currArtistName.innerText = "";
-        currTrackName.innerText = "";
-        currAlbumName.innerText = "";
-        currAlbumPic.src = "";
-        audioPlayer.src = "";
-
-        const wiper = localQueue.getItem("1")
-        console.log(wiper)
-
-        currArtistName.innerText = "Lukasz Mauro"
-        currTrackName.innerText = newSong.querySelector(".album-track").innerText;
-        currAlbumName.innerText = newSong.dataset.epname;
-        currAlbumPic.src = newSong.dataset.albumurl;
-        audioPlayer.src = ""
-    }
-
-    const addToQueue = (songInfo) => {
-        const title = songInfo.querySelector(".album-track").innerText;
-        const album = songInfo.dataset.epname;
-        const albumPic = songInfo.dataset.albumurl;
-        const songSrc = songInfo.dataset.url
-
-        const qItem = new Song(title, album, albumPic, songSrc)
-
-        // console.log(qItem)
-
-        if (localQueue.length = 0) {
-            qItem.add2queue();
-            filterPlayer()
-        } else {
-            qItem.add2queue();
-        }
-
-    }
-
-    // track info
     const target = e.currentTarget;
-    addToQueue(target)
-    filterPlayer(target);
 
-    // load music
-    const songUrl = target.dataset.url
-    const loadedTrack = `/music/${songUrl}.mp3`
-    audioPlayer.src = loadedTrack;
-    // console.log(loadedTrack);
+    if (localQueue.length > 0) {
+        addToQueue(target)
+    } else {
+        addToQueue(target);
+        filterPlayer();
+    }
+
+}
+
+const cycleNextSong = () => {
 
 }
 
 
+// build album view
 const mapThruAlbums = () => {
     sketches.map(album => {
         // set up container variables and classes
@@ -418,13 +401,15 @@ const mapThruAlbums = () => {
     })
 }
 
-mapThruAlbums();
 
+// hide menus
 const nowPlaying = document.getElementById("nowPlaying");
-
 document.getElementById("playingDropdownButton").addEventListener("click", () => {
     nowPlaying.classList.toggle('menu-hide')
-
+})
+document.getElementById("qButton").addEventListener("click", () => {
+    queueListDump.classList.toggle('menu-hide')
 })
 
 
+mapThruAlbums();
