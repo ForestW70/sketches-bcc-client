@@ -2,7 +2,7 @@
 const sketches = [
     {
         title: 'S&OFV1',
-        artLink: '/assets/s&ofv1.jpg',
+        artLink: './assets/s&ofv1.jpg',
         trackList: [
             {
                 track: 'Quarantine (but its ok)',
@@ -44,7 +44,7 @@ const sketches = [
     },
     {
         title: 'S&OFV2',
-        artLink: '/assets/s&ofv2.jpg',
+        artLink: './assets/s&ofv2.jpg',
         trackList: [
             {
                 track: 'Amanda Alarm (wake up hunny)',
@@ -85,7 +85,7 @@ const sketches = [
     },
     {
         title: 'S&OFV3',
-        artLink: '/assets/s&ofv3.jpg',
+        artLink: './assets/s&ofv3.jpg',
         trackList: [
             {
                 track: 'Amanda Morph',
@@ -126,7 +126,7 @@ const sketches = [
     },
     {
         title: 'S&OFV4',
-        artLink: '/assets/s&ofv4.png',
+        artLink: './assets/s&ofv4.png',
         trackList: [
             {
                 track: 'Froggy',
@@ -167,7 +167,7 @@ const sketches = [
     },
     {
         title: 'sketches bcc',
-        artLink: '/assets/bcc.png',
+        artLink: './assets/bcc.png',
         trackList: [
             {
                 track: 'Hotmess',
@@ -331,7 +331,7 @@ const currAlbumPic = document.getElementById("albumPic");
 // reset now playing
 const filterPlayer = () => {
     const wiperObj = songQueue.grabNext();
-    const songHome = `/music/${wiperObj.url}.mp3`
+    const songHome = `./music/${wiperObj.url}.mp3`
 
     currArtistName.innerText = "";
     currTrackName.innerText = "";
