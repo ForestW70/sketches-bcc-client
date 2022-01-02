@@ -258,6 +258,44 @@ const sketches = [
     },
 ]
 
+const queueListDump = document.getElementById("queueList");
+const localQueue = window.localStorage
+
+function Song(title, ep, art, url) {
+    this.artist = "Lukasz Mauro"
+    this.title = title;
+    this.ep = ep;
+    this.art = art;
+    this.url = url;
+
+    this.add2queue = () => {
+        const item = {
+            "artist": this.artist,
+            "title": this.title,
+            "ep": this.ep,
+            "art": this.art,
+            "url": this.url,
+        }
+        localStorage.setItem(localQueue.length + 1, JSON.stringify(item))
+
+        const qBar = document.createElement("button");
+        qBar.innerText = this.title + '~' + this.ep;
+        queueListDump.appendChild(qBar);
+    }
+
+    this.add2local = () => {
+        return (
+            {
+                "artist": this.artist,
+                "title": this.title,
+                "ep": this.ep,
+                "art": this.art,
+                "url": this.url,
+            }
+        )
+    }
+}
+
 const audioPlayer = document.querySelector(".player");
 const discoContainer = document.getElementById("disco");
 
@@ -267,24 +305,52 @@ const currTrackTime = document.getElementById("trackTime");
 const currAlbumName = document.getElementById("albumName");
 const currAlbumPic = document.getElementById("albumPic");
 
+const queueList = document.getElementById("queueList");
+
+
+const queueArray = [];
 
 const handleTrackSelect = (e) => {
     // reset now playing
-    const filterPlayer = (songRow) => {
+    const filterPlayer = () => {
         currArtistName.innerText = "";
         currTrackName.innerText = "";
         currAlbumName.innerText = "";
-        audioPlayer.src = "";
         currAlbumPic.src = "";
+        audioPlayer.src = "";
+
+        const wiper = localQueue.getItem("1")
+        console.log(wiper)
 
         currArtistName.innerText = "Lukasz Mauro"
-        currTrackName.innerText = songRow.querySelector(".album-track").innerText;
-        currAlbumName.innerText = songRow.dataset.epname;
-        currAlbumPic.src = songRow.dataset.albumurl
+        currTrackName.innerText = newSong.querySelector(".album-track").innerText;
+        currAlbumName.innerText = newSong.dataset.epname;
+        currAlbumPic.src = newSong.dataset.albumurl;
+        audioPlayer.src = ""
+    }
+
+    const addToQueue = (songInfo) => {
+        const title = songInfo.querySelector(".album-track").innerText;
+        const album = songInfo.dataset.epname;
+        const albumPic = songInfo.dataset.albumurl;
+        const songSrc = songInfo.dataset.url
+
+        const qItem = new Song(title, album, albumPic, songSrc)
+
+        // console.log(qItem)
+
+        if (localQueue.length = 0) {
+            qItem.add2queue();
+            filterPlayer()
+        } else {
+            qItem.add2queue();
+        }
+
     }
 
     // track info
     const target = e.currentTarget;
+    addToQueue(target)
     filterPlayer(target);
 
     // load music
