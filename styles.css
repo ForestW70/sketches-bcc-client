@@ -37,6 +37,10 @@ h1 {
     margin: 0px;
 }
 
+#albumName {
+    margin-top: 10px;
+}
+
 
 /* queueList */
 #queueList {
@@ -76,7 +80,7 @@ h1 {
 
 .info-container {
     display: grid;
-    margin-left: 50px;
+    margin: 10px 0 0 50px;
     grid-template-columns: 1fr 2fr;
 }
 
@@ -84,6 +88,10 @@ h1 {
     height: 300px;
     width: 300px;
     /* border: 5px double black; */
+}
+
+.info-container > h3 {
+    font-style: italic;
 }
 
 .track-container {
@@ -96,7 +104,9 @@ h1 {
 .t-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    border: none;
+    background-color: inherit;
 }
 
 .t-row:hover {
@@ -107,7 +117,7 @@ h1 {
 
 .track-num {
     color: grey;
-    /* justify-self: right; */
+    justify-self: left;
 }
 
 .album-track {

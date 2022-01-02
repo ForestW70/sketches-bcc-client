@@ -1,3 +1,8 @@
+const getRT = () => {
+    let one = Math.floor(Math.random() * 9);
+    let two = Math.floor(Math.random() * 60);
+    return `${one}:${two}`;
+}
 
 const sketches = [
     {
@@ -92,37 +97,37 @@ const sketches = [
         trackList: [
             {
                 track: 'Amanda Morph',
-                length: '',
+                length: getRT(),
                 url: 'amanda-morph',
             },
             {
                 track: 'Sara Tonin',
-                length: '',
+                length: getRT(),
                 url: 'sara-tonin',
             },
             {
                 track: 'Bailey melody 07',
-                length: '',
+                length: getRT(),
                 url: 'bailey-melody',
             },
             {
                 track: 'Oh techre!',
-                length: '',
+                length: getRT(),
                 url: 'oh-techre',
             },
             {
                 track: 'Go to feather',
-                length: '',
+                length: getRT(),
                 url: 'go2feather',
             },
             {
                 track: '(I am aware of the) black box',
-                length: '',
+                length: getRT(),
                 url: 'black-box',
             },
             {
                 track: '1800harp',
-                length: '',
+                length: getRT(),
                 url: '1800harp',
             },
         ]
@@ -134,43 +139,43 @@ const sketches = [
         trackList: [
             {
                 track: 'Froggy',
-                length: '',
+                length: getRT(),
                 url: 'froggy',
             },
             {
                 track: 'Hello grommet',
-                length: '',
+                length: getRT(),
                 url: 'hello-grommet',
             },
             {
                 track: 'Live from the polls',
-                length: '',
+                length: getRT(),
                 url: 'polls',
             },
             {
                 track: 'Case of the cookies',
-                length: '',
+                length: getRT(),
                 url: 'cookies',
             },
             {
                 track: 'Is it forever?',
-                length: '',
+                length: getRT(),
                 url: 'is-it-forever',
             },
             {
                 track: 'BBBB',
-                length: '',
+                length: getRT(),
                 url: 'bbbb',
             },
             {
                 track: 'Silly Singing silicon',
-                length: '',
+                length: getRT(),
                 url: 'silly-singing',
             },
         ]
     },
     {
-        title: 'sketches bcc',
+        title: 'BCC',
         artLink: './assets/bcc.png',
         webLink: 'https://forestw70.github.io/bcc/assets/bcc.png',
         trackList: [
@@ -269,7 +274,7 @@ const localQueue = window.localStorage
 
 function SongQueue(pushbox = []) {
     this.container = pushbox;
-    
+
 
     this.add2queue = (el) => {
         return this.container.push(el);
@@ -284,6 +289,10 @@ function SongQueue(pushbox = []) {
 
     this.grabNext = () => {
         return this.container[0];
+    }
+
+    this.grabLength = () => {
+        return this.container.length;
     }
 
     // this.removeButton = (t, e) => {
@@ -317,7 +326,7 @@ function Song(title, ep, art, url) {
         queueListDump.appendChild(qBar);
     }
 
-    
+
 
 }
 
@@ -335,8 +344,14 @@ const currAlbumPic = document.getElementById("albumPic");
 
 // reset now playing
 const filterPlayer = () => {
+    console.log("...Filtering to next track...")
     const wiperObj = songQueue.grabNext();
-    const songHome = `https://forestw70.github.io/bcc/music/${wiperObj.url}.mp3` 
+    if (wiperObj.url.length < 2) {
+        console.log("Failed to Cycle.")
+        return;
+    }
+
+    const songHome = `https://forestw70.github.io/bcc/music/${wiperObj.url}.mp3`
 
     currArtistName.innerText = "";
     currTrackName.innerText = "";
@@ -349,6 +364,7 @@ const filterPlayer = () => {
     currAlbumName.innerText = wiperObj.ep;
     currAlbumPic.src = wiperObj.art;
     audioPlayer.src = songHome;
+    console.log("Next track loaded!")
 }
 
 // queue functions
@@ -363,20 +379,20 @@ const addToQueue = (songInfo) => {
 }
 
 const handleTrackSelect = (e) => {
+    e.preventDefault;
+    const currQueueTime = songQueue.grabLength();
     const target = e.currentTarget;
 
-    if (localQueue.length > 0) {
-        addToQueue(target)
+    if (currQueueTime <= 1) {
+        addToQueue(target);
+        console.log(localQueue.length)
+        filterPlayer();
     } else {
         addToQueue(target);
-        filterPlayer();
     }
 
 }
 
-const cycleNextSong = () => {
-
-}
 
 
 // build album view
@@ -389,8 +405,8 @@ const mapThruAlbums = () => {
         const albumTitle = document.createElement("h3");
         const albumArt = document.createElement("img");
         albumContainer.classList.add("disco-item");
-        infoContainer.classList.add("info-container")
-        trackContainer.classList.add("track-container")
+        infoContainer.classList.add("info-container");
+        trackContainer.classList.add("track-container");
         // 
 
         const epName = album.title;
@@ -401,17 +417,18 @@ const mapThruAlbums = () => {
 
         album.trackList.map((idvTrack, idx) => {
             // set up track info
-            const trackRow = document.createElement("div")
+            const trackRow = document.createElement("button");
             const tTitle = document.createElement("span");
             const tTime = document.createElement("span");
             const tNum = document.createElement("span");
 
+            trackRow.type = "button";
             trackRow.dataset.url = idvTrack.url;
-            trackRow.dataset.length = idvTrack.length
+            trackRow.dataset.length = idvTrack.length;
             trackRow.dataset.epname = epName;
             trackRow.dataset.albumurl = epArt;
             trackRow.addEventListener("click", handleTrackSelect);
-            trackRow.classList.add("t-row")
+            trackRow.classList.add("t-row");
             tTitle.classList.add("album-track");
             tTime.classList.add("track-time");
             tNum.classList.add("track-num");
@@ -438,6 +455,15 @@ const mapThruAlbums = () => {
 }
 
 
+// soft reset
+const clearPlayer = () => {
+    currArtistName.innerText = "";
+    currTrackName.innerText = "";
+    currAlbumName.innerText = "No track queued!";
+    currAlbumPic.src = "https://picsum.photos/25";
+    audioPlayer.src = "";
+}
+
 // menus
 const nowPlaying = document.getElementById("nowPlaying");
 document.getElementById("playingDropdownButton").addEventListener("click", () => {
@@ -448,10 +474,29 @@ document.getElementById("qButton").addEventListener("click", () => {
 })
 
 document.getElementById("nextTrack").addEventListener("click", () => {
-    songQueue.removeFromQueue();
-    // songQueue.removeButton();
-    filterPlayer();
+    const queueLength = songQueue.grabLength();
+    console.log(queueLength)
+
+    if (queueLength > 1) { 
+        songQueue.removeFromQueue();
+        filterPlayer();
+    } else {
+        clearPlayer();
+    }
+    
+    
 })
 
+window.onload = mapThruAlbums();
 
-mapThruAlbums();
+
+
+if (window.performance) {
+    console.info("window.performance work's fine on this browser");
+}
+if (performance.navigation.type == 1) {
+    console.info("This page is reloaded");
+} else {
+    console.info("This page is not reloaded");
+}
+

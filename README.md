@@ -1,3 +1,3 @@
-v1.1
+v1.2
 
 https://forestw70.github.io/bcc/index.html
