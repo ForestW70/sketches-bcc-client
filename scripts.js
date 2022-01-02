@@ -1,8 +1,8 @@
 
 const sketches = [
     {
-        title: 'Sketches & Other Failures Vol. 1',
-        artLink: 'https://picsum.photos/200',
+        title: 'S&OFV1',
+        artLink: '/assets/s&ofv1.jpg',
         trackList: [
             {
                 track: 'Quarantine (but its ok)',
@@ -43,8 +43,8 @@ const sketches = [
         ]
     },
     {
-        title: 'Sketches & Other Failures Chap. 4',
-        artLink: 'https://picsum.photos/200/199',
+        title: 'S&OFV2',
+        artLink: '/assets/s&ofv2.jpg',
         trackList: [
             {
                 track: 'Amanda Alarm (wake up hunny)',
@@ -79,109 +79,18 @@ const sketches = [
             {
                 track: 'It Is Forever',
                 length: '?:??',
-                url: '',
+                url: 'it-is-forever',
             },
         ]
     },
     {
-        title: 'sketches bcc',
-        artLink: 'https://picsum.photos/197',
-        trackList: [
-            {
-                track: 'Hotmess',
-                length: '3:04',
-                url: '',
-            },
-            {
-                track: 'Atmosphere (interlude)',
-                length: '0:35',
-                url: '',
-            },
-            {
-                track: 'Amanda',
-                length: '1:47',
-                url: '',
-            },
-            {
-                track: 'Dare2Bare',
-                length: '2:35',
-                url: '',
-            },
-            {
-                track: 'Quarantine (but its ok)',
-                length: '3:01',
-                url: '',
-            },
-            {
-                track: 'Stickyhold',
-                length: '1:27',
-                url: '',
-            },
-            {
-                track: 'Stargate (reprise)',
-                length: '1:26',
-                url: '',
-            },
-            {
-                track: 'Rap',
-                length: '0:54',
-                url: '',
-            },
-            {
-                track: '27th&girard',
-                length: '4:18',
-                url: '',
-            },
-            {
-                track: 'Almostinato',
-                length: '2:34',
-                url: '',
-            },
-            {
-                track: '5d',
-                length: '2:08',
-                url: '',
-            },
-            {
-                track: 'Probably Wrong',
-                length: '2:58',
-                url: '',
-            },
-            {
-                track: 'S. Balachander (broken from the beginning mix)',
-                length: '4:59',
-                url: '',
-            },
-            {
-                track: 'Boc (interlude)',
-                length: '1:22',
-                url: '',
-            },
-            {
-                track: 'Toothpicks',
-                length: '2:31',
-                url: '',
-            },
-            {
-                track: 'Pilotdrone',
-                length: '2:27',
-                url: '',
-            },
-            {
-                track: 'Faultline',
-                length: '4:54',
-                url: '',
-            },
-        ]
-    },
-    {
-        title: 'Sketches & Other Failures II',
-        artLink: 'https://picsum.photos/199',
+        title: 'S&OFV3',
+        artLink: '/assets/s&ofv3.jpg',
         trackList: [
             {
                 track: 'Amanda Morph',
                 length: '',
-                url: '',
+                url: 'amanda-morph',
             },
             {
                 track: 'Sara Tonin',
@@ -216,8 +125,8 @@ const sketches = [
         ]
     },
     {
-        title: 'Sketches & Other Failures Part 3',
-        artLink: 'https://picsum.photos/198',
+        title: 'S&OFV4',
+        artLink: '/assets/s&ofv4.png',
         trackList: [
             {
                 track: 'Froggy',
@@ -256,11 +165,128 @@ const sketches = [
             },
         ]
     },
+    {
+        title: 'sketches bcc',
+        artLink: '/assets/bcc.png',
+        trackList: [
+            {
+                track: 'Hotmess',
+                length: '3:04',
+                url: 'bcc-hotmess',
+            },
+            {
+                track: 'Atmosphere (interlude)',
+                length: '0:35',
+                url: 'bcc-atmosphere',
+            },
+            {
+                track: 'Amanda',
+                length: '1:47',
+                url: 'bcc-amanda',
+            },
+            {
+                track: 'Dare2Bare',
+                length: '2:35',
+                url: 'bcc-dare2bare',
+            },
+            {
+                track: 'Quarantine (but its ok)',
+                length: '3:01',
+                url: 'bcc-quarantine',
+            },
+            {
+                track: 'Stickyhold',
+                length: '1:27',
+                url: 'bcc-stickyhold',
+            },
+            {
+                track: 'Stargate (reprise)',
+                length: '1:26',
+                url: 'bcc-stargate',
+            },
+            {
+                track: 'Rap',
+                length: '0:54',
+                url: 'bcc-rap',
+            },
+            {
+                track: '27th&girard',
+                length: '4:18',
+                url: 'bcc-girard',
+            },
+            {
+                track: 'Almostinato',
+                length: '2:34',
+                url: 'bcc-it-is-forever',
+            },
+            {
+                track: '5d',
+                length: '2:08',
+                url: 'bcc-5d',
+            },
+            {
+                track: 'Probably Wrong',
+                length: '2:58',
+                url: 'bcc-probably',
+            },
+            {
+                track: 'S. Balachander (broken from the beginning mix)',
+                length: '4:59',
+                url: 'bcc-sbala',
+            },
+            {
+                track: 'Boc (interlude)',
+                length: '1:22',
+                url: 'bcc-boc',
+            },
+            {
+                track: 'Toothpicks',
+                length: '2:31',
+                url: 'bcc-toothpicks',
+            },
+            {
+                track: 'Pilotdrone',
+                length: '2:27',
+                url: 'bcc-pilotdrone',
+            },
+            {
+                track: 'Faultline',
+                length: '4:54',
+                url: 'bcc-faultline',
+            },
+        ]
+    },
 ]
 
 
 const queueListDump = document.getElementById("queueList");
 const localQueue = window.localStorage
+
+function SongQueue(pushbox = []) {
+    this.container = pushbox;
+    
+
+    this.add2queue = (el) => {
+        return this.container.push(el);
+    }
+
+    this.removeFromQueue = () => {
+        const currItem = this.container[0];
+        const btnSearch = currItem.title + "~" + currItem.ep;
+        document.getElementById(btnSearch).remove();
+        return this.container.shift();
+    }
+
+    this.grabNext = () => {
+        return this.container[0];
+    }
+
+    // this.removeButton = (t, e) => {
+    //     return document.getElementById(`${this.title}~${this.ep}`).remove()
+    // }
+}
+
+const songQueue = new SongQueue()
 
 function Song(title, ep, art, url) {
     this.artist = "Lukasz Mauro"
@@ -269,7 +295,7 @@ function Song(title, ep, art, url) {
     this.art = art;
     this.url = url;
 
-    this.add2queue = () => {
+    this.add2local = () => {
         const item = {
             "artist": this.artist,
             "title": this.title,
@@ -277,15 +303,18 @@ function Song(title, ep, art, url) {
             "art": this.art,
             "url": this.url,
         }
-        localStorage.setItem(localStorage.length, JSON.stringify(item))
+        songQueue.add2queue(item)
+        // localStorage.setItem(localStorage.length, JSON.stringify(item))
 
         const qBar = document.createElement("button");
-        qBar.innerText = this.title + '~' + this.ep;
+        qBar.innerText = this.title + ' ~ ' + this.ep;
+        qBar.id = this.title + '~' + this.ep;
         queueListDump.appendChild(qBar);
     }
 
-}
+    
 
+}
 
 
 // track control
@@ -298,9 +327,10 @@ const currAlbumName = document.getElementById("albumName");
 const currAlbumPic = document.getElementById("albumPic");
 
 
+
 // reset now playing
 const filterPlayer = () => {
-    const wiperObj = JSON.parse(localQueue.getItem("0"))
+    const wiperObj = songQueue.grabNext();
     const songHome = `/music/${wiperObj.url}.mp3`
 
     currArtistName.innerText = "";
@@ -324,7 +354,7 @@ const addToQueue = (songInfo) => {
     const albumPic = songInfo.dataset.albumurl;
     const songSrc = songInfo.dataset.url
     const qItem = new Song(title, album, albumPic, songSrc)
-    qItem.add2queue();
+    qItem.add2local();
 }
 
 const handleTrackSelect = (e) => {
@@ -402,13 +432,19 @@ const mapThruAlbums = () => {
 }
 
 
-// hide menus
+// menus
 const nowPlaying = document.getElementById("nowPlaying");
 document.getElementById("playingDropdownButton").addEventListener("click", () => {
     nowPlaying.classList.toggle('menu-hide')
 })
 document.getElementById("qButton").addEventListener("click", () => {
     queueListDump.classList.toggle('menu-hide')
+})
+
+document.getElementById("nextTrack").addEventListener("click", () => {
+    songQueue.removeFromQueue();
+    // songQueue.removeButton();
+    filterPlayer();
 })
 
 
