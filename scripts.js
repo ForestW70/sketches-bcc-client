@@ -3,6 +3,7 @@ const sketches = [
     {
         title: 'S&OFV1',
         artLink: './assets/s&ofv1.jpg',
+        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv1.jpg',
         trackList: [
             {
                 track: 'Quarantine (but its ok)',
@@ -26,7 +27,7 @@ const sketches = [
             },
             {
                 track: 'Stargate',
-                length: '?:??',
+                length: '1:13',
                 url: 'stargate',
             },
             {
@@ -45,6 +46,7 @@ const sketches = [
     {
         title: 'S&OFV2',
         artLink: './assets/s&ofv2.jpg',
+        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv2.jpg',
         trackList: [
             {
                 track: 'Amanda Alarm (wake up hunny)',
@@ -86,6 +88,7 @@ const sketches = [
     {
         title: 'S&OFV3',
         artLink: './assets/s&ofv3.jpg',
+        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv3.jpg',
         trackList: [
             {
                 track: 'Amanda Morph',
@@ -127,6 +130,7 @@ const sketches = [
     {
         title: 'S&OFV4',
         artLink: './assets/s&ofv4.png',
+        webLink: 'https://forestw70.github.io/bcc/assets/s&ofv4.png',
         trackList: [
             {
                 track: 'Froggy',
@@ -168,6 +172,7 @@ const sketches = [
     {
         title: 'sketches bcc',
         artLink: './assets/bcc.png',
+        webLink: 'https://forestw70.github.io/bcc/assets/bcc.png',
         trackList: [
             {
                 track: 'Hotmess',
@@ -331,7 +336,7 @@ const currAlbumPic = document.getElementById("albumPic");
 // reset now playing
 const filterPlayer = () => {
     const wiperObj = songQueue.grabNext();
-    const songHome = `./music/${wiperObj.url}.mp3`
+    const songHome = `https://forestw70.github.io/bcc/music/${wiperObj.url}.mp3` 
 
     currArtistName.innerText = "";
     currTrackName.innerText = "";
@@ -389,9 +394,10 @@ const mapThruAlbums = () => {
         // 
 
         const epName = album.title;
-        const epArt = album.artLink;
         albumTitle.innerText = album.title;
-        albumArt.src = album.artLink;
+        // for web
+        const epArt = album.webLink;
+        albumArt.src = epArt;
 
         album.trackList.map((idvTrack, idx) => {
             // set up track info
