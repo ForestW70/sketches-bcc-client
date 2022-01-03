@@ -1,7 +1,7 @@
 # Dj Burner b - Sketches Bcc - Client side
 1/2/2022
 
-v1.36 - MIT - For Good.
+v1.4 - MIT - For Good.
 
 * # Content:
 - [Description](#description)
@@ -35,4 +35,5 @@ v1.36 - MIT - For Good.
     Soundcloud - https://soundcloud.com/itsjustaburner
 
 - ###### Links:    
-    - [Visit page](https://forestw70.github.io/bcc/index.html)
+    - [Visit page](https://forestw70.github.io/sketches-bcc-client/index.html)
+    - [Visit repo](https://github.com/ForestW70/sketches-bcc-client)
