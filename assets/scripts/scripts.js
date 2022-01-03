@@ -1,9 +1,9 @@
+// album information
 const getRT = () => {
     let one = Math.floor(Math.random() * 9);
     let two = Math.floor(Math.random() * 60);
     return `${one}:${two}`;
 }
-
 const sketches = [
     {
         title: 'S&OFV1',
@@ -268,7 +268,7 @@ const sketches = [
     },
 ]
 
-
+// song and queue classes
 const queueListDump = document.getElementById("queueList");
 const localQueue = window.localStorage
 
@@ -296,7 +296,6 @@ function SongQueue(pushbox = []) {
     }
 
 }
-
 const songQueue = new SongQueue()
 
 function Song(title, ep, art, url) {
@@ -338,8 +337,8 @@ function Song(title, ep, art, url) {
 }
 
 
-// track control
-const audioPlayer = document.querySelector(".player");
+// track fill control
+const audioPlayer = document.getElementById("player");
 const discoContainer = document.getElementById("disco");
 const currArtistName = document.getElementById("artistName");
 const currTrackName = document.getElementById("trackName");
@@ -370,7 +369,7 @@ const filterPlayer = () => {
     console.log("Next track loaded!")
 }
 
-// queue functions
+// create queue item
 const addToQueue = (songInfo) => {
     // create new song and add to localstorage
     const title = songInfo.querySelector(".album-track").innerText;
