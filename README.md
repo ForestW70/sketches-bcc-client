@@ -3,7 +3,7 @@
 
 v1.36 - MIT - For Good.
 
-* Content:
+* # Content:
 - [Description](#description)
 - [Usage](#usage)
 - [Project Notes](#project-notes)
@@ -35,4 +35,4 @@ v1.36 - MIT - For Good.
     Soundcloud - https://soundcloud.com/itsjustaburner
 
 - ###### Links:    
-https://forestw70.github.io/bcc/index.html
+    - [Visit page](https://forestw70.github.io/bcc/index.html)
