@@ -81,6 +81,19 @@ h1 {
     background-color: darkorange;
 }
 
+#controlers {
+    display: flex;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+#controlers button {
+    letter-spacing: 5px;
+}
+
+#controlers button:hover {
+    font-style: oblique;
+}
 
 /* toggle */
 .menu-flex {
@@ -96,7 +109,7 @@ h1 {
 /* albums */
 #disco {
     font-size: 20px;
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 .disco-item {

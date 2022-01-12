@@ -404,7 +404,7 @@ const currAlbumPic = document.getElementById("albumPic");
 const filterPlayer = () => {
     console.log("...Filtering to next track...")
     const wiperObj = songQueue.grabNext();
-    
+
     const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiperObj.url}.mp3`
 
     currArtistName.innerText = "";
@@ -524,6 +524,52 @@ const clearPlayer = () => {
     audioPlayer.src = "";
 }
 
+// create single song - song view - missin react
+const makeSongRow = (at, ap, sn, sl, su, sp) => {
+    const span1 = document.createElement('span');
+    const span2 = document.createElement('span');
+    const span3 = document.createElement('span');
+    const span4 = document.createElement('span');
+    const span5 = document.createElement('span');
+    const span6 = document.createElement('span');
+    const div = document.createElement('div');
+
+    span1.innerText = sp;
+    span2.innerText = sn;
+    span3.innerText = su;
+    span4.innerText = at;
+    span5.innerText = sl;
+    span6.innerText = ap;
+
+    div.appendChild(span1)
+    div.appendChild(span2)
+    div.appendChild(span3)
+    div.appendChild(span4)
+    div.appendChild(span5)
+    div.appendChild(span6)
+
+    discoContainer.appendChild(div);
+}
+
+
+// show song view
+const showSongView = () => {
+
+    sketches.map(album => {
+        let albumTitle = album.title;
+        let otherPath = album.artLink
+        console.log(album)
+
+        album.trackList.map((song, idx) => {
+            let songName = song.track;
+            let songLength = song.length;
+            let songUrl = song.url;
+            let songPosition = idx + 1
+            makeSongRow(albumTitle, otherPath, songName, songLength, songUrl, songPosition);
+        })
+    })
+}
+
 // menus
 const nowPlaying = document.getElementById("nowPlaying");
 document.getElementById("playingDropdownButton").addEventListener("click", () => {
@@ -537,14 +583,18 @@ document.getElementById("nextTrack").addEventListener("click", () => {
     const queueLength = songQueue.grabLength();
     console.log(queueLength)
 
-    if (queueLength > 1) { 
+    if (queueLength > 1) {
         songQueue.removeFromQueue();
         filterPlayer();
     } else {
         clearPlayer();
     }
-    
-    
+
+})
+
+document.getElementById("viewSongs").addEventListener("click", () => {
+    discoContainer.innerText = '';
+    showSongView();
 })
 
 window.onload = mapThruAlbums();
