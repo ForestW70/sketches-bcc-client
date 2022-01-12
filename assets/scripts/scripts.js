@@ -525,6 +525,8 @@ const clearPlayer = () => {
 }
 
 // create single song - song view - missin react
+const listContainer = document.getElementById('list')
+
 const makeSongRow = (at, ap, sn, sl, su, sp) => {
     const span1 = document.createElement('span');
     const span2 = document.createElement('span');
@@ -533,6 +535,8 @@ const makeSongRow = (at, ap, sn, sl, su, sp) => {
     const span5 = document.createElement('span');
     const span6 = document.createElement('span');
     const div = document.createElement('div');
+
+    div.classList.add('song-list-row')
 
     span1.innerText = sp;
     span2.innerText = sn;
@@ -548,13 +552,13 @@ const makeSongRow = (at, ap, sn, sl, su, sp) => {
     div.appendChild(span5)
     div.appendChild(span6)
 
-    discoContainer.appendChild(div);
+    listContainer.appendChild(div);
 }
 
 
 // show song view
 const showSongView = () => {
-
+    makeSongRow("Album Title", "Some Path", "Song", "Length", "Song Url", "Track Number")
     sketches.map(album => {
         let albumTitle = album.title;
         let otherPath = album.artLink

@@ -81,19 +81,6 @@ h1 {
     background-color: darkorange;
 }
 
-#controlers {
-    display: flex;
-    justify-content: center;
-    background-color: aquamarine;
-}
-
-#controlers button {
-    letter-spacing: 5px;
-}
-
-#controlers button:hover {
-    font-style: oblique;
-}
 
 /* toggle */
 .menu-flex {
@@ -109,7 +96,7 @@ h1 {
 /* albums */
 #disco {
     font-size: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 .disco-item {
@@ -167,8 +154,52 @@ h1 {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
+/* view switch buttons */
+#controlers {
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+#controlers button {
+    letter-spacing: 5px;
+    
+}
+
+#controlers button:hover {
+    font-style: oblique;
+}
 
 
+/* song list view */
+
+.song-list-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr 1fr;
+}
+
+.song-list-row > span {
+    display: flex;
+    justify-content: center;
+    padding: 2px 3px 0 0;
+}
+
+.song-list-row:nth-child(1) {
+    font-family: serif;
+    font-size: 1.4rem;
+    color: #fff;
+    background-color: rgb(78, 78, 78);
+}
+
+.song-list-row:nth-child(2n+3) {
+    background-color: white;
+}
+
+.song-list-row:hover {
+    padding: 0 3px;
+    border-bottom: 2px solid black;
+}
 
 
 
