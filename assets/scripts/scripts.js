@@ -266,6 +266,58 @@ const sketches = [
             },
         ]
     },
+    {
+        title: "ECT",
+        artLink: './assets/ib.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ib.jpg',
+        trackList: [
+            {
+                track: 'Ferox Recieved',
+                length: getRT(),
+                url: 'ferox',
+            },
+            {
+                track: 'This is forever (demo)',
+                length: getRT(),
+                url: 'this-is-forever-v1',
+            },
+            {
+                track: 'Tsalal',
+                length: getRT(),
+                url: 'ferox',
+            },
+            {
+                track: 'Knavish Drone (cut)',
+                length: getRT(),
+                url: 'knavish-drone',
+            },
+            {
+                track: 'Anxious...',
+                length: getRT(),
+                url: 'anxious-oblast',
+            },
+            {
+                track: 'HM/FL (demo)',
+                length: getRT(),
+                url: 'hmfl-demo',
+            },
+            {
+                track: 'Boiler Room',
+                length: getRT(),
+                url: 'boiler-room',
+            },
+            {
+                track: 'Chiminy Harker',
+                length: getRT(),
+                url: 'chiminy',
+            },
+            {
+                track: 'On Line',
+                length: getRT(),
+                url: 'on-line',
+            }
+        ]
+    }
 ]
 
 // song and queue classes
