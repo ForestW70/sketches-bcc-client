@@ -175,6 +175,90 @@ const sketches = [
         ]
     },
     {
+        title: 'S&OFV5',
+        artLink: './assets/s&ofv5.png',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv5.png',
+        trackList: [
+            {
+                track: 'Are Those Thorns?',
+                length: getRT(),
+                url: 'are-those-thorns',
+            },
+            {
+                track: 'Barrixtown',
+                length: getRT(),
+                url: 'barrixtown',
+            },
+            {
+                track: 'Childs Loop',
+                length: getRT(),
+                url: 'childs-loop',
+            },
+            {
+                track: 'Chix Loop',
+                length: getRT(),
+                url: 'cookies',
+            },
+            {
+                track: 'Cleverly',
+                length: getRT(),
+                url: 'is-it-forever',
+            },
+            {
+                track: 'Crystal Envelope',
+                length: getRT(),
+                url: 'crystal-env',
+            },
+            {
+                track: 'FL Disaster Zone',
+                length: getRT(),
+                url: 'fl-disaster',
+            },
+        ]
+    },
+    {
+        title: 'S&OFV6',
+        artLink: './assets/s&ofv6.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv6.jpg',
+        trackList: [
+            {
+                track: 'Kicking Space',
+                length: getRT(),
+                url: 'kicking-space',
+            },
+            {
+                track: 'Let It Fly',
+                length: getRT(),
+                url: 'let-it-fly',
+            },
+            {
+                track: 'Lipstick Halo',
+                length: getRT(),
+                url: 'lipstick-halo',
+            },
+            {
+                track: 'parks',
+                length: getRT(),
+                url: 'parks',
+            },
+            {
+                track: 'Playing With My Hair',
+                length: getRT(),
+                url: 'playing-w-my-hair',
+            },
+            {
+                track: 'Rust In Peace',
+                length: getRT(),
+                url: 'rust-in-peace',
+            },
+            {
+                track: 'Woodshed',
+                length: getRT(),
+                url: 'woodshed',
+            },
+        ]
+    },
+    {
         title: 'BCC',
         artLink: './assets/bcc.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
@@ -527,6 +611,8 @@ const clearPlayer = () => {
 // create single song - song view - missin react
 const listContainer = document.getElementById('list')
 
+
+
 const makeSongRow = (at, ap, sn, sl, su, sp) => {
     const span1 = document.createElement('span');
     const span2 = document.createElement('span');
@@ -559,17 +645,19 @@ const makeSongRow = (at, ap, sn, sl, su, sp) => {
 // show song view
 const showSongView = () => {
     makeSongRow("Album Title", "Some Path", "Song", "Length", "Song Url", "Track Number")
+    let rootNum = 0;
+
     sketches.map(album => {
         let albumTitle = album.title;
         let otherPath = album.artLink
         console.log(album)
 
-        album.trackList.map((song, idx) => {
+        album.trackList.map(song => {
             let songName = song.track;
             let songLength = song.length;
             let songUrl = song.url;
-            let songPosition = idx + 1
-            makeSongRow(albumTitle, otherPath, songName, songLength, songUrl, songPosition);
+            rootNum++;
+            makeSongRow(albumTitle, otherPath, songName, songLength, songUrl, rootNum);
         })
     })
 }
