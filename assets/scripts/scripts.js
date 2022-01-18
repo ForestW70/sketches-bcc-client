@@ -218,8 +218,8 @@ const sketches = [
     },
     {
         title: 'S&OFV6',
-        artLink: './assets/s&ofv6.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv6.jpg',
+        artLink: './assets/oops.png',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/oops.png',
         trackList: [
             {
                 track: 'Kicking Space',
@@ -232,9 +232,9 @@ const sketches = [
                 url: 'let-it-fly',
             },
             {
-                track: 'Lipstick Halo',
+                track: 'Liptstick Halo',
                 length: getRT(),
-                url: 'lipstick-halo',
+                url: 'liptstick-halo',
             },
             {
                 track: 'parks',
