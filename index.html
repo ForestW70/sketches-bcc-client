@@ -22,7 +22,8 @@
             <div id="nowPlaying" class="menu-flex">
                 <img id="albumPic" src="https://picsum.photos/25">
                 <article>
-                    <h2 id="artistName"></h1>
+                    <h2 id="artistName">
+                        </h1>
                         <h3 id="trackName">
                     </h2>
                     <h5 id="albumName">No track queued!</h3>
@@ -48,9 +49,26 @@
         </button>
     </section>
 
-    <section id="disco"></section>
+    <section id="disco">
+        <div class="song-list-row show" id="headerRow">
+            <span data-sort-by="trkNum">Track Number</span>
+            <span data-sort-by="trkNme">Song</span><span data-sort-by="trkUrl">Song Url</span>
+            <span data-sort-by="epTtl">Album Title</span>
+            <span data-sort-by="trkLen">Length</span>
+            <span data-sort-by="og">Some Path</span>
+        </div>
+        <section id="list"></section>
+    </section>
 
-    <section id="list"></section>
+    <!-- <section id="list">
+        <div class="song-list-row" id="headerRow">
+            <span data-sort-by="trkNum">Track Number</span>
+            <span data-sort-by="trkNme">Song</span><span data-sort-by="trkUrl">Song Url</span>
+            <span data-sort-by="epTtl">Album Title</span>
+            <span data-sort-by="trkLen">Length</span>
+            <span data-sort-by="og">Some Path</span>
+        </div>
+    </section> -->
 
 
 </body>

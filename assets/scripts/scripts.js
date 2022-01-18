@@ -1,9 +1,16 @@
 // album information
 const getRT = () => {
-    let one = Math.floor(Math.random() * 9);
-    let two = Math.floor(Math.random() * 60);
+    const roll = (x) => Math.floor(Math.random() * x);
+
+
+    let one = roll(59);
+    let two = roll(59);
+    if (two < 10) {
+        two = `0${two}`
+    }
     return `${one}:${two}`;
 }
+
 const sketches = [
     {
         title: 'S&OFV1',
@@ -102,32 +109,32 @@ const sketches = [
             },
             {
                 track: 'Sara Tonin',
-                length: getRT(),
+                length: '2:22',
                 url: 'sara-tonin',
             },
             {
                 track: 'Bailey melody 07',
-                length: getRT(),
+                length: "0:59",
                 url: 'bailey-melody',
             },
             {
                 track: 'Oh techre!',
-                length: getRT(),
+                length: "2:09",
                 url: 'oh-techre',
             },
             {
                 track: 'Go to feather',
-                length: getRT(),
+                length: "1:28",
                 url: 'go2feather',
             },
             {
                 track: '(I am aware of the) black box',
-                length: getRT(),
+                length: "1:50",
                 url: 'black-box',
             },
             {
                 track: '1800harp',
-                length: getRT(),
+                length: "2:55",
                 url: '1800harp',
             },
         ]
@@ -139,37 +146,37 @@ const sketches = [
         trackList: [
             {
                 track: 'Froggy',
-                length: getRT(),
+                length: "1:10",
                 url: 'froggy',
             },
             {
                 track: 'Hello grommet',
-                length: getRT(),
+                length: "3:10",
                 url: 'hello-grommet',
             },
             {
                 track: 'Live from the polls',
-                length: getRT(),
+                length: "1:08",
                 url: 'polls',
             },
             {
                 track: 'Case of the cookies',
-                length: getRT(),
+                length: "1:45",
                 url: 'cookies',
             },
             {
                 track: 'Is it forever?',
-                length: getRT(),
+                length: "2:24",
                 url: 'is-it-forever',
             },
             {
                 track: 'BBBB',
-                length: getRT(),
+                length: "1:43",
                 url: 'bbbb',
             },
             {
                 track: 'Silly Singing silicon',
-                length: getRT(),
+                length: "2:35",
                 url: 'silly-singing',
             },
         ]
@@ -181,37 +188,37 @@ const sketches = [
         trackList: [
             {
                 track: 'Are Those Thorns?',
-                length: getRT(),
+                length: "1:02",
                 url: 'are-those-thorns',
             },
             {
                 track: 'Barrixtown',
-                length: getRT(),
+                length: "1:10",
                 url: 'barrixtown',
             },
             {
                 track: 'Childs Loop',
-                length: getRT(),
+                length: "1:48",
                 url: 'childs-loop',
             },
             {
                 track: 'Chix Loop',
-                length: getRT(),
-                url: 'cookies',
+                length: "2:00",
+                url: 'chix',
             },
             {
                 track: 'Cleverly',
-                length: getRT(),
-                url: 'is-it-forever',
+                length: "1:43",
+                url: 'clever',
             },
             {
-                track: 'Crystal Envelope',
-                length: getRT(),
+                track: 'Crystal Envelope / Return2sender',
+                length: "4:14",
                 url: 'crystal-env',
             },
             {
                 track: 'FL Disaster Zone',
-                length: getRT(),
+                length: "1:53",
                 url: 'fl-disaster',
             },
         ]
@@ -223,37 +230,37 @@ const sketches = [
         trackList: [
             {
                 track: 'Kicking Space',
-                length: getRT(),
+                length: "1:18",
                 url: 'kicking-space',
             },
             {
                 track: 'Let It Fly',
-                length: getRT(),
+                length: "1:47",
                 url: 'let-it-fly',
             },
             {
                 track: 'Liptstick Halo',
-                length: getRT(),
+                length: "1:31",
                 url: 'liptstick-halo',
             },
             {
-                track: 'parks',
-                length: getRT(),
+                track: 'Parks',
+                length: "0:20",
                 url: 'parks',
             },
             {
                 track: 'Playing With My Hair',
-                length: getRT(),
+                length: "1:27",
                 url: 'playing-w-my-hair',
             },
             {
                 track: 'Rust In Peace',
-                length: getRT(),
+                length: "1:43",
                 url: 'rust-in-peace',
             },
             {
                 track: 'Woodshed',
-                length: getRT(),
+                length: "0:52",
                 url: 'woodshed',
             },
         ]
@@ -357,47 +364,47 @@ const sketches = [
         trackList: [
             {
                 track: 'Ferox Recieved',
-                length: getRT(),
+                length: "3:17",
                 url: 'ferox',
             },
             {
                 track: 'This is forever (demo)',
-                length: getRT(),
+                length: "2:36",
                 url: 'this-is-forever-v1',
             },
             {
                 track: 'Tsalal',
-                length: getRT(),
+                length: "1:50",
                 url: 'ferox',
             },
             {
                 track: 'Knavish Drone (cut)',
-                length: getRT(),
+                length: "16:07",
                 url: 'knavish-drone',
             },
             {
                 track: 'Anxious...',
-                length: getRT(),
+                length: "4:35",
                 url: 'anxious-oblast',
             },
             {
                 track: 'HM/FL (demo)',
-                length: getRT(),
+                length: "7:57",
                 url: 'hmfl-demo',
             },
             {
                 track: 'Boiler Room',
-                length: getRT(),
+                length: "1:43",
                 url: 'boiler-room',
             },
             {
                 track: 'Chiminy Harker',
-                length: getRT(),
+                length: "0:43",
                 url: 'chiminy',
             },
             {
                 track: 'On Line',
-                length: getRT(),
+                length: "12:45",
                 url: 'on-line',
             }
         ]
@@ -541,6 +548,7 @@ const handleTrackSelect = (e) => {
 
 // build album view
 const mapThruAlbums = () => {
+    discoContainer.innerText = '';
     sketches.map(album => {
         // set up container variables and classes
         const albumContainer = document.createElement("article");
@@ -608,59 +616,83 @@ const clearPlayer = () => {
     audioPlayer.src = "";
 }
 
+
+const sortBy = (sortType) => {
+    if (sortType === "trkNme" ) {
+        console.log(sortType)
+    } else {
+        console.log("not yet")
+    }
+}
+
 // create single song - song view - missin react
 const listContainer = document.getElementById('list')
 
 
-
 const makeSongRow = (at, ap, sn, sl, su, sp) => {
-    const span1 = document.createElement('span');
-    const span2 = document.createElement('span');
-    const span3 = document.createElement('span');
-    const span4 = document.createElement('span');
-    const span5 = document.createElement('span');
-    const span6 = document.createElement('span');
+    const trackNumber = document.createElement('span');
+    const trackName = document.createElement('span');
+    const trackUrl = document.createElement('span');
+    const albumtitle = document.createElement('span');
+    const trackLength = document.createElement('span');
+    const trackOGTitle = document.createElement('span');
     const div = document.createElement('div');
 
     div.classList.add('song-list-row')
 
-    span1.innerText = sp;
-    span2.innerText = sn;
-    span3.innerText = su;
-    span4.innerText = at;
-    span5.innerText = sl;
-    span6.innerText = ap;
+    trackNumber.innerText = sp;
+    trackName.innerText = sn;
+    trackUrl.innerText = su;
+    albumtitle.innerText = at;
+    trackLength.innerText = sl;
+    trackOGTitle.innerText = ap;
 
-    div.appendChild(span1)
-    div.appendChild(span2)
-    div.appendChild(span3)
-    div.appendChild(span4)
-    div.appendChild(span5)
-    div.appendChild(span6)
+
+    div.appendChild(trackNumber)
+    div.appendChild(trackName)
+    div.appendChild(trackUrl)
+    div.appendChild(albumtitle)
+    div.appendChild(trackLength)
+    div.appendChild(trackOGTitle)
 
     listContainer.appendChild(div);
 }
 
-
-// show song view
-const showSongView = () => {
-    makeSongRow("Album Title", "Some Path", "Song", "Length", "Song Url", "Track Number")
-    let rootNum = 0;
-
-    sketches.map(album => {
-        let albumTitle = album.title;
-        let otherPath = album.artLink
-        console.log(album)
-
-        album.trackList.map(song => {
-            let songName = song.track;
-            let songLength = song.length;
-            let songUrl = song.url;
-            rootNum++;
-            makeSongRow(albumTitle, otherPath, songName, songLength, songUrl, rootNum);
-        })
+const displayTracks = (list) => {
+    list.map((song, idx) => {
+        makeSongRow(song.epName, song.ogItem, song.trackName, song.trackLength, song.trackUrl, idx);
     })
 }
+
+
+// show song view
+const showSongView = (sortedSongList) => {
+    listContainer.innerText = '';
+    displayTracks(sortedSongList);
+     
+}
+
+
+const getDefaultList = () => {
+    let songId = 0;
+    const sorted = [];
+    sketches.map(album => {
+        album.trackList.map(song => {
+            const listItem = {
+                trackNumber: songId,
+                trackName: song.track,
+                epName: album.title,
+                trackLength: song.length,
+                trackUrl: song.url,
+                ogItem: album.artLink
+            }
+            sorted.push(listItem)
+            songId++
+        })
+    })
+    return sorted;
+}
+
 
 // menus
 const nowPlaying = document.getElementById("nowPlaying");
@@ -684,11 +716,39 @@ document.getElementById("nextTrack").addEventListener("click", () => {
 
 })
 
-document.getElementById("viewSongs").addEventListener("click", () => {
-    discoContainer.innerText = '';
-    showSongView();
+document.getElementById("viewAlbums").addEventListener("click", () => {
+    listContainer.innerText = '';
+    mapThruAlbums()
 })
 
-window.onload = mapThruAlbums();
+document.getElementById("viewSongs").addEventListener("click", () => {
+    
+    showSongView(sketches);
+})
 
+document.getElementById("headerRow").addEventListener("click", (e) => {
+    let newSort = []
+
+    if (e.target.dataset.sortBy === "trkNme") {
+        newSort = defSort.sort((a,b) => {
+            if (a.trackName > b.trackName) {
+                return 1
+            }
+            return -1
+        })
+        // console.log(newSort)
+    } 
+    discoContainer.innerText = '';
+
+    showSongView(newSort);
+})
+
+
+
+
+const defSort = getDefaultList()
+window.onload = () => {
+    showSongView(defSort);
+    // console.log(defSort)
+}
 

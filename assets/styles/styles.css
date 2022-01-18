@@ -185,7 +185,7 @@ h1 {
     padding: 2px 3px 0 0;
 }
 
-.song-list-row:nth-child(1) {
+#headerRow {
     font-family: serif;
     font-size: 1.4rem;
     color: #fff;
@@ -196,10 +196,16 @@ h1 {
     background-color: white;
 }
 
+.song-list-row:nth-child(1):hover {
+    border: none;
+    justify-self: center;
+}
+
 .song-list-row:hover {
-    padding: 0 3px;
+    /* padding: 0 3px; */
     border-bottom: 2px solid black;
 }
+
 
 
 
