@@ -10,7 +10,6 @@ const getRT = () => {
     }
     return `${one}:${two}`;
 }
-
 const sketches = [
     {
         title: 'S&OFV1',
@@ -418,35 +417,31 @@ const localQueue = window.localStorage
 function SongQueue(pushbox = []) {
     this.container = pushbox;
 
-
     this.add2queue = (el) => {
         return this.container.push(el);
     }
-
     this.removeFromQueue = () => {
         const currItem = this.container[1];
         const btnSearch = currItem.title + "~" + currItem.ep;
         document.getElementById(btnSearch).remove();
         return this.container.shift();
     }
-
     this.grabNext = () => {
         return this.container[0];
     }
-
     this.grabLength = () => {
         return this.container.length;
     }
-
 }
 const songQueue = new SongQueue()
 
-function Song(title, ep, art, url) {
+function Song(title, ep, art, url, length) {
     this.artist = "Lukasz Mauro"
     this.title = title;
     this.ep = ep;
     this.art = art;
     this.url = url;
+    this.length = length;
 
     this.add2queueList = () => {
         const item = {
@@ -475,8 +470,63 @@ function Song(title, ep, art, url) {
         queueListDump.appendChild(qBar);
     }
 
+    this.createListSongRow = (trackNum) => {
+        const trackNumber = document.createElement("span");
+        const trackName = document.createElement('span');
+        const trackUrl = document.createElement('span');
+        const albumTitle = document.createElement('span');
+        const trackLength = document.createElement('span');
+        const trackOGTitle = document.createElement('span');
+        trackNumber.innerText = trackNum;
+        trackName.innerText = this.title;
+        trackUrl.innerText = this.url;
+        albumTitle.innerText = this.ep;
+        trackLength.innerText = this.length
+        trackOGTitle.innerText = this.art;
+
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add('song-list-row');
+        rowDiv.dataset.songId = this.title + '~' + this.ep;
+
+        rowDiv.appendChild(trackNumber);
+        rowDiv.appendChild(trackName);
+        rowDiv.appendChild(trackUrl);
+        rowDiv.appendChild(albumTitle);
+        rowDiv.appendChild(trackLength);
+        rowDiv.appendChild(trackOGTitle);
 
 
+        document.getElementById('list').appendChild(rowDiv)
+    }
+
+    this.createAlbumSongRow = (trackNum) => {
+        const trackRow = document.createElement("button");
+        const tTitle = document.createElement("span");
+        const tTime = document.createElement("span");
+        const tNum = document.createElement("span");
+
+        trackRow.type = "button";
+        trackRow.dataset.url = this.url;
+        trackRow.dataset.length = this.length;
+        trackRow.dataset.epname = this.ep;
+        trackRow.dataset.albumurl = this.art;
+        trackRow.addEventListener("click", handleTrackSelect);
+        trackRow.classList.add("t-row");
+        tTitle.classList.add("album-track");
+        tTime.classList.add("track-time");
+        tNum.classList.add("track-num");
+        // 
+
+        tTitle.innerText = this.title;
+        tTime.innerText = this.length;
+        tNum.innerText = trackNum;
+
+        trackRow.appendChild(tNum);
+        trackRow.appendChild(tTitle);
+        trackRow.appendChild(tTime);
+        
+        return trackRow;
+    }
 }
 
 
@@ -544,6 +594,25 @@ const handleTrackSelect = (e) => {
 
 }
 
+const createAlbumViews = (epName, epArt) => {
+    const albumContainer = document.createElement("article");
+    const infoContainer = document.createElement("div");
+    const trackContainer = document.createElement("div");
+    const albumTitle = document.createElement("h3");
+    const albumArt = document.createElement("img");
+    albumContainer.classList.add("disco-item");
+    infoContainer.classList.add("info-container");
+    trackContainer.classList.add("track-container");
+
+    albumTitle.innerText = epName;
+    albumArt.src = epArt;
+
+    infoContainer.appendChild(albumArt)
+    infoContainer.appendChild(albumTitle)
+    albumContainer.appendChild(infoContainer)
+    albumContainer.appendChild(trackContainer)
+    document.getElementById("disco").appendChild(albumContainer);
+}
 
 
 // build album view
@@ -559,41 +628,44 @@ const mapThruAlbums = () => {
         albumContainer.classList.add("disco-item");
         infoContainer.classList.add("info-container");
         trackContainer.classList.add("track-container");
-        // 
-
-        const epName = album.title;
+        trackContainer.id = album.title;
         albumTitle.innerText = album.title;
-        // for web
-        const epArt = album.webLink;
-        albumArt.src = epArt;
+        albumArt.src = album.webLink;
+
+        
 
         album.trackList.map((idvTrack, idx) => {
-            // set up track info
-            const trackRow = document.createElement("button");
-            const tTitle = document.createElement("span");
-            const tTime = document.createElement("span");
-            const tNum = document.createElement("span");
 
-            trackRow.type = "button";
-            trackRow.dataset.url = idvTrack.url;
-            trackRow.dataset.length = idvTrack.length;
-            trackRow.dataset.epname = epName;
-            trackRow.dataset.albumurl = epArt;
-            trackRow.addEventListener("click", handleTrackSelect);
-            trackRow.classList.add("t-row");
-            tTitle.classList.add("album-track");
-            tTime.classList.add("track-time");
-            tNum.classList.add("track-num");
-            // 
+            const albumSong = new Song(idvTrack.track, album.title, album.webLink, idvTrack.url, idvTrack.length);
+            const nextRow = albumSong.createAlbumSongRow(idx+1);
 
-            tTitle.innerText = idvTrack.track;
-            tTime.innerText = idvTrack.length;
-            tNum.innerText = idx + 1;
 
-            trackRow.appendChild(tNum);
-            trackRow.appendChild(tTitle);
-            trackRow.appendChild(tTime);
-            trackContainer.appendChild(trackRow);
+            // // set up track info
+            // const trackRow = document.createElement("button");
+            // const tTitle = document.createElement("span");
+            // const tTime = document.createElement("span");
+            // const tNum = document.createElement("span");
+
+            // trackRow.type = "button";
+            // trackRow.dataset.url = idvTrack.url;
+            // trackRow.dataset.length = idvTrack.length;
+            // trackRow.dataset.epname = epName;
+            // trackRow.dataset.albumurl = epArt;
+            // trackRow.addEventListener("click", handleTrackSelect);
+            // trackRow.classList.add("t-row");
+            // tTitle.classList.add("album-track");
+            // tTime.classList.add("track-time");
+            // tNum.classList.add("track-num");
+            // // 
+
+            // tTitle.innerText = idvTrack.track;
+            // tTime.innerText = idvTrack.length;
+            // tNum.innerText = idx + 1;
+
+            // trackRow.appendChild(tNum);
+            // trackRow.appendChild(tTitle);
+            // trackRow.appendChild(tTime);
+            trackContainer.appendChild(nextRow);
         })
 
         // write and append all info
@@ -618,7 +690,7 @@ const clearPlayer = () => {
 
 
 const sortBy = (sortType) => {
-    if (sortType === "trkNme" ) {
+    if (sortType === "trkNme") {
         console.log(sortType)
     } else {
         console.log("not yet")
@@ -629,38 +701,40 @@ const sortBy = (sortType) => {
 const listContainer = document.getElementById('list')
 
 
-const makeSongRow = (at, ap, sn, sl, su, sp) => {
-    const trackNumber = document.createElement('span');
-    const trackName = document.createElement('span');
-    const trackUrl = document.createElement('span');
-    const albumtitle = document.createElement('span');
-    const trackLength = document.createElement('span');
-    const trackOGTitle = document.createElement('span');
-    const div = document.createElement('div');
+// const makeSongRow = (at, ap, sn, sl, su, sp) => {
+//     const trackNumber = document.createElement('span');
+//     const trackName = document.createElement('span');
+//     const trackUrl = document.createElement('span');
+//     const albumtitle = document.createElement('span');
+//     const trackLength = document.createElement('span');
+//     const trackOGTitle = document.createElement('span');
+//     const div = document.createElement('div');
 
-    div.classList.add('song-list-row')
+//     div.classList.add('song-list-row')
 
-    trackNumber.innerText = sp;
-    trackName.innerText = sn;
-    trackUrl.innerText = su;
-    albumtitle.innerText = at;
-    trackLength.innerText = sl;
-    trackOGTitle.innerText = ap;
+//     trackNumber.innerText = sp;
+//     trackName.innerText = sn;
+//     trackUrl.innerText = su;
+//     albumtitle.innerText = at;
+//     trackLength.innerText = sl;
+//     trackOGTitle.innerText = ap;
 
 
-    div.appendChild(trackNumber)
-    div.appendChild(trackName)
-    div.appendChild(trackUrl)
-    div.appendChild(albumtitle)
-    div.appendChild(trackLength)
-    div.appendChild(trackOGTitle)
+//     div.appendChild(trackNumber)
+//     div.appendChild(trackName)
+//     div.appendChild(trackUrl)
+//     div.appendChild(albumtitle)
+//     div.appendChild(trackLength)
+//     div.appendChild(trackOGTitle)
 
-    listContainer.appendChild(div);
-}
+//     listContainer.appendChild(div);
+// }
 
 const displayTracks = (list) => {
     list.map((song, idx) => {
-        makeSongRow(song.epName, song.ogItem, song.trackName, song.trackLength, song.trackUrl, idx);
+        let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
+        track.createListSongRow(idx)
+        // makeSongRow(song.epName, song.ogItem, song.trackName, song.trackLength, song.trackUrl, idx);
     })
 }
 
@@ -669,7 +743,7 @@ const displayTracks = (list) => {
 const showSongView = (sortedSongList) => {
     listContainer.innerText = '';
     displayTracks(sortedSongList);
-     
+
 }
 
 
@@ -722,23 +796,31 @@ document.getElementById("viewAlbums").addEventListener("click", () => {
 })
 
 document.getElementById("viewSongs").addEventListener("click", () => {
-    
+
     showSongView(sketches);
 })
 
 document.getElementById("headerRow").addEventListener("click", (e) => {
     let newSort = []
+    discoContainer.innerText = '';
 
     if (e.target.dataset.sortBy === "trkNme") {
-        newSort = defSort.sort((a,b) => {
+        newSort = defSort.sort((a, b) => {
             if (a.trackName > b.trackName) {
                 return 1
             }
             return -1
         })
         // console.log(newSort)
-    } 
-    discoContainer.innerText = '';
+    } else if (e.target.dataset.sortBy === "epTtl") {
+        newSort = defSort.sort((a, b) => {
+            if (a.epName > b.epName) {
+                return 1;
+            }
+            return -1;
+        })
+    }
+
 
     showSongView(newSort);
 })
@@ -748,7 +830,9 @@ document.getElementById("headerRow").addEventListener("click", (e) => {
 
 const defSort = getDefaultList()
 window.onload = () => {
-    showSongView(defSort);
+
+    // showSongView(defSort);
     // console.log(defSort)
+    mapThruAlbums();
 }
 

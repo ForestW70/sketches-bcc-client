@@ -192,14 +192,14 @@ h1 {
     background-color: rgb(78, 78, 78);
 }
 
-.song-list-row:nth-child(2n+3) {
+.song-list-row:nth-child(2n+1) {
     background-color: white;
 }
 
-.song-list-row:nth-child(1):hover {
+/* .song-list-row:nth-child(1):hover {
     border: none;
     justify-self: center;
-}
+} */
 
 .song-list-row:hover {
     /* padding: 0 3px; */
