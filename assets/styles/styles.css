@@ -60,7 +60,7 @@ h1 {
 }
 
 /* buttons */
-#playingDropdownButton, #qButton {
+#playingDropdownButton, #toggleShowQueue {
     font-size: 30px;
     font-family: serif;
     border: none;
@@ -69,7 +69,7 @@ h1 {
     cursor: pointer;
 }
 
-#playingDropdownButton:hover, #qButton:hover {
+#playingDropdownButton:hover, #toggleShowQueue:hover {
     background-color: white;
     color: rgb(0, 217, 255);
     

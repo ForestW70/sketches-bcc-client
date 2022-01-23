@@ -3,7 +3,7 @@ const getRT = () => {
     const roll = (x) => Math.floor(Math.random() * x);
 
 
-    let one = roll(59);
+    let one = roll(20);
     let two = roll(59);
     if (two < 10) {
         two = `0${two}`
@@ -421,10 +421,21 @@ const sketches = [
     }
 ]
 
-// song and queue classes
+// directory
 const queueListDump = document.getElementById("queueList");
-const localQueue = window.localStorage
+const audioPlayer = document.getElementById("player");
+const discoContainer = document.getElementById("disco");
+const currArtistName = document.getElementById("artistName");
+const currTrackName = document.getElementById("trackName");
+const currTrackTime = document.getElementById("trackTime");
+const currAlbumName = document.getElementById("albumName");
+const currAlbumPic = document.getElementById("albumPic");
+const listViewDump = document.getElementById("list");
+const nowPlaying = document.getElementById("nowPlaying");
+// let defSort;
 
+//
+// class to control song queue actions
 function SongQueue(pushbox = []) {
     this.container = pushbox;
 
@@ -446,6 +457,7 @@ function SongQueue(pushbox = []) {
 }
 const songQueue = new SongQueue()
 
+// class to control individual song actions
 function Song(title, ep, art, url, length) {
     this.artist = "Lukasz Mauro"
     this.title = title;
@@ -465,20 +477,11 @@ function Song(title, ep, art, url, length) {
         songQueue.add2queue(item)
     }
 
-    this.addSongButton = () => {
-        const item = {
-            "artist": this.artist,
-            "title": this.title,
-            "ep": this.ep,
-            "art": this.art,
-            "url": this.url,
-        }
-        songQueue.add2queue(item)
-
-        const qBar = document.createElement("button");
-        qBar.innerText = this.title + ' ~ ' + this.ep;
-        qBar.id = this.title + '~' + this.ep;
-        queueListDump.appendChild(qBar);
+    this.createQueueItem = () => {
+        const qButton = document.createElement("button");
+        qButton.innerText = this.title + ' ~ ' + this.ep + ' ~ ' + this.length;
+        qButton.id = this.title + '~' + this.ep;
+        queueListDump.appendChild(qButton);
     }
 
     this.createListSongRow = (trackNum) => {
@@ -488,70 +491,56 @@ function Song(title, ep, art, url, length) {
         const albumTitle = document.createElement('span');
         const trackLength = document.createElement('span');
         const trackOGTitle = document.createElement('span');
+        //
         trackNumber.innerText = trackNum;
         trackName.innerText = this.title;
         trackUrl.innerText = this.url;
         albumTitle.innerText = this.ep;
         trackLength.innerText = this.length
         trackOGTitle.innerText = this.art;
-
+        //
         const rowDiv = document.createElement("div");
         rowDiv.classList.add('song-list-row');
         rowDiv.dataset.songId = this.title + '~' + this.ep;
-
+        //
         rowDiv.appendChild(trackNumber);
         rowDiv.appendChild(trackName);
         rowDiv.appendChild(trackUrl);
         rowDiv.appendChild(albumTitle);
         rowDiv.appendChild(trackLength);
         rowDiv.appendChild(trackOGTitle);
-
-
-        document.getElementById('list').appendChild(rowDiv)
+        listViewDump.appendChild(rowDiv);
     }
 
     this.createAlbumSongRow = (trackNum) => {
         const trackRow = document.createElement("button");
-        const tTitle = document.createElement("span");
-        const tTime = document.createElement("span");
-        const tNum = document.createElement("span");
-
         trackRow.type = "button";
+        trackRow.classList.add("t-row");
         trackRow.dataset.url = this.url;
         trackRow.dataset.length = this.length;
         trackRow.dataset.epname = this.ep;
         trackRow.dataset.albumurl = this.art;
         trackRow.addEventListener("click", handleTrackSelect);
-        trackRow.classList.add("t-row");
+        //
+        const tTitle = document.createElement("span");
+        const tTime = document.createElement("span");
+        const tNum = document.createElement("span");
         tTitle.classList.add("album-track");
         tTime.classList.add("track-time");
         tNum.classList.add("track-num");
-        // 
-
         tTitle.innerText = this.title;
         tTime.innerText = this.length;
         tNum.innerText = trackNum;
-
+        //
         trackRow.appendChild(tNum);
         trackRow.appendChild(tTitle);
         trackRow.appendChild(tTime);
-        
         return trackRow;
     }
 }
 
 
-// track fill control
-const audioPlayer = document.getElementById("player");
-const discoContainer = document.getElementById("disco");
-const currArtistName = document.getElementById("artistName");
-const currTrackName = document.getElementById("trackName");
-const currTrackTime = document.getElementById("trackTime");
-const currAlbumName = document.getElementById("albumName");
-const currAlbumPic = document.getElementById("albumPic");
-
-
-
+//
 // reset now playing
 const filterPlayer = () => {
     console.log("...Filtering to next track...")
@@ -585,7 +574,8 @@ const addToQueue = (songInfo) => {
     if (songQueue.grabLength() === 0) {
         qItem.add2queueList();
     } else {
-        qItem.addSongButton();
+        qItem.add2queueList();
+        qItem.createQueueItem();
     }
 
 }
@@ -597,7 +587,6 @@ const handleTrackSelect = (e) => {
 
     if (currQueueTime <= 1) {
         addToQueue(target);
-        console.log(localQueue.length)
         filterPlayer();
     } else {
         addToQueue(target);
@@ -627,7 +616,7 @@ const createAlbumViews = (epName, epArt) => {
 
 
 // build album view
-const mapThruAlbums = () => {
+const showAlbumView = () => {
     discoContainer.innerText = '';
     sketches.map(album => {
         // set up container variables and classes
@@ -650,32 +639,6 @@ const mapThruAlbums = () => {
             const albumSong = new Song(idvTrack.track, album.title, album.webLink, idvTrack.url, idvTrack.length);
             const nextRow = albumSong.createAlbumSongRow(idx+1);
 
-
-            // // set up track info
-            // const trackRow = document.createElement("button");
-            // const tTitle = document.createElement("span");
-            // const tTime = document.createElement("span");
-            // const tNum = document.createElement("span");
-
-            // trackRow.type = "button";
-            // trackRow.dataset.url = idvTrack.url;
-            // trackRow.dataset.length = idvTrack.length;
-            // trackRow.dataset.epname = epName;
-            // trackRow.dataset.albumurl = epArt;
-            // trackRow.addEventListener("click", handleTrackSelect);
-            // trackRow.classList.add("t-row");
-            // tTitle.classList.add("album-track");
-            // tTime.classList.add("track-time");
-            // tNum.classList.add("track-num");
-            // // 
-
-            // tTitle.innerText = idvTrack.track;
-            // tTime.innerText = idvTrack.length;
-            // tNum.innerText = idx + 1;
-
-            // trackRow.appendChild(tNum);
-            // trackRow.appendChild(tTitle);
-            // trackRow.appendChild(tTime);
             trackContainer.appendChild(nextRow);
         })
 
@@ -708,53 +671,19 @@ const sortBy = (sortType) => {
     }
 }
 
-// create single song - song view - missin react
-const listContainer = document.getElementById('list')
-
-
-// const makeSongRow = (at, ap, sn, sl, su, sp) => {
-//     const trackNumber = document.createElement('span');
-//     const trackName = document.createElement('span');
-//     const trackUrl = document.createElement('span');
-//     const albumtitle = document.createElement('span');
-//     const trackLength = document.createElement('span');
-//     const trackOGTitle = document.createElement('span');
-//     const div = document.createElement('div');
-
-//     div.classList.add('song-list-row')
-
-//     trackNumber.innerText = sp;
-//     trackName.innerText = sn;
-//     trackUrl.innerText = su;
-//     albumtitle.innerText = at;
-//     trackLength.innerText = sl;
-//     trackOGTitle.innerText = ap;
-
-
-//     div.appendChild(trackNumber)
-//     div.appendChild(trackName)
-//     div.appendChild(trackUrl)
-//     div.appendChild(albumtitle)
-//     div.appendChild(trackLength)
-//     div.appendChild(trackOGTitle)
-
-//     listContainer.appendChild(div);
-// }
 
 const displayTracks = (list) => {
     list.map((song, idx) => {
         let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
         track.createListSongRow(idx)
-        // makeSongRow(song.epName, song.ogItem, song.trackName, song.trackLength, song.trackUrl, idx);
     })
 }
 
 
-// show song view
 const showSongView = (sortedSongList) => {
-    listContainer.innerText = '';
+    listViewDump.innerText = '';
+    discoContainer.innerText = '';
     displayTracks(sortedSongList);
-
 }
 
 
@@ -779,19 +708,26 @@ const getDefaultList = () => {
 }
 
 
-// menus
-const nowPlaying = document.getElementById("nowPlaying");
+// display buttons
 document.getElementById("playingDropdownButton").addEventListener("click", () => {
     nowPlaying.classList.toggle('menu-hide')
 })
-document.getElementById("qButton").addEventListener("click", () => {
+document.getElementById("toggleShowQueue").addEventListener("click", () => {
     queueListDump.classList.toggle('menu-hide')
 })
+document.getElementById("viewAlbums").addEventListener("click", () => {
+    // listViewDump.innerText = '';
+    showAlbumView()
+})
+document.getElementById("viewSongs").addEventListener("click", () => {
+    const defSort = getDefaultList()
+    showSongView(defSort);
+})
 
+// song/sort buttons
 document.getElementById("nextTrack").addEventListener("click", () => {
     const queueLength = songQueue.grabLength();
-    console.log(queueLength)
-
+    console.log(`You have ${queueLength- 2} items left in your queue!`);
     if (queueLength > 1) {
         songQueue.removeFromQueue();
         filterPlayer();
@@ -801,20 +737,8 @@ document.getElementById("nextTrack").addEventListener("click", () => {
 
 })
 
-document.getElementById("viewAlbums").addEventListener("click", () => {
-    listContainer.innerText = '';
-    mapThruAlbums()
-})
-
-document.getElementById("viewSongs").addEventListener("click", () => {
-
-    showSongView(sketches);
-})
-
 document.getElementById("headerRow").addEventListener("click", (e) => {
     let newSort = []
-    discoContainer.innerText = '';
-
     if (e.target.dataset.sortBy === "trkNme") {
         newSort = defSort.sort((a, b) => {
             if (a.trackName > b.trackName) {
@@ -831,19 +755,11 @@ document.getElementById("headerRow").addEventListener("click", (e) => {
             return -1;
         })
     }
-
-
     showSongView(newSort);
 })
 
 
-
-
-const defSort = getDefaultList()
 window.onload = () => {
-
-    // showSongView(defSort);
-    // console.log(defSort)
-    mapThruAlbums();
+    showAlbumView();
 }
 
