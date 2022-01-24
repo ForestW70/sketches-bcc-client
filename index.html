@@ -13,31 +13,30 @@
 <body>
     <Header>
         <h1>'Sum Sketches</h1>
+        <button id="nextTrack">Next track</button>
         <audio id="player" controls>
             <source src="" type="audio/mp3">
         </audio>
 
-        <article id="playingDropdown">
-            <button id="playingDropdownButton">Playing now</button>
-            <div id="nowPlaying" class="menu-flex">
-                <img id="albumPic" src="https://picsum.photos/25">
-                <article>
-                    <h2 id="artistName">
-                        </h1>
-                        <h3 id="trackName">
-                    </h2>
-                    <h5 id="albumName">No track queued!</h3>
-                </article>
-            </div>
-        </article>
-
-        <article id="playingDropdownButton">
-            <button id="toggleShowQueue">Queued up</button>
-            <button id="nextTrack">Next track</button>
-            <div id="queueList" class="menu-flex">
-
-            </div>
-        </article>
+        <section id="trackQueue">
+            <article id="nowPlaying">
+                <button class="toggleButton" type="button" id="playingDropdownButton">Playing now</button>
+                <div id="playingInfo" class="menu-flex">
+                    <img id="albumPic" src="https://picsum.photos/25">
+                    <article>
+                        <h2 id="artistName"></h2>
+                        <h3 id="trackName"></h3>
+                        <h4 id="albumName">No track queued!</h4>
+                    </article>
+                </div>
+                
+            </article>
+    
+            <article id="queue">
+                <button class="toggleButton" type="button" id="toggleShowQueue">Queued up</button>
+                <div id="queueList" class="menu-flex"></div>
+            </article>
+        </section>
     </Header>
 
     <section id="controlers">
@@ -62,15 +61,7 @@
             <span data-sort-by="og">Some Path</span>
         </div>
     </section>
-    <!-- <section id="list">
-        <div class="song-list-row" id="headerRow">
-            <span data-sort-by="trkNum">Track Number</span>
-            <span data-sort-by="trkNme">Song</span><span data-sort-by="trkUrl">Song Url</span>
-            <span data-sort-by="epTtl">Album Title</span>
-            <span data-sort-by="trkLen">Length</span>
-            <span data-sort-by="og">Some Path</span>
-        </div>
-    </section> -->
+    
 
 
 </body>

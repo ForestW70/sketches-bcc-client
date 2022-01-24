@@ -431,7 +431,8 @@ const currTrackTime = document.getElementById("trackTime");
 const currAlbumName = document.getElementById("albumName");
 const currAlbumPic = document.getElementById("albumPic");
 const listViewDump = document.getElementById("list");
-const nowPlaying = document.getElementById("nowPlaying");
+const nowPlaying = document.getElementById("playingInfo");
+// const trackQueueViewer = document.getElementById("trackQueue")
 let defSort;
 
 //
@@ -724,6 +725,13 @@ const getDefaultList = () => {
 
 
 // display buttons
+const toggleButtons = document.getElementsByClassName("toggleButton")
+
+// toggleButtons.addEventListener("click", () => {
+//     nowPlaying.classList.toggle('menu-hide')
+    
+// })
+
 document.getElementById("playingDropdownButton").addEventListener("click", () => {
     nowPlaying.classList.toggle('menu-hide')
 })
