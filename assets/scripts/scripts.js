@@ -432,8 +432,9 @@ const currAlbumName = document.getElementById("albumName");
 const currAlbumPic = document.getElementById("albumPic");
 const listViewDump = document.getElementById("list");
 const nowPlaying = document.getElementById("playingInfo");
+const listHeaderRow = document.getElementById("headerRow")
 // const trackQueueViewer = document.getElementById("trackQueue")
-let defSort;
+// let defSort;
 
 //
 // class to control song queue actions
@@ -457,6 +458,7 @@ function SongQueue(pushbox = []) {
     this.createQItem = (el) => {
         const songInfo = el.split(' ');
         const qButton = document.createElement("button");
+        qButton.type = "button"
         qButton.innerText = songInfo[0] + " ~ " + songInfo[1];
         qButton.id = songInfo[0] + " " + songInfo[1];
         queueListDump.appendChild(qButton);
@@ -596,13 +598,31 @@ function Song(title, ep, art, url, length) {
     }
 }
 
+// AUDIO PLAYER
+// 
+const playButton = document.getElementById("pause-play")
+const icon = document.getElementById("pp")
+playButton.addEventListener("click", () => {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+
+        icon.classList.remove("glyphicon-play");
+        icon.classList.add("glyphicon-pause");
+    } else {
+        audioPlayer.pause();
+
+        icon.classList.remove("glyphicon-pause");
+        icon.classList.add("glyphicon-play");
+    }
+})
+
 //  QUEUE CONTROLS
 // 
 const addToQueue = (songInfo) => {
     // console.log(songInfo)
     if (songQueue.grabLength() === 0) {
         songQueue.add2queue(songInfo)
-        
+
     } else {
         songQueue.add2queue(songInfo)
         songQueue.createQItem(songInfo)
@@ -729,27 +749,32 @@ const toggleButtons = document.getElementsByClassName("toggleButton")
 
 // toggleButtons.addEventListener("click", () => {
 //     nowPlaying.classList.toggle('menu-hide')
-    
+
 // })
 
-document.getElementById("playingDropdownButton").addEventListener("click", () => {
-    nowPlaying.classList.toggle('menu-hide')
-})
+// document.getElementById("playingDropdownButton").addEventListener("click", () => {
+//     nowPlaying.classList.toggle('menu-hide')
+// })
 document.getElementById("toggleShowQueue").addEventListener("click", () => {
     queueListDump.classList.toggle('menu-hide')
 })
 document.getElementById("viewAlbums").addEventListener("click", () => {
-    // listViewDump.innerText = '';
+    listHeaderRow.classList.add('menu-hide');
+    listHeaderRow.classList.remove('menu-flex');
     showAlbumView()
 })
 document.getElementById("viewSongs").addEventListener("click", () => {
     const defSort = getDefaultList()
+    listHeaderRow.classList.remove('menu-hide');
+    listHeaderRow.classList.add('menu-flex');
     showSongView(defSort);
 })
 
 // song/sort buttons
 document.getElementById("nextTrack").addEventListener("click", () => {
     const queueLength = songQueue.grabLength();
+    icon.classList.remove("glyphicon-pause");
+    icon.classList.add("glyphicon-play");
     console.log(`You have ${queueLength - 2} items left in your queue!`);
     if (queueLength > 1) {
         songQueue.removeFromQueue();

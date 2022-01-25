@@ -16,6 +16,75 @@ h1 {
     margin-top: 0;
 }
 
+/* player */
+#player {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: rgb(251, 255, 27);
+}
+
+audio::-webkit-media-controls-enclosure {
+    border-radius: 0px;
+    
+}
+
+audio::-webkit-media-controls-timeline-container {
+    color:green;
+    border: 1px solid black;
+}
+
+audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display {
+    color:black;
+    font-family: serif;
+    margin:auto;
+}
+
+audio::-webkit-media-controls-timeline {
+    color: black;
+    background-color: white;
+    border-radius: 50px;
+    padding: 20px;
+    margin:5px
+}
+/*  */
+.hello {
+    display: flex;
+}
+#anotherPlayer, #qTools {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    background-color:rgb(203 249 236);
+}
+
+#anotherPlayer {
+    padding:5px;
+}
+
+#albumPic {
+    height: 100px;
+    width: 100px;
+    margin: 0 15px;
+    /* align-self: center; */
+}
+
+
+
+.controlBtns {
+    display:flex;
+    /* align-self: center; */
+    margin: auto;
+}
+
+.glyphicon {
+    font-size: 30px;
+}
+
+
 /*  */
 /* user conrol bar */
 #playerInfo {
@@ -32,38 +101,49 @@ h1 {
     background-color: white;
 }
 
-#playingInfo, #queueList {
-    background-color: white;
-    margin-top: 40px;
-    /* border: 1px solid black; */
-}
 
-#albumPic {
-    height: 100px;
-    width: 100px;
-    margin: 5px;
+.nowPlayingInfo {
+    display: flex;
+    flex-direction: column;
+    /* align-self: center; */
+    padding: 20px;
+
 }
 
 #artistName, #trackName, #albumName {
-    margin: 0px;
+    margin: 5px;
     border-bottom: 1px solid #9ebb00;
+}
+
+#artistName {
+    font-size: 20px;
+}
+
+#trackName {
+    font-style: oblique;
 }
 
 #albumName {
     color:rgb(78, 78, 78);
+    font-weight: bold;
 }
 
 
 /* queueList */
 #queueList {
     flex-direction: column;
+    width: 100%;
 }
 
 #queueList > button {
-    background-color: white;
+    background-color: orange;
     border: none;
-    border-left: 10px dotted #c1c2c3;
+    border-left: 15px dotted #000000;
     cursor: pointer;
+}
+#queueList > button:first-child::after {
+    content: " ~ up next!";
+    font-weight: bold;
 }
 
 #queueList > button:hover {
@@ -91,7 +171,7 @@ h1 {
 }
 
 #nextTrack {
-    padding: 5px;
+    margin: 0 5px;
     vertical-align: super;
     background-color: darkorange;
 }
@@ -222,36 +302,6 @@ h1 {
 }
 
 
-
-/* player */
-#player {
-    width: 100%;
-    background-color: white;
-    border-radius: 2px;
-    /* margin-top: 35px; */
-    position: absolute;
-    bottom: 0;
-}
-
-audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
-    /* display: flex;
-    flex-direction: row;
-    align-items: left;
-    justify-content: flex-start; */
-    -webkit-user-select: none;
-    position: relative;
-    width: 100%;
-    z-index: 0;
-    /* overflow: hidden; */
-    text-align: right;
-    bottom: auto;
-    height: auto;
-    background-color: white;
-    border-radius: 5px;
-    /* The duration is also specified in MediaControlElements.cpp and LayoutTests/media/media-controls.js */
-    transition: opacity 0.3s; 
-}
-
 .hide {
     display:none;
 }
@@ -272,14 +322,29 @@ audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
         height: 150px;
         width: 150px;
     }
-    #albumPic {
+    /* #albumPic {
         height: 55px;
         width: 55px;
+    } */
+}
+
+@media screen and (max-width: 800px) {
+    .info-container > h3 {
+        margin-right: 25px;
+    }
+    .glyphicon {
+        font-size: 20px;
+    }
+    .hello {
+        flex-direction: column;
+    }
+    #anotherPlayer, #qTools {
+        width: 100%;
     }
 }
 
-@media screen and (max-width: 750px) {
-    .info-container > h3 {
-        margin-right: 25px;
+@media screen and (max-width: 450px) {
+    .nowPlayingInfo > *{
+        font-size: small;
     }
 }
