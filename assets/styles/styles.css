@@ -21,10 +21,11 @@ h1 {
     width: 100%;
     margin: 0;
     padding: 0;
+    border-bottom: 5px solid white;
 }
 
 audio::-webkit-media-controls-panel {
-    background-color: rgb(251, 255, 27);
+    background-color: rgb(203 249 236);
 }
 
 audio::-webkit-media-controls-enclosure {
@@ -40,6 +41,7 @@ audio::-webkit-media-controls-timeline-container {
 audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display {
     color:black;
     font-family: serif;
+    padding: 0 10px;
     margin:auto;
 }
 
@@ -48,7 +50,7 @@ audio::-webkit-media-controls-timeline {
     background-color: white;
     border-radius: 50px;
     padding: 20px;
-    margin:5px
+    margin-top:10px;
 }
 /*  */
 .hello {
@@ -259,11 +261,18 @@ audio::-webkit-media-controls-timeline {
 
 #controlers button {
     letter-spacing: 5px;
-    
+    border: none;
+    background-color: inherit;
+    width:50%;
+    border-left: 10px double #d2d2d2;
+    border-right: 10px double #d2d2d2;
 }
 
 #controlers button:hover {
     font-style: oblique;
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: #fff;
 }
 
 
@@ -272,6 +281,7 @@ audio::-webkit-media-controls-timeline {
 .song-list-row {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr 2fr 1fr;
+    width: 100%;
 }
 
 .song-list-row > span {

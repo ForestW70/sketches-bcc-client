@@ -565,9 +565,9 @@ function Song(title, ep, art, url, length) {
         trackRow.appendChild(trackNumber);
         trackRow.appendChild(trackName);
         trackRow.appendChild(trackUrl);
-        trackRow.appendChild(albumTitle);
         trackRow.appendChild(trackLength);
-        trackRow.appendChild(trackOGTitle);
+        trackRow.appendChild(albumTitle);
+        // trackRow.appendChild(trackOGTitle);
         listViewDump.appendChild(trackRow);
     }
 
