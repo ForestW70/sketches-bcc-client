@@ -266,8 +266,8 @@ const sketches = [
     },
     {
         title: 'S&OFV7',
-        artLink: './assets/s&ofv7.png',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv7.png',
+        artLink: './assets/s&ofv7.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv7.jpg',
         trackList: [
             {
                 track: '404',
@@ -297,13 +297,20 @@ const sketches = [
             {
                 track: 'Purple!',
                 length: getRT(),
-                url: 'rust-in-peace',
+                url: 'purple',
             },
             {
                 track: 'Rip Arp',
                 length: getRT(),
                 url: 'rip-arp',
             },
+        ]
+    },
+    {
+        title: 'S&OFV8',
+        artLink: './assets/s&ofv8.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv8.jpg',
+        trackList: [
             {
                 track: 'Rogue on 1-1',
                 length: getRT(),
@@ -429,7 +436,7 @@ const sketches = [
         ]
     },
     {
-        title: "ECT",
+        title: "IB",
         artLink: './assets/ib.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ib.jpg',
         trackList: [
@@ -439,24 +446,54 @@ const sketches = [
                 url: 'ferox',
             },
             {
-                track: 'This is forever (demo)',
-                length: "2:36",
-                url: 'this-is-forever-v1',
-            },
-            {
                 track: 'Tsalal',
                 length: "1:50",
-                url: 'ferox',
+                url: 'tsalal',
+            },
+            {
+                track: 'Anxious...',
+                length: "4:35",
+                url: 'anxious-oblast',
             },
             {
                 track: 'Knavish Drone (cut)',
                 length: "16:07",
                 url: 'knavish-drone',
             },
+        ]
+    },
+    {
+        title: "Redactor",
+        artLink: './assets/redact.png',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
+        trackList: [
             {
-                track: 'Anxious...',
-                length: "4:35",
-                url: 'anxious-oblast',
+                track: 'On Line0',
+                length: "12:45",
+                url: 'on-line',
+            },
+            {
+                track: 'On Line1',
+                length: getRT(),
+                url: 'on-line1',
+            },
+            {
+                track: 'On Line2',
+                length: getRT(),
+                url: 'on-line2',
+            },
+        ]
+    },
+    {
+        title: "ECT",
+        artLink: './assets/sketches.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg',
+        trackList: [
+            
+            {
+                track: 'This is forever (demo)',
+                length: "2:36",
+                url: 'this-is-forever-v1',
             },
             {
                 track: 'HM/FL (demo)',
@@ -473,21 +510,7 @@ const sketches = [
                 length: "0:43",
                 url: 'chiminy',
             },
-            {
-                track: 'On Line0',
-                length: "12:45",
-                url: 'on-line',
-            },
-            {
-                track: 'On Line1',
-                length: getRT(),
-                url: 'on-line1',
-            },
-            {
-                track: 'On Line2',
-                length: getRT(),
-                url: 'on-line2',
-            },
+            
             {
                 track: 'HM/FL (survivor)',
                 length: getRT(),
@@ -675,23 +698,6 @@ function Song(title, ep, art, url, length) {
     }
 }
 
-// AUDIO PLAYER
-// // 
-// const playButton = document.getElementById("pause-play")
-// const icon = document.getElementById("pp")
-// playButton.addEventListener("click", () => {
-//     if (audioPlayer.paused) {
-//         audioPlayer.play();
-
-//         icon.classList.remove("glyphicon-play");
-//         icon.classList.add("glyphicon-pause");
-//     } else {
-//         audioPlayer.pause();
-
-//         icon.classList.remove("glyphicon-pause");
-//         icon.classList.add("glyphicon-play");
-//     }
-// })
 
 //  QUEUE CONTROLS
 // 
@@ -776,17 +782,17 @@ const showAlbumView = () => {
 }
 
 
-// soft reset
-
-
-
-
-// const displayTracks = (list) => {
-//     list.map((song, idx) => {
-//         let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
-//         track.createListSongRow(idx)
-//     })
-// }
+// SONG VIEW
+// 
+const showSongView = (sortedSongList) => {
+    listViewDump.innerText = '';
+    discoContainer.innerText = '';
+    createHeaderRow();
+    sortedSongList.map((song, idx) => {
+        let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
+        track.createListSongRow(idx)
+    })
+}
 
 const createHeaderRow = () => {
     const headerDiv = document.createElement("div");
@@ -796,48 +802,29 @@ const createHeaderRow = () => {
     const numberSpan = document.createElement("span");
     numberSpan.dataset.sortBy = "trkNum";
     numberSpan.innerText = "Track Number";
-    
     const titleSpan = document.createElement("span");
     titleSpan.dataset.sortBy = "trkNme";
     titleSpan.innerText = "Song Title";
-
     const urlSpan = document.createElement("span");
     urlSpan.dataset.sortBy = "trkUrl";
     urlSpan.innerText = "Track Path";
-
     const epSpan = document.createElement("span");
     epSpan.dataset.sortBy = "epTtl";
     epSpan.innerText = "Ep Title";
-
     const lengthSpan = document.createElement("span");
     lengthSpan.dataset.sortBy = "trkLen";
     lengthSpan.innerText = "Length";
-
     const otherSpan = document.createElement("span");
     otherSpan.dataset.sortBy = "og";
     otherSpan.innerText = "Other";
-
     headerDiv.appendChild(numberSpan)
     headerDiv.appendChild(titleSpan)
     headerDiv.appendChild(urlSpan)
     headerDiv.appendChild(epSpan)
     headerDiv.appendChild(lengthSpan)
     headerDiv.appendChild(otherSpan);
-
     listViewDump.appendChild(headerDiv);
     return;
-
-}
-
-const showSongView = (sortedSongList) => {
-    listViewDump.innerText = '';
-    discoContainer.innerText = '';
-    createHeaderRow();
-    // displayTracks(sortedSongList);
-    sortedSongList.map((song, idx) => {
-        let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
-        track.createListSongRow(idx)
-    })
 }
 
 
