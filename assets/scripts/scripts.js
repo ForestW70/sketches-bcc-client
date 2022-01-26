@@ -265,6 +265,78 @@ const sketches = [
         ]
     },
     {
+        title: 'S&OFV7',
+        artLink: './assets/s&ofv7.png',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv7.png',
+        trackList: [
+            {
+                track: '404',
+                length: "1:18",
+                url: '404',
+            },
+            {
+                track: 'Bubble Boy',
+                length: "1:47",
+                url: 'bubble-boy',
+            },
+            {
+                track: 'Flawz',
+                length: "1:31",
+                url: 'flawz',
+            },
+            {
+                track: 'Gabby',
+                length: "0:20",
+                url: 'gabby',
+            },
+            {
+                track: 'Midi Compactor',
+                length: "1:27",
+                url: 'midi-compactor',
+            },
+            {
+                track: 'Purple!',
+                length: "1:43",
+                url: 'rust-in-peace',
+            },
+            {
+                track: 'Rip Arp',
+                length: "0:52",
+                url: 'rip-arp',
+            },
+            {
+                track: 'Rogue on 1-1',
+                length: "0:20",
+                url: 'rogue-on-1-1',
+            },
+            {
+                track: 'Sea of Drones',
+                length: "1:27",
+                url: 'sea-of-drones',
+            },
+            {
+                track: 'Sine Language',
+                length: "1:43",
+                url: 'sine-lang',
+            },
+            {
+                track: 'SSX Loop',
+                length: "0:52",
+                url: 'ssx-loop',
+            },
+            {
+                track: 'The Drs In.',
+                length: "0:52",
+                url: 'the-doctors-in',
+            },
+            {
+                track: 'girard (noisey)',
+                length: "0:52",
+                url: 'girard-noisy',
+            },
+        ]
+    },
+    {
         title: 'BCC',
         artLink: './assets/bcc.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
@@ -415,6 +487,11 @@ const sketches = [
                 track: 'On Line2',
                 length: getRT(),
                 url: 'on-line2',
+            },
+            {
+                track: 'HM/FL (survivor)',
+                length: getRT(),
+                url: 'hmfl(survivor)',
             },
 
         ]
