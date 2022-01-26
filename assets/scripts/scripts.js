@@ -676,22 +676,22 @@ function Song(title, ep, art, url, length) {
 }
 
 // AUDIO PLAYER
-// 
-const playButton = document.getElementById("pause-play")
-const icon = document.getElementById("pp")
-playButton.addEventListener("click", () => {
-    if (audioPlayer.paused) {
-        audioPlayer.play();
+// // 
+// const playButton = document.getElementById("pause-play")
+// const icon = document.getElementById("pp")
+// playButton.addEventListener("click", () => {
+//     if (audioPlayer.paused) {
+//         audioPlayer.play();
 
-        icon.classList.remove("glyphicon-play");
-        icon.classList.add("glyphicon-pause");
-    } else {
-        audioPlayer.pause();
+//         icon.classList.remove("glyphicon-play");
+//         icon.classList.add("glyphicon-pause");
+//     } else {
+//         audioPlayer.pause();
 
-        icon.classList.remove("glyphicon-pause");
-        icon.classList.add("glyphicon-play");
-    }
-})
+//         icon.classList.remove("glyphicon-pause");
+//         icon.classList.add("glyphicon-play");
+//     }
+// })
 
 //  QUEUE CONTROLS
 // 
@@ -862,34 +862,42 @@ const getDefaultList = () => {
 }
 
 
-// display buttons
-const toggleButtons = document.getElementsByClassName("toggleButton")
+// Buttons
+const toggleQueue = document.getElementById("toggleShowQueue")
+const albumViewBtn = document.getElementById("viewAlbums")
+const songViewBtn = document.getElementById("viewSongs")
+const nextTrackBtn = document.getElementById("nextTrack")
+const playButton = document.getElementById("pause-play")
+const icon = document.getElementById("pp")
 
-// toggleButtons.addEventListener("click", () => {
-//     nowPlaying.classList.toggle('menu-hide')
-
-// })
-
-// document.getElementById("playingDropdownButton").addEventListener("click", () => {
-//     nowPlaying.classList.toggle('menu-hide')
-// })
-document.getElementById("toggleShowQueue").addEventListener("click", () => {
+// change views
+toggleQueue.addEventListener("click", () => {
     queueListDump.classList.toggle('menu-hide')
 })
-document.getElementById("viewAlbums").addEventListener("click", () => {
-    // listHeaderRow.classList.add('menu-hide');
-    // listHeaderRow.classList.remove('menu-flex');
-    showAlbumView()
+albumViewBtn.addEventListener("click", () => {
+    showAlbumView();
 })
-document.getElementById("viewSongs").addEventListener("click", () => {
+songViewBtn.addEventListener("click", () => {
     const defSort = getDefaultList()
-    // listHeaderRow.classList.remove('menu-hide');
-    // listHeaderRow.classList.add('menu-flex');
     showSongView(defSort);
 })
 
-// song/sort buttons
-document.getElementById("nextTrack").addEventListener("click", () => {
+// Audio Player Buttons
+playButton.addEventListener("click", () => {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+
+        icon.classList.remove("glyphicon-play");
+        icon.classList.add("glyphicon-pause");
+    } else {
+        audioPlayer.pause();
+
+        icon.classList.remove("glyphicon-pause");
+        icon.classList.add("glyphicon-play");
+    }
+})
+
+nextTrackBtn.addEventListener("click", () => {
     const queueLength = songQueue.grabLength();
     icon.classList.remove("glyphicon-pause");
     icon.classList.add("glyphicon-play");
@@ -900,7 +908,6 @@ document.getElementById("nextTrack").addEventListener("click", () => {
     } else {
         clearPlayer();
     }
-
 })
 
 // document.getElementById("headerRow").addEventListener("click", (e) => {
