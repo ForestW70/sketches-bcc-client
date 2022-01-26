@@ -271,67 +271,67 @@ const sketches = [
         trackList: [
             {
                 track: '404',
-                length: "1:18",
+                length: getRT(),
                 url: '404',
             },
             {
                 track: 'Bubble Boy',
-                length: "1:47",
+                length: getRT(),
                 url: 'bubble-boy',
             },
             {
                 track: 'Flawz',
-                length: "1:31",
+                length: getRT(),
                 url: 'flawz',
             },
             {
                 track: 'Gabby',
-                length: "0:20",
+                length: getRT(),
                 url: 'gabby',
             },
             {
                 track: 'Midi Compactor',
-                length: "1:27",
+                length: getRT(),
                 url: 'midi-compactor',
             },
             {
                 track: 'Purple!',
-                length: "1:43",
+                length: getRT(),
                 url: 'rust-in-peace',
             },
             {
                 track: 'Rip Arp',
-                length: "0:52",
+                length: getRT(),
                 url: 'rip-arp',
             },
             {
                 track: 'Rogue on 1-1',
-                length: "0:20",
+                length: getRT(),
                 url: 'rogue-on-1-1',
             },
             {
                 track: 'Sea of Drones',
-                length: "1:27",
+                length: getRT(),
                 url: 'sea-of-drones',
             },
             {
                 track: 'Sine Language',
-                length: "1:43",
+                length: getRT(),
                 url: 'sine-lang',
             },
             {
                 track: 'SSX Loop',
-                length: "0:52",
+                length: getRT(),
                 url: 'ssx-loop',
             },
             {
                 track: 'The Drs In.',
-                length: "0:52",
+                length: getRT(),
                 url: 'the-doctors-in',
             },
             {
                 track: 'girard (noisey)',
-                length: "0:52",
+                length: getRT(),
                 url: 'girard-noisy',
             },
         ]
@@ -509,7 +509,7 @@ const currAlbumName = document.getElementById("albumName");
 const currAlbumPic = document.getElementById("albumPic");
 const listViewDump = document.getElementById("list");
 const nowPlaying = document.getElementById("playingInfo");
-const listHeaderRow = document.getElementById("headerRow")
+// const listHeaderRow = document.getElementById("headerRow")
 // const trackQueueViewer = document.getElementById("trackQueue")
 // let defSort;
 
@@ -568,7 +568,7 @@ function SongQueue(pushbox = []) {
         // 
         currArtistName.innerText = "Luka";
         currTrackName.innerText = wiper.songUrl;
-        currAlbumName.innerText = wiper.songEp;
+        currAlbumName.innerText = `"${wiper.songEp}"`;
         currAlbumPic.src = wiper.songArt;
         audioPlayer.src = songHome;
         console.log("Next track loaded!")
@@ -788,10 +788,51 @@ const showAlbumView = () => {
 //     })
 // }
 
+const createHeaderRow = () => {
+    const headerDiv = document.createElement("div");
+    headerDiv.classList.add("song-list-row");
+    headerDiv.id = "headerRow";
+
+    const numberSpan = document.createElement("span");
+    numberSpan.dataset.sortBy = "trkNum";
+    numberSpan.innerText = "Track Number";
+    
+    const titleSpan = document.createElement("span");
+    titleSpan.dataset.sortBy = "trkNme";
+    titleSpan.innerText = "Song Title";
+
+    const urlSpan = document.createElement("span");
+    urlSpan.dataset.sortBy = "trkUrl";
+    urlSpan.innerText = "Track Path";
+
+    const epSpan = document.createElement("span");
+    epSpan.dataset.sortBy = "epTtl";
+    epSpan.innerText = "Ep Title";
+
+    const lengthSpan = document.createElement("span");
+    lengthSpan.dataset.sortBy = "trkLen";
+    lengthSpan.innerText = "Length";
+
+    const otherSpan = document.createElement("span");
+    otherSpan.dataset.sortBy = "og";
+    otherSpan.innerText = "Other";
+
+    headerDiv.appendChild(numberSpan)
+    headerDiv.appendChild(titleSpan)
+    headerDiv.appendChild(urlSpan)
+    headerDiv.appendChild(epSpan)
+    headerDiv.appendChild(lengthSpan)
+    headerDiv.appendChild(otherSpan);
+
+    listViewDump.appendChild(headerDiv);
+    return;
+
+}
 
 const showSongView = (sortedSongList) => {
     listViewDump.innerText = '';
     discoContainer.innerText = '';
+    createHeaderRow();
     // displayTracks(sortedSongList);
     sortedSongList.map((song, idx) => {
         let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
@@ -836,14 +877,14 @@ document.getElementById("toggleShowQueue").addEventListener("click", () => {
     queueListDump.classList.toggle('menu-hide')
 })
 document.getElementById("viewAlbums").addEventListener("click", () => {
-    listHeaderRow.classList.add('menu-hide');
-    listHeaderRow.classList.remove('menu-flex');
+    // listHeaderRow.classList.add('menu-hide');
+    // listHeaderRow.classList.remove('menu-flex');
     showAlbumView()
 })
 document.getElementById("viewSongs").addEventListener("click", () => {
     const defSort = getDefaultList()
-    listHeaderRow.classList.remove('menu-hide');
-    listHeaderRow.classList.add('menu-flex');
+    // listHeaderRow.classList.remove('menu-hide');
+    // listHeaderRow.classList.add('menu-flex');
     showSongView(defSort);
 })
 
@@ -862,26 +903,26 @@ document.getElementById("nextTrack").addEventListener("click", () => {
 
 })
 
-document.getElementById("headerRow").addEventListener("click", (e) => {
-    let newSort = []
-    if (e.target.dataset.sortBy === "trkNme") {
-        newSort = defSort.sort((a, b) => {
-            if (a.trackName > b.trackName) {
-                return 1
-            }
-            return -1
-        })
-        // console.log(newSort)
-    } else if (e.target.dataset.sortBy === "epTtl") {
-        newSort = defSort.sort((a, b) => {
-            if (a.epName > b.epName) {
-                return 1;
-            }
-            return -1;
-        })
-    }
-    showSongView(newSort);
-})
+// document.getElementById("headerRow").addEventListener("click", (e) => {
+//     let newSort = []
+//     if (e.target.dataset.sortBy === "trkNme") {
+//         newSort = defSort.sort((a, b) => {
+//             if (a.trackName > b.trackName) {
+//                 return 1
+//             }
+//             return -1
+//         })
+//         // console.log(newSort)
+//     } else if (e.target.dataset.sortBy === "epTtl") {
+//         newSort = defSort.sort((a, b) => {
+//             if (a.epName > b.epName) {
+//                 return 1;
+//             }
+//             return -1;
+//         })
+//     }
+//     showSongView(newSort);
+// })
 
 const createListObject = () => {
 

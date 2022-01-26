@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/styles.css">
     <link rel="icon" href="https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg">
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet"> -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <title>Sketches </title>
 </head>
@@ -14,26 +15,25 @@
 <body>
     <h1>'Sum Sketches</h1>
     <Header>
-        <!-- <button id="nextTrack">Next track</button> -->
         <audio id="player" controls>
             <source src="" type="audio/mp3">
         </audio>
 
-        <div class="hello">
-
+        <div id="trackController">
             <article id="anotherPlayer">
+
                 <img id="albumPic" src="https://picsum.photos/25">
-                <div class="nowPlayingInfo">
-                    <span id="artistName">Lukasz Mauro</span>
-                    <span id="trackName">Htmess</span>
-                    <span id="albumName">BCC</span>
+                <div id="nowPlayingInfo">
+                    <span id="artistName"></span>
+                    <span id="trackName">No track queued!</span>
+                    <span id="albumName"></span>
                 </div>
                 <div class="controlBtns">
                     <button type="button" id="pause-play">
-                        <span id="pp" class="glyphicon glyphicon-play fa-3x" aria-hidden="true"></span>
+                        <span id="pp" class="glyphicon glyphicon-play" aria-hidden="true"></span>
                     </button>
                     <button type="button" id="nextTrack" class="next-song">
-                        <span class="glyphicon glyphicon-step-forward fa-3x" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
                     </button>
                     <button type="button" class="show-queue" id="toggleShowQueue">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
@@ -62,14 +62,14 @@
     </section>
 
     <section id="list">
-        <div class="song-list-row" id="headerRow">
+        <!-- <div class="song-list-row" id="headerRow">
             <span data-sort-by="trkNum">Track Number</span>
             <span data-sort-by="trkNme">Song</span>
             <span data-sort-by="trkUrl">Song Url</span>
             <span data-sort-by="epTtl">Album Title</span>
             <span data-sort-by="trkLen">Length</span>
             <span data-sort-by="og">Some Path</span>
-        </div>
+        </div> -->
     </section>
 
     

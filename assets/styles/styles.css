@@ -1,22 +1,13 @@
-/* Header and Body */
-body {
-    background-color: #f1f3f4;
-    margin: 0px;
-}
 
 header {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* padding: 10px 50px; */
 }
 
-h1 {
-    font-size: 50px;
-    margin-top: 0;
-}
-
-/* player */
+/*  */
+/* Audio player */
+/*  */
 #player {
     width: 100%;
     margin: 0;
@@ -27,24 +18,19 @@ h1 {
 audio::-webkit-media-controls-panel {
     background-color: rgb(203 249 236);
 }
-
 audio::-webkit-media-controls-enclosure {
     border-radius: 0px;
-    
 }
-
 audio::-webkit-media-controls-timeline-container {
     color:green;
     border: 1px solid black;
 }
-
 audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display {
     color:black;
     font-family: serif;
     padding: 0 10px;
-    margin:auto;
+    margin: auto;
 }
-
 audio::-webkit-media-controls-timeline {
     color: black;
     background-color: white;
@@ -52,64 +38,27 @@ audio::-webkit-media-controls-timeline {
     padding: 20px;
     margin-top:10px;
 }
+
+
 /*  */
-.hello {
+/* Song info and Queue container */
+/*  */
+#trackController {
     display: flex;
 }
-#anotherPlayer, #qTools {
+#trackController > article {
     display: flex;
     width: 50%;
+    padding-left: 5px;
     align-items: center;
     background-color:rgb(203 249 236);
 }
 
-#anotherPlayer {
-    padding:5px;
-}
-
-#albumPic {
-    height: 100px;
-    width: 100px;
-    margin: 0 15px;
-    /* align-self: center; */
-}
-
-
-
-.controlBtns {
-    display:flex;
-    /* align-self: center; */
-    margin: auto;
-}
-
-.glyphicon {
-    font-size: 30px;
-}
-
-
-/*  */
-/* user conrol bar */
-#playerInfo {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    min-height: 35px;
-}
-
-#nowPlaying, #queue {
-    border: 1px solid yellowgreen;
-    background-color: white;
-}
-
-
-.nowPlayingInfo {
+/* Now playing */
+#nowPlayingInfo {
     display: flex;
     flex-direction: column;
-    /* align-self: center; */
     padding: 20px;
-
 }
 
 #artistName, #trackName, #albumName {
@@ -123,15 +72,20 @@ audio::-webkit-media-controls-timeline {
 
 #trackName {
     font-style: oblique;
+    font-weight: bold;
 }
 
 #albumName {
     color:rgb(78, 78, 78);
-    font-weight: bold;
 }
 
+#albumPic {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
 
-/* queueList */
+/* Queue List */
 #queueList {
     flex-direction: column;
     width: 100%;
@@ -153,23 +107,15 @@ audio::-webkit-media-controls-timeline {
     border-top: 1px solid #c1c2c3;
 }
 
-/* buttons */
-.toggleButton {
-    font-size: 1vmax;
-    font-family: sans-serif;
-    border: none;
-    padding: 10px;
-    background-color: greenyellow;
-    cursor: pointer;
-    position:absolute;
-    top: 0;
+
+/* Play Pause Next Queue Buttons */
+.controlBtns {
+    display:flex;
+    margin: auto;
 }
 
-.toggleButton:hover {
-    background-color: rgb(214, 245, 167);
-    cursor: pointer;
-    color: rgb(0, 217, 255);
-    
+.controlBtns > button {
+    padding: 10px;
 }
 
 #nextTrack {
@@ -178,8 +124,11 @@ audio::-webkit-media-controls-timeline {
     background-color: darkorange;
 }
 
+.glyphicon {
+    font-size: 30px;
+}
 
-/* toggle */
+/* toggle queue */
 .menu-flex {
     display: flex;
 }
@@ -189,8 +138,9 @@ audio::-webkit-media-controls-timeline {
 }
 
 
-
-/* albums */
+/*  */
+/* Album View */
+/*  */
 #disco {
     font-size: 20px;
     margin-top: 0px;
@@ -210,7 +160,6 @@ audio::-webkit-media-controls-timeline {
 .info-container > img {
     height: 300px;
     width: 300px;
-    /* border: 5px double black; */
 }
 
 .info-container > h3 {
@@ -221,7 +170,6 @@ audio::-webkit-media-controls-timeline {
     margin: 20px 0 20px 50px;
     display: flex;
     flex-direction: column;
-    /* border: 2px solid black; */
 }
 
 .t-row {
@@ -251,33 +199,11 @@ audio::-webkit-media-controls-timeline {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-/* view switch buttons */
-#controlers {
-    display: flex;
-    padding: 10px 0;
-    justify-content: center;
-    background-color: aquamarine;
-}
-
-#controlers button {
-    letter-spacing: 5px;
-    border: none;
-    background-color: inherit;
-    width:50%;
-    border-left: 10px double #d2d2d2;
-    border-right: 10px double #d2d2d2;
-}
-
-#controlers button:hover {
-    font-style: oblique;
-    font-weight: bold;
-    font-size: 1.5em;
-    background-color: #fff;
-}
 
 
-/* song list view */
-
+/*  */
+/* Song View */
+/*  */
 .song-list-row {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr 2fr 1fr;
@@ -312,6 +238,31 @@ audio::-webkit-media-controls-timeline {
 }
 
 
+/* view switch buttons */
+#controlers {
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+#controlers button {
+    letter-spacing: 5px;
+    border: none;
+    background-color: inherit;
+    width:50%;
+    border-left: 10px double #d2d2d2;
+    border-right: 10px double #d2d2d2;
+}
+
+#controlers button:hover {
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: #fff;
+}
+
+
 .hide {
     display:none;
 }
@@ -321,10 +272,10 @@ audio::-webkit-media-controls-timeline {
         height: 200px;
         width: 200px;
     }
-    #albumPic {
+    /* #albumPic {
         height: 70px;
         width: 70px;
-    }
+    } */
 }
 
 @media screen and (max-width: 900px) {
@@ -332,10 +283,10 @@ audio::-webkit-media-controls-timeline {
         height: 150px;
         width: 150px;
     }
-    /* #albumPic {
-        height: 55px;
-        width: 55px;
-    } */
+    #albumPic {
+        height: 70px;
+        width: 70px;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -345,16 +296,16 @@ audio::-webkit-media-controls-timeline {
     .glyphicon {
         font-size: 20px;
     }
-    .hello {
+    #trackController {
         flex-direction: column;
     }
-    #anotherPlayer, #qTools {
+    #trackController > article {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .nowPlayingInfo > *{
-        font-size: small;
+    #nowPlayingInfo > * {
+        font-size: 10px;
     }
 }
