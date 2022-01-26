@@ -13,6 +13,9 @@ const getRT = () => {
 const sketches = [
     {
         title: 'S&OFV1',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'August 28th, 2017',
         artLink: './assets/s&ofv1.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg',
         trackList: [
@@ -56,6 +59,9 @@ const sketches = [
     },
     {
         title: 'S&OFV2',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/s&ofv2.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv2.jpg',
         trackList: [
@@ -98,6 +104,9 @@ const sketches = [
     },
     {
         title: 'S&OFV3',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/s&ofv3.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv3.jpg',
         trackList: [
@@ -140,6 +149,9 @@ const sketches = [
     },
     {
         title: 'S&OFV4',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/s&ofv4.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv4.png',
         trackList: [
@@ -182,6 +194,9 @@ const sketches = [
     },
     {
         title: 'S&OFV5',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/s&ofv5.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv5.png',
         trackList: [
@@ -224,6 +239,9 @@ const sketches = [
     },
     {
         title: 'S&OFV6',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/oops.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/oops.png',
         trackList: [
@@ -266,6 +284,9 @@ const sketches = [
     },
     {
         title: 'S&OFV7',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/s&ofv7.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv7.jpg',
         trackList: [
@@ -308,6 +329,9 @@ const sketches = [
     },
     {
         title: 'S&OFV8',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/s&ofv8.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv8.jpg',
         trackList: [
@@ -345,6 +369,9 @@ const sketches = [
     },
     {
         title: 'BCC',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'November 21st, 2021',
         artLink: './assets/bcc.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
         trackList: [
@@ -437,6 +464,9 @@ const sketches = [
     },
     {
         title: "IB",
+        artist: 'con',
+        longArtist: 'con',
+        releaseDate: 'Avril 4th, 2014',
         artLink: './assets/ib.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ib.jpg',
         trackList: [
@@ -464,6 +494,9 @@ const sketches = [
     },
     {
         title: "Redactor",
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'N/A',
         artLink: './assets/redact.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
         trackList: [
@@ -486,6 +519,9 @@ const sketches = [
     },
     {
         title: "ECT",
+        artist: 'S. Finder',
+        longArtist: 'Stud Finder',
+        releaseDate: 'N/A',
         artLink: './assets/sketches.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg',
         trackList: [
@@ -582,13 +618,16 @@ function SongQueue(pushbox = []) {
     this.filterPlayer = () => {
         const wiper = this.activeQueue[0];
         const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.songUrl}.mp3`
-
+        const newTitle = `L. Mauro ~ ${wiper.songUrl}`
+        
+        document.title = ""
         currArtistName.innerText = "";
         currTrackName.innerText = "";
         currAlbumName.innerText = "";
         currAlbumPic.src = "";
         audioPlayer.src = "";
-        // 
+        // clear page title and replace with song info
+        document.title = newTitle
         currArtistName.innerText = "Luka";
         currTrackName.innerText = wiper.songUrl;
         currAlbumName.innerText = `"${wiper.songEp}"`;
@@ -599,14 +638,16 @@ function SongQueue(pushbox = []) {
 }
 const songQueue = new SongQueue();
 
-// class to control individual song actions
-function Song(title, ep, art, url, length) {
-    this.artist = "Lukasz Mauro"
+// class to control individual song actions (artist, title, ep, art, url, length, released)
+function Song(artist, title, ep, art, url, length, released, long) {
+    this.artist = artist;
+    this.artistLong = long;
     this.title = title;
     this.ep = ep;
     this.art = art;
     this.url = url;
     this.length = length;
+    this.released = released;
 
     this.add2queueList = () => {
         const item = {
@@ -649,7 +690,7 @@ function Song(title, ep, art, url, length) {
         trackUrl.innerText = this.url;
         albumTitle.innerText = this.ep;
         trackLength.innerText = this.length
-        trackOGTitle.innerText = this.art;
+        trackOGTitle.innerText = this.artist;
         //
         const trackRow = document.createElement("button");
         trackRow.type = "button";
@@ -667,7 +708,7 @@ function Song(title, ep, art, url, length) {
         trackRow.appendChild(trackUrl);
         trackRow.appendChild(trackLength);
         trackRow.appendChild(albumTitle);
-        // trackRow.appendChild(trackOGTitle);
+        trackRow.appendChild(trackOGTitle);
         listViewDump.appendChild(trackRow);
     }
 
@@ -741,6 +782,8 @@ const buildAlbumCont = (albumInfo) => {
     const infoContainer = document.createElement("div");
     const trackContainer = document.createElement("div");
     const albumTitle = document.createElement("h3");
+    const albumArtist = document.createElement("h2");
+    const albumRelease = document.createElement("p");
     const albumArt = document.createElement("img");
     //
     albumContainer.classList.add("disco-item");
@@ -748,14 +791,18 @@ const buildAlbumCont = (albumInfo) => {
     trackContainer.classList.add("track-container");
     trackContainer.id = albumInfo.title;
     albumTitle.innerText = albumInfo.title;
+    albumArtist.innerText = albumInfo.artist;
+    albumRelease.innerText = albumInfo.releaseDate;
     albumArt.src = albumInfo.webLink;
     //
     infoContainer.appendChild(albumArt)
+    infoContainer.appendChild(albumRelease)
+    infoContainer.appendChild(albumArtist)
     infoContainer.appendChild(albumTitle)
     albumContainer.appendChild(infoContainer)
     //
     albumInfo.trackList.map((idvTrack, idx) => {
-        const albumSong = new Song(idvTrack.track, albumInfo.title, albumInfo.webLink, idvTrack.url, idvTrack.length);
+        const albumSong = new Song(albumInfo.artist, idvTrack.track, albumInfo.title, albumInfo.webLink, idvTrack.url, idvTrack.length, albumInfo.releaseDate, albumInfo.artistLong);
         const songItem = {
             'songUrl': idvTrack.url,
             'songEp': albumInfo.title,
@@ -789,7 +836,7 @@ const showSongView = (sortedSongList) => {
     discoContainer.innerText = '';
     createHeaderRow();
     sortedSongList.map((song, idx) => {
-        let track = new Song(song.trackName, song.epName, song.ogItem, song.trackUrl, song.trackLength)
+        let track = new Song(song.artist, song.title, song.ep, song.artLink, song.url, song.length, song.releaseDate, song.artistLong)
         track.createListSongRow(idx)
     })
 }
@@ -835,11 +882,14 @@ const getDefaultList = () => {
         album.trackList.map(song => {
             const listItem = {
                 trackNumber: songId,
-                trackName: song.track,
-                epName: album.title,
-                trackLength: song.length,
-                trackUrl: song.url,
-                ogItem: album.webLink
+                title: song.track,
+                ep: album.title,
+                length: song.length,
+                url: song.url,
+                artLink: album.webLink,
+                artist: album.artist,
+                artistLong: album.artistLong,
+                releaseDate: album.releaseDate
             }
             sorted.push(listItem)
             songId++
@@ -862,9 +912,17 @@ toggleQueue.addEventListener("click", () => {
     queueListDump.classList.toggle('menu-hide')
 })
 albumViewBtn.addEventListener("click", () => {
+    if (!albumViewBtn.classList.contains("curr-view")) {
+        albumViewBtn.classList.toggle("curr-view")
+        songViewBtn.classList.toggle("curr-view")
+    } 
     showAlbumView();
 })
 songViewBtn.addEventListener("click", () => {
+    if (!songViewBtn.classList.contains("curr-view")) {
+        albumViewBtn.classList.toggle("curr-view")
+        songViewBtn.classList.toggle("curr-view")
+    } 
     const defSort = getDefaultList()
     showSongView(defSort);
 })

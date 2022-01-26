@@ -28,7 +28,7 @@ audio::-webkit-media-controls-timeline-container {
 audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display {
     color:black;
     font-family: serif;
-    padding: 0 10px;
+    padding: 0 3px;
     margin: auto;
 }
 audio::-webkit-media-controls-timeline {
@@ -227,10 +227,14 @@ audio::-webkit-media-controls-timeline {
     background-color: white;
 }
 
-/* .song-list-row:nth-child(1):hover {
+/* header row */
+.song-list-row:nth-child(1):hover {
     border: none;
     justify-self: center;
-} */
+}
+.song-list-row:nth-child(1) span:hover::after {
+    content: " -- Sort!"
+}
 
 .song-list-row:hover {
     /* padding: 0 3px; */
@@ -246,7 +250,7 @@ audio::-webkit-media-controls-timeline {
     background-color: aquamarine;
 }
 
-#controlers button {
+.view-button {
     letter-spacing: 5px;
     border: none;
     background-color: inherit;
@@ -255,7 +259,14 @@ audio::-webkit-media-controls-timeline {
     border-right: 10px double #d2d2d2;
 }
 
-#controlers button:hover {
+/* #controlers button:hover {
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: #fff;
+} */
+
+.curr-view {
     font-style: oblique;
     font-weight: bold;
     font-size: 1.5em;
