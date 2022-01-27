@@ -152,9 +152,9 @@ audio::-webkit-media-controls-timeline {
 }
 
 .info-container {
-    display: grid;
+    display: flex;
     margin: 10px 0 0 50px;
-    grid-template-columns: 1fr 3fr;
+    /* grid-template-columns: 1fr 3fr; */
 }
 
 .info-container > img {
@@ -162,8 +162,19 @@ audio::-webkit-media-controls-timeline {
     width: 300px;
 }
 
+.info-container > h2 {
+    /* margin-left: 10px; */
+}
+
 .info-container > h3 {
+    font-family: serif;
+    margin: 5px;
+}
+
+.info-container > p {
+    font-size: small;
     font-style: italic;
+
 }
 
 .track-container {
@@ -178,6 +189,9 @@ audio::-webkit-media-controls-timeline {
     margin-bottom: 10px;
     border: none;
     background-color: inherit;
+    font-family: monospace;
+    color: rgb(70, 70, 70);
+    letter-spacing: -2px;
 }
 
 .t-row:hover {
@@ -187,7 +201,7 @@ audio::-webkit-media-controls-timeline {
 }
 
 .track-num {
-    color: grey;
+    /* color: grey; */
     justify-self: left;
 }
 
@@ -196,7 +210,7 @@ audio::-webkit-media-controls-timeline {
 }
 
 .track-time {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
 
@@ -255,16 +269,10 @@ audio::-webkit-media-controls-timeline {
     border: none;
     background-color: inherit;
     width:50%;
-    border-left: 10px double #d2d2d2;
-    border-right: 10px double #d2d2d2;
+    border-left: 10px double #800808;
+    border-right: 10px double #8e8e8e;
 }
 
-/* #controlers button:hover {
-    font-style: oblique;
-    font-weight: bold;
-    font-size: 1.5em;
-    background-color: #fff;
-} */
 
 .curr-view {
     font-style: oblique;
@@ -278,16 +286,12 @@ audio::-webkit-media-controls-timeline {
     display:none;
 }
 
-@media screen and (max-width: 1300px) {
+/* @media screen and (max-width: 1300px) {
     .info-container > img {
         height: 200px;
         width: 200px;
     }
-    /* #albumPic {
-        height: 70px;
-        width: 70px;
-    } */
-}
+} */
 
 @media screen and (max-width: 900px) {
     .info-container > img {
@@ -298,8 +302,23 @@ audio::-webkit-media-controls-timeline {
         height: 70px;
         width: 70px;
     }
+    .info-container > h3 {
+        margin-right: 25px;
+    }
+    .glyphicon {
+        font-size: 20px;
+    }
+    #trackController {
+        flex-direction: column;
+    }
+    #trackController > article {
+        width: 100%;
+    }
+    .t-row {
+        font-size: 12px;
+    }
 }
-
+/* 
 @media screen and (max-width: 800px) {
     .info-container > h3 {
         margin-right: 25px;
@@ -313,9 +332,38 @@ audio::-webkit-media-controls-timeline {
     #trackController > article {
         width: 100%;
     }
+} */
+
+@media screen and (max-width: 650px) {
+    .info-container > h3 {
+        font-size: 1.8vmax;
+        font-style: italic;
+    }
+    .info-container > p {
+        font-size: 1.5vmax;
+        font-style: normal;
+    }
+    .info-container > h2 {
+        font-size: 3vmax;
+        writing-mode: vertical-rl;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .info-container > h3 {
+        font-size: 2vmax;
+        font-style: italic;
+        writing-mode: vertical-rl;
+    }
 }
 
 @media screen and (max-width: 450px) {
+    .info-container > p {
+        font-size: 1vmax;
+        /* font-style: italic; */
+        writing-mode: vertical-rl;
+    }
+    
     #nowPlayingInfo > * {
         font-size: 10px;
     }

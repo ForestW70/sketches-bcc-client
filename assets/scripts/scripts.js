@@ -790,15 +790,15 @@ const buildAlbumCont = (albumInfo) => {
     infoContainer.classList.add("info-container");
     trackContainer.classList.add("track-container");
     trackContainer.id = albumInfo.title;
-    albumTitle.innerText = albumInfo.title;
+    albumTitle.innerText = `"${albumInfo.title}"`;
     albumArtist.innerText = albumInfo.artist;
     albumRelease.innerText = albumInfo.releaseDate;
     albumArt.src = albumInfo.webLink;
     //
     infoContainer.appendChild(albumArt)
-    infoContainer.appendChild(albumRelease)
     infoContainer.appendChild(albumArtist)
     infoContainer.appendChild(albumTitle)
+    infoContainer.appendChild(albumRelease)
     albumContainer.appendChild(infoContainer)
     //
     albumInfo.trackList.map((idvTrack, idx) => {
