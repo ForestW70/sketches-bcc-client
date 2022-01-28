@@ -789,7 +789,18 @@ function Song(artist, title, ep, art, url, length, released, long) {
 
 //  QUEUE CONTROLS
 // 
+audioPlayer.addEventListener("ended", () => {
+    songQueue.removeFromQueue();
+    const qtime = songQueue.grabLength()
+    if (qtime === 1) {
+        songQueue.filterPlayer();
+        songQueue.removeQueueButton();
+        audioPlayer.play();
+    } else if (qtime > 1) {
+        console.log('no more items in queue.')
+    }
 
+})
 
 const handleTrackSelect = (e) => {
     e.preventDefault;
