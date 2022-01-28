@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <h1>'Sum Sketches</h1>
+    <h1 id="wellHeyThere">'Sum Sketches</h1>
     <Header>
         <audio id="player" controls>
             <source src="" type="audio/mp3">
@@ -38,15 +38,15 @@
                     <button type="button" class="show-queue" id="toggleShowQueue">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                     </button>
+                    <button type="button" class="show-queue" id="testBtn">
+                        <span class="glyphicon" aria-hidden="true">TEST</span>
+                    </button>
                 </div>
             </article>
             <article id="qTools">
                 <div id="queueList" class="menu-flex"></div>
             </article>
         </div>
-        <!-- <div class="progress">
-            
-        </div> -->
     </Header>
 
     <section id="controlers">
@@ -62,6 +62,7 @@
     </section>
 
     <section id="list">
+        <!-- currently being appended from js -->
         <!-- <div class="song-list-row" id="headerRow">
             <span data-sort-by="trkNum">Track Number</span>
             <span data-sort-by="trkNme">Song</span>
@@ -71,14 +72,6 @@
             <span data-sort-by="og">Some Path</span>
         </div> -->
     </section>
-
-    
-    <!-- <article>
-        <audio id="player" controls>
-            <source src="" type="audio/mp3">
-        </audio>
-    </article> -->
-
 </body>
 
 </html>
