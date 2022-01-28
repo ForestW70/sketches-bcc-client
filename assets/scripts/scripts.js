@@ -604,8 +604,17 @@ function SongQueue(pushbox = []) {
             songArt: el.art,
             songArtist: el.artist,
             songTitle: el.title,
+            songLength: el.length,
         }
-        return this.activeQueue.push(item);
+        if (this.activeQueue.length === 0) {
+            this.activeQueue.push(item)
+            this.filterPlayer();
+            return;
+        } else {
+            this.activeQueue.push(item);
+            return;
+        }
+        
     }
     this.createQItem = (el) => {
         // const songInfo = el.split(' ');
@@ -615,10 +624,13 @@ function SongQueue(pushbox = []) {
         qButton.id = el.url + " " + el.ep;
         queueListDump.appendChild(qButton);
     }
-    this.removeFromQueue = () => {
-        const currItem = this.activeQueue[1];
+    this.removeQueueButton = () => {
+        const currItem = this.activeQueue[0];
         const btnSearch = currItem.songUrl + " " + currItem.songEp;
         document.getElementById(btnSearch).remove();
+        return;
+    }
+    this.removeFromQueue = () => {
         return this.activeQueue.shift();
     }
     this.grabNext = () => {
@@ -636,22 +648,17 @@ function SongQueue(pushbox = []) {
         const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.songUrl}.mp3`
         const newTitle = `${wiper.songArtist} ~ ${wiper.songUrl}`
 
-        document.title = "";
-        headSwap.innerText = "";
-        currArtistName.innerText = "";
-        currTrackName.innerText = "";
-        currAlbumName.innerText = "";
-        currAlbumPic.src = "";
-        audioPlayer.src = "";
+        clearPlayer();
         // clear page title and replace with song info
         document.title = newTitle;
-        headSwap.innerText = wiper.songArtist + " " + wiper.songTitle + " " + wiper.songUrl + " " + wiper.songEp
-        currArtistName.innerText = "Luka";
+        headSwap.innerText = wiper.songArtist + " " + wiper.songUrl + ".mp3 '" + wiper.songTitle + "' " + wiper.songEp + " " + wiper.songLength;
+        currArtistName.innerText = wiper.songArtist;
         currTrackName.innerText = wiper.songUrl;
         currAlbumName.innerText = `"${wiper.songEp}"`;
         currAlbumPic.src = wiper.songArt;
         audioPlayer.src = songHome;
-        console.log("Next track loaded!")
+        return console.log("Next track loaded!");
+        
     }
 }
 const songQueue = new SongQueue();
@@ -782,16 +789,7 @@ function Song(artist, title, ep, art, url, length, released, long) {
 
 //  QUEUE CONTROLS
 // 
-const addToQueue = (songInfo) => {
-    // console.log(songInfo)
-    if (songQueue.grabLength() === 0) {
-        songQueue.add2queue(songInfo)
 
-    } else {
-        songQueue.add2queue(songInfo)
-        songQueue.createQItem(songInfo)
-    }
-}
 
 const handleTrackSelect = (e) => {
     e.preventDefault;
@@ -801,14 +799,16 @@ const handleTrackSelect = (e) => {
         title: e.currentTarget.dataset.title,
         url: e.currentTarget.dataset.url,
         art: e.currentTarget.dataset.albumurl,
+        length: e.currentTarget.dataset.length
     }
     // const lookingFor = e.currentTarget.dataset.url + ' ' + e.currentTarget.dataset.epname + ' ' + e.currentTarget.dataset.albumurl;
     const currQueueTime = songQueue.grabLength();
     if (currQueueTime === 0) {
-        addToQueue(lookObj);
-        songQueue.filterPlayer();
+        songQueue.add2queue(lookObj)
+        // songQueue.filterPlayer();
     } else {
-        addToQueue(lookObj);
+        songQueue.add2queue(lookObj)
+        songQueue.createQItem(lookObj);
     }
 
 }
@@ -1113,6 +1113,11 @@ songViewBtn.addEventListener("click", () => {
 
 // Audio Player Buttons
 playButton.addEventListener("click", () => {
+    const isLoadedCheck = audioPlayer.src.split(".").pop()
+    console.log(isLoadedCheck)
+    if (isLoadedCheck !== "mp3") {
+        return window.alert("Please queue up next song.")
+    }
     if (audioPlayer.paused) {
         audioPlayer.play();
 
@@ -1127,15 +1132,22 @@ playButton.addEventListener("click", () => {
 })
 
 nextTrackBtn.addEventListener("click", () => {
+    songQueue.removeFromQueue();
     const queueLength = songQueue.grabLength();
     icon.classList.remove("glyphicon-pause");
     icon.classList.add("glyphicon-play");
-    console.log(`You have ${queueLength - 2} items left in your queue!`);
-    if (queueLength > 1) {
-        songQueue.removeFromQueue();
-        songQueue.filterPlayer();
-    } else {
+    console.log(`You have ${queueLength} items left in your queue!`);
+    if (queueLength === 0) {
         clearPlayer();
+        console.log("nothing queued!")
+        // songQueue.filterPlayer();
+        // songQueue.removeQueueButton();
+    } else if (queueLength === 1) {
+        songQueue.filterPlayer();
+        songQueue.removeQueueButton();
+    } else {
+        songQueue.filterPlayer();
+        songQueue.removeQueueButton();
     }
 })
 
