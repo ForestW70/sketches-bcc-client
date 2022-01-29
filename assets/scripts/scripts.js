@@ -570,6 +570,7 @@ const listViewDump = document.getElementById("list");
 const nowPlaying = document.getElementById("playingInfo");
 const headSwap = document.getElementById("wellHeyThere");
 const testBtn = document.getElementById("testBtn");
+const qToolCont = document.getElementById("qTools")
 // const listHeaderRow = document.getElementById("headerRow")
 // const trackQueueViewer = document.getElementById("trackQueue")
 // let defSort;
@@ -614,7 +615,7 @@ function SongQueue(pushbox = []) {
             this.activeQueue.push(item);
             return;
         }
-        
+
     }
     this.createQItem = (el) => {
         // const songInfo = el.split(' ');
@@ -653,12 +654,12 @@ function SongQueue(pushbox = []) {
         document.title = newTitle;
         headSwap.innerText = wiper.songArtist + " " + wiper.songUrl + ".mp3 '" + wiper.songTitle + "' " + wiper.songEp + " " + wiper.songLength;
         currArtistName.innerText = wiper.songArtist;
-        currTrackName.innerText = wiper.songUrl;
+        currTrackName.innerText = wiper.songTitle;
         currAlbumName.innerText = `"${wiper.songEp}"`;
         currAlbumPic.src = wiper.songArt;
         audioPlayer.src = songHome;
         return console.log("Next track loaded!");
-        
+
     }
 }
 const songQueue = new SongQueue();
@@ -732,7 +733,7 @@ function Song(artist, title, ep, art, url, length, released, long) {
         trackRow.addEventListener("click", handleTrackSelect);
         //
         trackRow.appendChild(trackNumber);
-        trackRow.appendChild(trackName);
+        // trackRow.appendChild(trackName);
         trackRow.appendChild(trackUrl);
         trackRow.appendChild(trackLength);
         trackRow.appendChild(albumTitle);
@@ -915,9 +916,9 @@ const createHeaderRow = () => {
     const numberSpan = document.createElement("span");
     numberSpan.dataset.sortBy = "trkNum";
     numberSpan.innerText = "Track Number";
-    const titleSpan = document.createElement("span");
-    titleSpan.dataset.sortBy = "trkNme";
-    titleSpan.innerText = "Song Title";
+    // const titleSpan = document.createElement("span");
+    // titleSpan.dataset.sortBy = "trkNme";
+    // titleSpan.innerText = "Song Title";
     const urlSpan = document.createElement("span");
     urlSpan.dataset.sortBy = "trkUrl";
     urlSpan.innerText = "Track Path";
@@ -931,7 +932,7 @@ const createHeaderRow = () => {
     otherSpan.dataset.sortBy = "artist";
     otherSpan.innerText = "Artist";
     headerDiv.appendChild(numberSpan)
-    headerDiv.appendChild(titleSpan)
+    // headerDiv.appendChild(titleSpan)
     headerDiv.appendChild(urlSpan)
     headerDiv.appendChild(lengthSpan)
     headerDiv.appendChild(epSpan)
@@ -964,36 +965,9 @@ const getDefaultList = () => {
     return sorted;
 }
 
-const constructSort = (sortKey) => {
-    // let currentSort = songQueue.getSongList();
-    console.log(currentSort);
 
-    const nSort = currentSort.sort((a, b) => {
-        return b.trackNumber - a.trackNumber;
-    })
-
-    const nextSort = currentSort.sort((a, b) => {
-        let el1 = a.title.toUpperCase();
-        let el2 = b.title.toUpperCase();
-        console.log("hi")
-        if (el1 > el2) {
-            return 1
-        }
-        if (el1 < el2) {
-            return -1
-        }
-        return 0;
-    })
-
-    return nSort;
-}
-
-
-
-const compareNums = (a, b) => {
-    return b.trackNumber - a.trackNumber
-}
-
+// SONG VIEW SORT
+// 
 const changeSortedSongList = (sortBy) => {
     const currentSort = songQueue.getSongList();
     let newSort;
@@ -1006,7 +980,7 @@ const changeSortedSongList = (sortBy) => {
             // console.log(newSort)
             break;
 
-    
+
         case "trkNme":
             console.log("sorting by track title..")
             newSort = currentSort.sort((a, b) => {
@@ -1089,10 +1063,28 @@ const changeSortedSongList = (sortBy) => {
         default:
             console.log("whoops")
     }
-    
+
     songQueue.changeSongList(newSort);
 
 }
+
+// create experimental options buttons
+let autoPlayOn = false;
+const autoPlayButton = document.getElementById("autoPlayOption")
+autoPlayButton.addEventListener("click", (e) => {
+    e.preventDefault;
+    if (autoPlayButton.classList.contains("opt-on")) {
+        autoPlayButton.innerText = "~epirimental~ autoplay -- OFF -- Turn on?"
+        autoPlayButton.classList.toggle("opt-on")
+        return;
+    }
+    autoPlayButton.innerText = "~epirimental~ autoplay -- ON -- Turn off?"
+    autoPlayButton.classList.toggle("opt-on")
+})
+
+
+
+
 
 // Buttons
 const toggleQueue = document.getElementById("toggleShowQueue")
@@ -1101,10 +1093,23 @@ const songViewBtn = document.getElementById("viewSongs")
 const nextTrackBtn = document.getElementById("nextTrack")
 const playButton = document.getElementById("pause-play")
 const icon = document.getElementById("pp")
+const queueicon = document.getElementById("sq")
 
 // change views
 toggleQueue.addEventListener("click", () => {
-    queueListDump.classList.toggle('menu-hide')
+    if (!queueListDump.classList.contains("menu-hide")) {
+
+        queueicon.classList.remove("glyphicon-menu-right")
+        queueicon.classList.add("glyphicon-menu-down")
+        queueListDump.classList.toggle('menu-hide')
+
+    } else {
+
+        queueListDump.classList.toggle('menu-hide')
+        queueicon.classList.remove("glyphicon-menu-down")
+        queueicon.classList.add("glyphicon-menu-right")
+    }
+    // queueListDump.classList.toggle('menu-hide')
 })
 albumViewBtn.addEventListener("click", () => {
     if (!albumViewBtn.classList.contains("curr-view")) {
@@ -1162,18 +1167,15 @@ nextTrackBtn.addEventListener("click", () => {
     }
 })
 
-testBtn.addEventListener("click", (e) => {
-    e.preventDefault;
-    changeSortedSongList("trkNme");
-})
+// testBtn.addEventListener("click", (e) => {
+//     e.preventDefault;
+//     changeSortedSongList("trkNme");
+// })
 
 
-
-const createListObject = () => {
-
-}
 
 window.onload = () => {
+    // renderOptions();
     songQueue.populateSongList();
     showAlbumView();
 }
