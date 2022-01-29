@@ -790,18 +790,7 @@ function Song(artist, title, ep, art, url, length, released, long) {
 
 //  QUEUE CONTROLS
 // 
-audioPlayer.addEventListener("ended", () => {
-    songQueue.removeFromQueue();
-    const qtime = songQueue.grabLength()
-    if (qtime === 1) {
-        songQueue.filterPlayer();
-        songQueue.removeQueueButton();
-        audioPlayer.play();
-    } else if (qtime > 1) {
-        console.log('no more items in queue.')
-    }
 
-})
 
 const handleTrackSelect = (e) => {
     e.preventDefault;
@@ -1073,17 +1062,33 @@ let autoPlayOn = false;
 const autoPlayButton = document.getElementById("autoPlayOption")
 autoPlayButton.addEventListener("click", (e) => {
     e.preventDefault;
-    if (autoPlayButton.classList.contains("opt-on")) {
+    if (!autoPlayOn) {
         autoPlayButton.innerText = "~epirimental~ autoplay -- OFF -- Turn on?"
         autoPlayButton.classList.toggle("opt-on")
+        autoPlayOn = true;
         return;
     }
+    autoPlayOn = false;
     autoPlayButton.innerText = "~epirimental~ autoplay -- ON -- Turn off?"
     autoPlayButton.classList.toggle("opt-on")
 })
 
 
-
+audioPlayer.addEventListener("ended", () => {
+    if (!autoPlayOn) {
+        console.log("auto play is not on.")
+        return;
+    }
+    songQueue.removeFromQueue();
+    const qtime = songQueue.grabLength()
+    if (qtime === 1) {
+        songQueue.filterPlayer();
+        songQueue.removeQueueButton();
+        audioPlayer.play();
+    } else if (qtime > 1) {
+        console.log('no more items in queue.')
+    }
+})
 
 
 // Buttons
