@@ -1129,7 +1129,7 @@ function scrollFunction() {
 // 
 
 
-const handleTrackSelect = async (e) => {
+const handleTrackSelect = (e) => {
     e.preventDefault;
     const lookObj = {
         title: e.currentTarget.dataset.title,
@@ -1142,11 +1142,11 @@ const handleTrackSelect = async (e) => {
     // const lookingFor = e.currentTarget.dataset.url + ' ' + e.currentTarget.dataset.epname + ' ' + e.currentTarget.dataset.albumurl;
     const currQueueTime = songQueue.grabLength();
     if (currQueueTime === 0) {
-        await songQueue.add2queue(lookObj)
+        songQueue.add2queue(lookObj)
         console.log(songQueue.grabNext())
         songQueue.filterPlayer();
     } else {
-        await songQueue.add2queue(lookObj)
+        songQueue.add2queue(lookObj)
         songQueue.createQItem(lookObj);
     }
 
