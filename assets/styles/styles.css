@@ -139,6 +139,7 @@ audio::-webkit-media-controls-timeline {
 .controlBtns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 40px;
 }
 
 .controlBtns > button {
@@ -152,9 +153,19 @@ audio::-webkit-media-controls-timeline {
     background-color: darkorange;
 }
 
+#returnToTop {
+    position: fixed;
+    display: none;
+    top: 0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
 .glyphicon {
     font-size: 25px;
 }
+
 
 /* toggle queue */
 .menu-flex {
@@ -203,6 +214,7 @@ audio::-webkit-media-controls-timeline {
 .info-container > img {
     height: 300px;
     width: 300px;
+    margin-right: 15px;
 }
 
 .info-container > h2 {
@@ -390,6 +402,7 @@ audio::-webkit-media-controls-timeline {
     .info-container > h2 {
         font-size: 3vmax;
         writing-mode: vertical-rl;
+        margin-top: 0;
     }
 }
 

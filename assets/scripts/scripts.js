@@ -937,21 +937,28 @@ function SongQueue(pushbox = []) {
     this.add2queue = (el) => {
         // const songInfo = el.split(' ');
         const item = {
-            songUrl: el.url,
-            songEp: el.ep,
-            songArt: el.art,
-            songArtist: el.artist,
             songTitle: el.title,
             songLength: el.length,
+            songEp: el.ep,
+            songArtist: el.artist,
+            songUrl: el.url,
+            songArt: el.art,
         }
-        if (this.activeQueue.length === 0) {
-            this.activeQueue.push(item)
-            this.filterPlayer();
-            return;
-        } else {
-            this.activeQueue.push(item);
-            return;
-        }
+
+
+
+        return this.activeQueue.push(item)
+
+
+
+        // if (this.activeQueue.length === 0) {
+        //     this.activeQueue.push(item);
+        //     this.filterPlayer();
+        //     return;
+        // } else {
+        //     this.activeQueue.push(item);
+        //     return;
+        // }
 
     }
     this.createQItem = (el) => {
@@ -971,7 +978,9 @@ function SongQueue(pushbox = []) {
     this.removeFromQueue = () => {
         return this.activeQueue.shift();
     }
-    
+    this.grabNext = () => {
+        return this.activeQueue[0];
+    }
     this.grabLength = () => {
         return this.activeQueue.length;
     }
@@ -980,10 +989,11 @@ function SongQueue(pushbox = []) {
         return item;
     }
     this.filterPlayer = () => {
-        if (this.activeQueue.length <= 1) {
-            return;
+        let wiper = this.activeQueue[0]
+        if (this.activeQueue.length >= 2) {
+            wiper = this.activeQueue[1]
         }
-        const wiper = this.activeQueue[1];
+        console.log(wiper);
         const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.songUrl}.mp3`
         const newTitle = `${wiper.songArtist} ~ ${wiper.songUrl}`
 
@@ -1096,44 +1106,47 @@ function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, 
 }
 
 // TRACK SORT
-// 
-// const handleListSort = (opt) => {
-//     let newSorted = [];
-//     if (opt === "trkNme") {
-//         newSorted = def
-//     } else if (opt === "trkUrl") {
+//
+const topOfPageBtn = document.getElementById("returnToTop")
+topOfPageBtn.addEventListener("click", () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+})
 
-//     } else if (opt === "epTtl") {
+window.onscroll = () => { 
+    scrollFunction(); 
+};
 
-//     } else if (opt === "trkLen") {
-
-//     } else if (opt === "artist") {
-
-//     }
-// }
-
+function scrollFunction() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        topOfPageBtn.style.display = "flex";
+    } else {
+        topOfPageBtn.style.display = "none";
+    }
+}
 
 //  QUEUE CONTROLS
 // 
 
 
-const handleTrackSelect = (e) => {
+const handleTrackSelect = async (e) => {
     e.preventDefault;
     const lookObj = {
-        artist: e.currentTarget.dataset.artist,
-        ep: e.currentTarget.dataset.epname,
         title: e.currentTarget.dataset.title,
+        length: e.currentTarget.dataset.length,
+        ep: e.currentTarget.dataset.epname,
+        artist: e.currentTarget.dataset.artist,
         url: e.currentTarget.dataset.url,
         art: e.currentTarget.dataset.albumurl,
-        length: e.currentTarget.dataset.length
     }
     // const lookingFor = e.currentTarget.dataset.url + ' ' + e.currentTarget.dataset.epname + ' ' + e.currentTarget.dataset.albumurl;
     const currQueueTime = songQueue.grabLength();
     if (currQueueTime === 0) {
-        songQueue.add2queue(lookObj)
-        // songQueue.filterPlayer();
+        await songQueue.add2queue(lookObj)
+        console.log(songQueue.grabNext())
+        songQueue.filterPlayer();
     } else {
-        songQueue.add2queue(lookObj)
+        await songQueue.add2queue(lookObj)
         songQueue.createQItem(lookObj);
     }
 
@@ -1438,7 +1451,7 @@ const changeSortedSongList = (sortBy) => {
             console.log("sorting by file name..")
             newSort = currentSort.sort((a, b) => {
                 if (a.fileName === "--" || b.fileName === "--") return 1;
-                
+
                 let el1 = a.ogFileName.toUpperCase();
                 let el2 = b.ogFileName.toUpperCase();
                 if (el1 > el2) {
@@ -1459,8 +1472,8 @@ const changeSortedSongList = (sortBy) => {
                     if (date === '--') return 1;
 
                     const els = date.split("-");
-                    const utcDate = new Date(Date.UTC(els[2], els[0]-1, els[1]))
-                    return utcDate.getTime()/1000;
+                    const utcDate = new Date(Date.UTC(els[2], els[0] - 1, els[1]))
+                    return utcDate.getTime() / 1000;
                 }
                 let el1 = findDate(a.dateCreated);
                 let el2 = findDate(b.dateCreated);
@@ -1612,19 +1625,15 @@ playButton.addEventListener("click", () => {
 })
 
 nextTrackBtn.addEventListener("click", () => {
-    
+
     const queueLength = songQueue.grabLength();
     icon.classList.remove("glyphicon-pause");
     icon.classList.add("glyphicon-play");
-    console.log(`You have ${queueLength} items left in your queue!`);
-    if (queueLength === 0) {
-        // clearPlayer();
-        console.log("nothing queued!")
-        // songQueue.filterPlayer();
-        // songQueue.removeQueueButton();
-    } else if (queueLength === 1) {
+    console.log(`You have ${queueLength - 0} items left in your queue!`);
+    if (queueLength <= 1) {
         // songQueue.filterPlayer();
         clearPlayer();
+        console.log("nothing queued!")
         // songQueue.removeQueueButton();
     } else {
         songQueue.filterPlayer();
