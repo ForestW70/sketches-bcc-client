@@ -5,6 +5,18 @@ header {
     flex-direction: column;
 }
 
+
+#wellHeyThere {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    font-size: 3vmin;
+    font-family: -webkit-pictograph, serif;
+    background-color: floralwhite;
+    text-shadow: 0 2px 3px darkgrey;
+}
+
 /*  */
 /* Audio player */
 /*  */
@@ -83,7 +95,7 @@ audio::-webkit-media-controls-timeline {
     display: flex;
     flex-direction: column;
     /* margin: 0 auto; */
-    padding: 5px 20px;
+    padding: 5px 0px;
 }
 
 
@@ -144,8 +156,8 @@ audio::-webkit-media-controls-timeline {
 
 .controlBtns > button {
     padding: 10px;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     margin: auto;
 }
 
@@ -160,6 +172,8 @@ audio::-webkit-media-controls-timeline {
     border: none;
     border-radius: 5px;
     color: white;
+    padding: 5px 15px;
+    background-color: #7fffd4b8;
 }
 
 .glyphicon {
@@ -342,12 +356,12 @@ audio::-webkit-media-controls-timeline {
     display:none;
 }
 
-/* @media screen and (max-width: 1300px) {
-    .info-container > img {
-        height: 200px;
-        width: 200px;
+@media screen and (max-width: 1000px) {
+    .song-list-row > span {
+        font-size: 1.5vmin;
+        padding: 3px 0;
     }
-} */
+}
 
 @media screen and (max-width: 900px) {
     .info-container > img {
@@ -411,6 +425,10 @@ audio::-webkit-media-controls-timeline {
         font-size: 2vmax;
         font-style: italic;
         writing-mode: vertical-rl;
+    }
+    .controlBtns > button {
+        height: 45px;
+        width: 45px;
     }
 }
 

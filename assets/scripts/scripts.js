@@ -103,15 +103,6 @@ const sketches = [
                 started: '8:13 PM',
             },
             {
-                track: 'Sweet Dreams',
-                length: '2:35',
-                url: 'sweet-dreams',
-                fileName: 'sleep dreams',
-                daw: 'LogicX',
-                date: '05-15-18',
-                started: '8:45 PM',
-            },
-            {
                 track: 'Doogood',
                 length: '1:32',
                 url: 'dogood',
@@ -139,6 +130,15 @@ const sketches = [
                 started: '11:16 PM',
             },
             {
+                track: 'Woodshed',
+                length: "0:52",
+                url: 'woodshed',
+                fileName: 'broot',
+                daw: 'FLstudio',
+                date: '05-07-18',
+                started: '2:44 PM',
+            },
+            {
                 track: 'Gimp',
                 length: '2:31',
                 url: 'gimp',
@@ -148,14 +148,13 @@ const sketches = [
                 started: '11:44 PM',
             },
             {
-                track: 'It Is Forever',
-                length: '?:??',
-                url: 'it-is-forever',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-
+                track: 'Amanda Morph (gettin late)',
+                length: '1:46',
+                url: 'amanda-morph',
+                fileName: 'bellbottomchords',
+                daw: 'LogicX',
+                date: '06-17-17',
+                started: '8:13 PM',
             },
         ]
     },
@@ -168,15 +167,6 @@ const sketches = [
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv3.jpg',
         trackList: [
             {
-                track: 'Amanda Morph (gettin late)',
-                length: '1:46',
-                url: 'amanda-morph',
-                fileName: 'bellbottomchords',
-                daw: 'LogicX',
-                date: '06-17-17',
-                started: '8:13 PM',
-            },
-            {
                 track: 'Sara / Tonin',
                 length: '2:22',
                 url: 'sara-tonin',
@@ -184,6 +174,15 @@ const sketches = [
                 daw: 'LogicX',
                 date: '08-11-17',
                 started: '12:03 AM',
+            },
+            {
+                track: 'Sweet Dreams',
+                length: '2:35',
+                url: 'sweet-dreams',
+                fileName: 'sleep dreams',
+                daw: 'LogicX',
+                date: '05-15-18',
+                started: '8:45 PM',
             },
             {
                 track: 'Bailey melody 07',
@@ -195,24 +194,6 @@ const sketches = [
                 started: '12:08 AM',
             },
             {
-                track: 'Oh techre!',
-                length: "2:09",
-                url: 'oh-techre',
-                fileName: 'techre',
-                daw: 'LogicX',
-                date: '06-21-17',
-                started: '12:42 AM',
-            },
-            {
-                track: 'Go to feather',
-                length: "1:28",
-                url: 'go2feather',
-                fileName: 'skumf*ck',
-                daw: 'LogicX',
-                date: '07-27-17',
-                started: '1:42 AM',
-            },
-            {
                 track: '(I am aware of the) black box',
                 length: "1:50",
                 url: 'black-box',
@@ -222,6 +203,15 @@ const sketches = [
                 started: '2:50 AM',
             },
             {
+                track: 'Oh techre!',
+                length: "2:09",
+                url: 'oh-techre',
+                fileName: 'techre',
+                daw: 'LogicX',
+                date: '06-21-17',
+                started: '12:42 AM',
+            },
+            {
                 track: '1800harp',
                 length: "2:55",
                 url: '1800harp',
@@ -229,6 +219,15 @@ const sketches = [
                 daw: 'LogicX',
                 date: '04-16-17',
                 started: '3:17 PM',
+            },
+            {
+                track: 'Go to feather',
+                length: "1:28",
+                url: 'go2feather',
+                fileName: 'skum****',
+                daw: 'LogicX',
+                date: '07-27-17',
+                started: '1:42 AM',
             },
         ]
     },
@@ -241,15 +240,6 @@ const sketches = [
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv4.png',
         trackList: [
             {
-                track: 'Froggy',
-                length: "1:10",
-                url: 'froggy',
-                fileName: 'cycle psycho',
-                daw: 'LogicX',
-                date: '06-02-18',
-                started: '4:15 PM',
-            },
-            {
                 track: 'Hello grommet',
                 length: "3:10",
                 url: 'hello-grommet',
@@ -257,6 +247,15 @@ const sketches = [
                 daw: 'LogicX',
                 date: '06-27-17',
                 started: '4:38 PM',
+            },
+            {
+                track: 'Froggy',
+                length: "1:10",
+                url: 'froggy',
+                fileName: 'cycle psycho',
+                daw: 'LogicX',
+                date: '06-02-18',
+                started: '4:15 PM',
             },
             {
                 track: 'Live from the polls',
@@ -268,24 +267,6 @@ const sketches = [
                 started: '4:44 PM',
             },
             {
-                track: 'Case of the cookies',
-                length: "1:45",
-                url: 'cookies',
-                fileName: 'apple tree',
-                daw: 'LogicX',
-                date: '01-10-18',
-                started: '4:57 PM',
-            },
-            {
-                track: 'Is it forever?',
-                length: "2:24",
-                url: 'is-it-forever',
-                fileName: 'flips',
-                daw: 'LogicX',
-                date: '09-13-17',
-                started: '5:02 PM',
-            },
-            {
                 track: 'BBBB',
                 length: "1:43",
                 url: 'bbbb',
@@ -295,6 +276,15 @@ const sketches = [
                 started: '5:56 PM',
             },
             {
+                track: 'Case of the cookies',
+                length: "1:45",
+                url: 'cookies',
+                fileName: 'apple tree',
+                daw: 'LogicX',
+                date: '01-10-18',
+                started: '4:57 PM',
+            },
+            {
                 track: 'Silly Singing silicon',
                 length: "2:35",
                 url: 'silly-singing',
@@ -302,6 +292,15 @@ const sketches = [
                 daw: 'LogicX',
                 date: '08-28-18',
                 started: '6:22 PM',
+            },
+            {
+                track: 'Is it forever?',
+                length: "2:24",
+                url: 'is-it-forever',
+                fileName: 'flips',
+                daw: 'LogicX',
+                date: '09-13-17',
+                started: '5:02 PM',
             },
         ]
     },
@@ -341,6 +340,15 @@ const sketches = [
                 started: '5:29 PM',
             },
             {
+                track: 'Cleverly Loop',
+                length: "1:43",
+                url: 'clever',
+                fileName: 'clever',
+                daw: 'FLstudio',
+                date: '11-10-18',
+                started: '5:29 PM',
+            },
+            {
                 track: 'Chix Loop',
                 length: "2:00",
                 url: 'chix',
@@ -350,13 +358,13 @@ const sketches = [
                 started: '11:12 PM',
             },
             {
-                track: 'Cleverly',
-                length: "1:43",
-                url: 'clever',
-                fileName: 'clever',
+                track: 'FL Disaster Zone',
+                length: "1:53",
+                url: 'fl-disaster',
+                fileName: 'cut90butwe',
                 daw: 'FLstudio',
-                date: '11-10-18',
-                started: '5:29 PM',
+                date: '10-02-18',
+                started: '1:25 PM',
             },
             {
                 track: 'Crystal Envelope / Return2sender',
@@ -366,15 +374,6 @@ const sketches = [
                 daw: 'FLstudio',
                 date: '05-05-19',
                 started: '5:50 PM',
-            },
-            {
-                track: 'FL Disaster Zone',
-                length: "1:53",
-                url: 'fl-disaster',
-                fileName: 'cut90butwe',
-                daw: 'FLstudio',
-                date: '10-02-18',
-                started: '1:25 PM',
             },
         ]
     },
@@ -386,33 +385,6 @@ const sketches = [
         artLink: './assets/oops.png',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/oops.png',
         trackList: [
-            {
-                track: 'Kicking Space',
-                length: "1:18",
-                url: 'kicking-space',
-                fileName: 'creating space',
-                daw: 'FLstudio',
-                date: '04-13-19',
-                started: '10:57 AM',
-            },
-            {
-                track: 'Let It Fly',
-                length: "1:47",
-                url: 'let-it-fly',
-                fileName: 'destroying space',
-                daw: 'FLstudio',
-                date: '04-20-19',
-                started: '10:04 AM',
-            },
-            {
-                track: 'Liptstick Halo',
-                length: "1:31",
-                url: 'liptstick-halo',
-                fileName: 'bop',
-                daw: 'FLstudio',
-                date: '07-28-18',
-                started: '10:32 AM',
-            },
             {
                 track: 'Parks',
                 length: "0:20",
@@ -441,13 +413,41 @@ const sketches = [
                 started: '8:12 PM',
             },
             {
-                track: 'Woodshed',
-                length: "0:52",
-                url: 'woodshed',
-                fileName: 'broot',
+                track: 'Kicking Space',
+                length: "1:18",
+                url: 'kicking-space',
+                fileName: 'creating space',
                 daw: 'FLstudio',
-                date: '05-07-18',
-                started: '2:44 PM',
+                date: '04-13-19',
+                started: '10:57 AM',
+            },
+            {
+                track: 'Let It Fly',
+                length: "1:47",
+                url: 'let-it-fly',
+                fileName: 'destroying space',
+                daw: 'FLstudio',
+                date: '04-20-19',
+                started: '10:04 AM',
+            },
+            {
+                track: 'Liptstick Halo',
+                length: "1:31",
+                url: 'liptstick-halo',
+                fileName: 'bop',
+                daw: 'FLstudio',
+                date: '07-28-18',
+                started: '10:32 AM',
+            },
+            {
+                track: 'It Is Forever',
+                length: '?:??',
+                url: 'it-is-forever',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+
             },
         ]
     },
@@ -467,6 +467,15 @@ const sketches = [
                 daw: 'FLstudio',
                 date: '08-24-18',
                 started: '9:20 PM',
+            },
+            {
+                track: 'Purple!',
+                length: '0:45',
+                url: 'purple',
+                fileName: 'hot spooky mess',
+                daw: 'FLstudio',
+                date: '05-31-19',
+                started: '11:54 PM',
             },
             {
                 track: 'Bubble Boy',
@@ -503,15 +512,6 @@ const sketches = [
                 daw: 'FLstudio',
                 date: '07-17-19',
                 started: '5:27 PM',
-            },
-            {
-                track: 'Purple!',
-                length: '0:45',
-                url: 'purple',
-                fileName: 'hot spooky mess',
-                daw: 'FLstudio',
-                date: '05-31-19',
-                started: '11:54 PM',
             },
             {
                 track: 'Rip Loop',
@@ -705,7 +705,7 @@ const sketches = [
                 started: '--',
             },
             {
-                track: 'S. Balachander (broken from the beginning mix)',
+                track: 'S. Balachander (bftb mx)',
                 length: '4:59',
                 url: 'bcc-sbala',
                 fileName: '--',
@@ -993,7 +993,6 @@ function SongQueue(pushbox = []) {
         if (this.activeQueue.length >= 2) {
             wiper = this.activeQueue[1]
         }
-        console.log(wiper);
         const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.songUrl}.mp3`
         const newTitle = `${wiper.songArtist} ~ ${wiper.songUrl}`
 
@@ -1143,7 +1142,6 @@ const handleTrackSelect = (e) => {
     const currQueueTime = songQueue.grabLength();
     if (currQueueTime === 0) {
         songQueue.add2queue(lookObj)
-        console.log(songQueue.grabNext())
         songQueue.filterPlayer();
     } else {
         songQueue.add2queue(lookObj)
@@ -1263,16 +1261,16 @@ const createHeaderRow = () => {
 
         changeSortedSongList(e.target.dataset.sortBy)
         showSongView(songQueue.getSongList())
-        console.log(e.target.innerText)
+        // console.log(e.target.innerText)
     })
 
     const numberSpan = document.createElement("span");
     numberSpan.dataset.sortBy = "trkNum";
-    numberSpan.innerText = "Track Number";
+    numberSpan.innerText = "#";
 
     const titleSpan = document.createElement("span");
     titleSpan.dataset.sortBy = "trkNme";
-    titleSpan.innerText = "Song Title";
+    titleSpan.innerText = "Title";
 
     const lengthSpan = document.createElement("span");
     lengthSpan.dataset.sortBy = "trkLen";
@@ -1280,7 +1278,7 @@ const createHeaderRow = () => {
 
     const epSpan = document.createElement("span");
     epSpan.dataset.sortBy = "epTtl";
-    epSpan.innerText = "Ep Title";
+    epSpan.innerText = "Ep";
 
     const artistSpan = document.createElement("span");
     artistSpan.dataset.sortBy = "artist";
@@ -1288,11 +1286,11 @@ const createHeaderRow = () => {
 
     const urlSpan = document.createElement("span");
     urlSpan.dataset.sortBy = "trkUrl";
-    urlSpan.innerText = "Track Path";
+    urlSpan.innerText = "Track url";
 
     const fileSpan = document.createElement("span");
     fileSpan.dataset.sortBy = "trkOg";
-    fileSpan.innerText = "File Name";
+    fileSpan.innerText = "File";
 
     const dateSpan = document.createElement("span");
     dateSpan.dataset.sortBy = "trkDte";
@@ -1357,7 +1355,7 @@ const changeSortedSongList = (sortBy) => {
             newSort = currentSort.sort((a, b) => {
                 return b.trackNumber - a.trackNumber;
             })
-            // console.log(newSort)
+            
             break;
 
 
@@ -1374,14 +1372,14 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            // console.log(newSort)
+            
             break;
 
         case "trkLen":
             console.log("sorting by track length..")
             newSort = currentSort.sort((a, b) => {
                 const doTimeMath = (time) => {
-                    if (time === '--') return 0;
+                    if (time === '--' || time === '?:??') return 1;
 
                     const minSec = time.split(":")
                     const totalSecs = new Number((minSec[0] * 60) + minSec[1])
@@ -1397,7 +1395,7 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            // console.log(newSort)
+            
             break;
 
         case "epTtl":
@@ -1413,7 +1411,7 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            // console.log(newSort)
+            
             break;
 
         case "artist":
@@ -1429,7 +1427,7 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            // console.log(newSort)
+            
             break;
 
         case "trkUrl":
@@ -1462,7 +1460,7 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            // console.log(newSort)
+            
             break;
 
         case "trkDte":
@@ -1534,13 +1532,13 @@ const autoPlayButton = document.getElementById("autoPlayOption")
 autoPlayButton.addEventListener("click", (e) => {
     e.preventDefault;
     if (!autoPlayOn) {
-        autoPlayButton.innerText = "~epirimental~ autoplay -- OFF -- Turn on?"
+        autoPlayButton.innerText = "~expirimental autoplay~ -- OFF.  Turn on?"
         autoPlayButton.classList.toggle("opt-on")
         autoPlayOn = true;
         return;
     }
     autoPlayOn = false;
-    autoPlayButton.innerText = "~epirimental~ autoplay -- ON -- Turn off?"
+    autoPlayButton.innerText = "~expirimental autoplay~ -- ON.  Turn off?"
     autoPlayButton.classList.toggle("opt-on")
 })
 
@@ -1563,10 +1561,20 @@ audioPlayer.addEventListener("ended", () => {
 })
 
 
+const showOptionView = () => {
+    listViewDump.innerText = '';
+    discoContainer.innerText = '';
+    const titleSpan = document.createElement("span");
+    titleSpan.innerText = "ooOOOOoooOOooOOoo"
+    discoContainer.appendChild(titleSpan)
+}
+
+
 // Buttons
 const toggleQueue = document.getElementById("toggleShowQueue")
 const albumViewBtn = document.getElementById("viewAlbums")
 const songViewBtn = document.getElementById("viewSongs")
+const optViewBtn = document.getElementById("viewOptions")
 const nextTrackBtn = document.getElementById("nextTrack")
 const playButton = document.getElementById("pause-play")
 const icon = document.getElementById("pp")
@@ -1590,18 +1598,28 @@ toggleQueue.addEventListener("click", () => {
 })
 albumViewBtn.addEventListener("click", () => {
     if (!albumViewBtn.classList.contains("curr-view")) {
-        albumViewBtn.classList.toggle("curr-view")
-        songViewBtn.classList.toggle("curr-view")
+        albumViewBtn.classList.add("curr-view")
+        optViewBtn.classList.remove("curr-view")
+        songViewBtn.classList.remove("curr-view")
     }
     showAlbumView();
 })
 songViewBtn.addEventListener("click", () => {
     if (!songViewBtn.classList.contains("curr-view")) {
-        albumViewBtn.classList.toggle("curr-view")
-        songViewBtn.classList.toggle("curr-view")
+        songViewBtn.classList.add("curr-view")
+        albumViewBtn.classList.remove("curr-view")
+        optViewBtn.classList.remove("curr-view")
     }
     // const defSort = getDefaultList()
     showSongView(songQueue.getSongList());
+})
+optViewBtn.addEventListener("click", () => {
+    if (!optViewBtn.classList.contains("curr-view")) {
+        optViewBtn.classList.add("curr-view")
+        albumViewBtn.classList.remove("curr-view")
+        songViewBtn.classList.remove("curr-view")
+    }
+    showOptionView();
 })
 
 // Audio Player Buttons
