@@ -1,15 +1,15 @@
-// album information
-const getRT = () => {
-    const roll = (x) => Math.floor(Math.random() * x);
+// // album information
+// const getRT = () => {
+//     const roll = (x) => Math.floor(Math.random() * x);
 
 
-    let one = roll(20);
-    let two = roll(59);
-    if (two < 10) {
-        two = `0${two}`
-    }
-    return `${one}:${two}`;
-}
+//     let one = roll(20);
+//     let two = roll(59);
+//     if (two < 10) {
+//         two = `0${two}`
+//     }
+//     return `${one}:${two}`;
+// }
 const sketches = [
     {
         title: 'S&OFV1',
@@ -908,20 +908,17 @@ const nowPlaying = document.getElementById("playingInfo");
 const headSwap = document.getElementById("wellHeyThere");
 const testBtn = document.getElementById("testBtn");
 const qToolCont = document.getElementById("qTools")
-// const listHeaderRow = document.getElementById("headerRow")
-// const trackQueueViewer = document.getElementById("trackQueue")
-// let defSort;
 
-//
-// class to control song queue actions
+
+// SONGQUEUE CLASS
+// 
 function SongQueue(pushbox = []) {
     this.allTheSongs = pushbox;
     this.activeQueue = [];
 
-
+    // song list for sorting
     this.populateSongList = () => {
         const listSort = getDefaultList();
-        // console.log("sort")
         return this.allTheSongs.push(listSort);
     }
     this.getSongList = () => {
@@ -934,8 +931,8 @@ function SongQueue(pushbox = []) {
         return this.allTheSongs.push(newSorted);
     }
 
+    // queue actions
     this.add2queue = (el) => {
-        // const songInfo = el.split(' ');
         const item = {
             songTitle: el.title,
             songLength: el.length,
@@ -944,50 +941,41 @@ function SongQueue(pushbox = []) {
             songUrl: el.url,
             songArt: el.art,
         }
-
-
-
         return this.activeQueue.push(item)
-
-
-
-        // if (this.activeQueue.length === 0) {
-        //     this.activeQueue.push(item);
-        //     this.filterPlayer();
-        //     return;
-        // } else {
-        //     this.activeQueue.push(item);
-        //     return;
-        // }
-
     }
+
     this.createQItem = (el) => {
-        // const songInfo = el.split(' ');
         const qButton = document.createElement("button");
         qButton.type = "button"
         qButton.innerText = `${el.url} ~ ${el.ep}`;
         qButton.id = el.url + " " + el.ep;
         queueListDump.appendChild(qButton);
     }
+
     this.removeQueueButton = () => {
         const currItem = this.activeQueue[0];
         const btnSearch = currItem.songUrl + " " + currItem.songEp;
         document.getElementById(btnSearch).remove();
         return;
     }
+
     this.removeFromQueue = () => {
         return this.activeQueue.shift();
     }
+
     this.grabNext = () => {
         return this.activeQueue[0];
     }
+
     this.grabLength = () => {
         return this.activeQueue.length;
     }
+
     this.findSong = (url) => {
         const item = this.activeQueue.find(song => song.name === url);
         return item;
     }
+
     this.filterPlayer = () => {
         let wiper = this.activeQueue[0]
         if (this.activeQueue.length >= 2) {
@@ -996,8 +984,8 @@ function SongQueue(pushbox = []) {
         const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.songUrl}.mp3`
         const newTitle = `${wiper.songArtist} ~ ${wiper.songUrl}`
 
-        clearPlayer();
         // clear page title and replace with song info
+        clearPlayer();
         document.title = newTitle;
         headSwap.innerText = wiper.songArtist + " " + wiper.songUrl + ".mp3 '" + wiper.songTitle + "' " + wiper.songEp + " " + wiper.songLength;
         currArtistName.innerText = wiper.songArtist;
@@ -1006,7 +994,6 @@ function SongQueue(pushbox = []) {
         currAlbumPic.src = wiper.songArt;
         audioPlayer.src = songHome;
         return console.log("Next track loaded!");
-
     }
 }
 const songQueue = new SongQueue();
@@ -1037,7 +1024,7 @@ function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, 
         const trackOgFile = document.createElement('span');
         const trackDate = document.createElement('span');
         const trackTimeStamp = document.createElement('span');
-        //
+        // set info
         trackNumber.innerText = trackNum;
         trackName.innerText = this.title;
         trackLength.innerText = this.length
@@ -1047,7 +1034,7 @@ function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, 
         trackOgFile.innerText = this.ogFile;
         trackDate.innerText = this.startDate;
         trackTimeStamp.innerText = this.startTime;
-        //
+        // row button
         const trackRow = document.createElement("button");
         trackRow.type = "button";
         trackRow.classList.add('song-list-row');
@@ -1062,7 +1049,7 @@ function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, 
         trackRow.dataset.dCreated = this.startDate;
         trackRow.dataset.tCreated = this.startTime;
         trackRow.addEventListener("click", handleTrackSelect);
-        //
+        // append
         trackRow.appendChild(trackNumber);
         trackRow.appendChild(trackName);
         trackRow.appendChild(trackLength);
@@ -1104,8 +1091,21 @@ function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, 
     }
 }
 
-// TRACK SORT
+// UTILITY AND OTHER FEATURES
 //
+
+// clear audio player
+const clearPlayer = () => {
+    currArtistName.innerText = "";
+    currTrackName.innerText = "";
+    currAlbumName.innerText = "No track queued!";
+    currAlbumPic.src = "https://picsum.photos/25";
+    audioPlayer.src = "";
+    document.title = "Sketches";
+    headSwap.innerText = "sum' sketches"
+}
+
+// top of page button
 const topOfPageBtn = document.getElementById("returnToTop")
 topOfPageBtn.addEventListener("click", () => {
     document.body.scrollTop = 0;
@@ -1113,21 +1113,49 @@ topOfPageBtn.addEventListener("click", () => {
 })
 
 window.onscroll = () => { 
-    scrollFunction(); 
-};
-
-function scrollFunction() {
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         topOfPageBtn.style.display = "flex";
     } else {
         topOfPageBtn.style.display = "none";
     }
-}
+};
 
-//  QUEUE CONTROLS
+// autoplay option button
+let autoPlayOn = false;
+const autoPlayButton = document.getElementById("autoPlayOption")
+autoPlayButton.addEventListener("click", (e) => {
+    e.preventDefault;
+    if (!autoPlayOn) {
+        autoPlayButton.innerText = "~expirimental autoplay~ -- OFF.  Turn on?"
+        autoPlayButton.classList.toggle("opt-on")
+        autoPlayOn = true;
+        return;
+    }
+    autoPlayOn = false;
+    autoPlayButton.innerText = "~expirimental autoplay~ -- ON.  Turn off?"
+    autoPlayButton.classList.toggle("opt-on")
+})
+
+audioPlayer.addEventListener("ended", () => {
+    if (!autoPlayOn) {
+        console.log("auto play is not on.")
+        return;
+    }
+    const qtime = songQueue.grabLength()
+    console.log(qtime)
+    if (qtime > 1) {
+        songQueue.filterPlayer();
+        songQueue.removeFromQueue();
+        songQueue.removeQueueButton();
+        audioPlayer.play();
+    } else if (qtime <= 1) {
+        console.log('no more items in queue.')
+    }
+})
+
+
+//  TRACK SELECT
 // 
-
-
 const handleTrackSelect = (e) => {
     e.preventDefault;
     const lookObj = {
@@ -1138,7 +1166,6 @@ const handleTrackSelect = (e) => {
         url: e.currentTarget.dataset.url,
         art: e.currentTarget.dataset.albumurl,
     }
-    // const lookingFor = e.currentTarget.dataset.url + ' ' + e.currentTarget.dataset.epname + ' ' + e.currentTarget.dataset.albumurl;
     const currQueueTime = songQueue.grabLength();
     if (currQueueTime === 0) {
         songQueue.add2queue(lookObj)
@@ -1147,17 +1174,6 @@ const handleTrackSelect = (e) => {
         songQueue.add2queue(lookObj)
         songQueue.createQItem(lookObj);
     }
-
-}
-
-const clearPlayer = () => {
-    currArtistName.innerText = "";
-    currTrackName.innerText = "";
-    currAlbumName.innerText = "No track queued!";
-    currAlbumPic.src = "https://picsum.photos/25";
-    audioPlayer.src = "";
-    document.title = "Sketches";
-    headSwap.innerText = "sum' sketches"
 }
 
 
@@ -1202,15 +1218,9 @@ const buildAlbumCont = (albumInfo) => {
             idvTrack.date,
             idvTrack.started
         );
-        // const songItem = {
-        //     'songUrl': idvTrack.url,
-        //     'songEp': albumInfo.title,
-        // };
-        // songQueue.populateSongList(songItem)
         const nextRow = albumSong.createAlbumSongRow(idx + 1);
         trackContainer.appendChild(nextRow);
     })
-
     albumContainer.appendChild(trackContainer)
     return albumContainer;
 }
@@ -1256,14 +1266,11 @@ const createHeaderRow = () => {
     const headerDiv = document.createElement("div");
     headerDiv.classList.add("song-list-row");
     headerDiv.id = "headerRow";
-
     headerDiv.addEventListener("click", (e) => {
-
         changeSortedSongList(e.target.dataset.sortBy)
         showSongView(songQueue.getSongList())
-        // console.log(e.target.innerText)
     })
-
+    // 
     const numberSpan = document.createElement("span");
     numberSpan.dataset.sortBy = "trkNum";
     numberSpan.innerText = "#";
@@ -1299,7 +1306,7 @@ const createHeaderRow = () => {
     const timeStamp = document.createElement("span");
     timeStamp.dataset.sortBy = "trkTs";
     timeStamp.innerText = "Timestamp";
-
+    // 
     headerDiv.appendChild(numberSpan);
     headerDiv.appendChild(titleSpan);
     headerDiv.appendChild(lengthSpan);
@@ -1309,8 +1316,6 @@ const createHeaderRow = () => {
     headerDiv.appendChild(fileSpan);
     headerDiv.appendChild(dateSpan);
     headerDiv.appendChild(timeStamp);
-
-
     listViewDump.appendChild(headerDiv);
     return;
 }
@@ -1343,8 +1348,18 @@ const getDefaultList = () => {
     return sorted;
 }
 
+// OPTIONS VIEW
+// 
+const showOptionView = () => {
+    listViewDump.innerText = '';
+    discoContainer.innerText = '';
+    const titleSpan = document.createElement("span");
+    titleSpan.innerText = "ooOOOOoooOOooOOoo"
+    discoContainer.appendChild(titleSpan)
+}
 
-// SONG VIEW SORT
+
+// CHANGE SORT 
 // 
 const changeSortedSongList = (sortBy) => {
     const currentSort = songQueue.getSongList();
@@ -1521,52 +1536,7 @@ const changeSortedSongList = (sortBy) => {
         default:
             console.log("whoops")
     }
-
     songQueue.changeSongList(newSort);
-
-}
-
-// create experimental options buttons
-let autoPlayOn = false;
-const autoPlayButton = document.getElementById("autoPlayOption")
-autoPlayButton.addEventListener("click", (e) => {
-    e.preventDefault;
-    if (!autoPlayOn) {
-        autoPlayButton.innerText = "~expirimental autoplay~ -- OFF.  Turn on?"
-        autoPlayButton.classList.toggle("opt-on")
-        autoPlayOn = true;
-        return;
-    }
-    autoPlayOn = false;
-    autoPlayButton.innerText = "~expirimental autoplay~ -- ON.  Turn off?"
-    autoPlayButton.classList.toggle("opt-on")
-})
-
-
-audioPlayer.addEventListener("ended", () => {
-    if (!autoPlayOn) {
-        console.log("auto play is not on.")
-        return;
-    }
-    const qtime = songQueue.grabLength()
-    console.log(qtime)
-    if (qtime > 1) {
-        songQueue.filterPlayer();
-        songQueue.removeFromQueue();
-        songQueue.removeQueueButton();
-        audioPlayer.play();
-    } else if (qtime <= 1) {
-        console.log('no more items in queue.')
-    }
-})
-
-
-const showOptionView = () => {
-    listViewDump.innerText = '';
-    discoContainer.innerText = '';
-    const titleSpan = document.createElement("span");
-    titleSpan.innerText = "ooOOOOoooOOooOOoo"
-    discoContainer.appendChild(titleSpan)
 }
 
 
@@ -1580,7 +1550,7 @@ const playButton = document.getElementById("pause-play")
 const icon = document.getElementById("pp")
 const queueicon = document.getElementById("sq")
 
-// change views
+// toggle show queue
 toggleQueue.addEventListener("click", () => {
     if (!queueListDump.classList.contains("menu-hide")) {
 
@@ -1594,8 +1564,9 @@ toggleQueue.addEventListener("click", () => {
         queueicon.classList.remove("glyphicon-menu-down")
         queueicon.classList.add("glyphicon-menu-right")
     }
-    // queueListDump.classList.toggle('menu-hide')
 })
+
+// change views
 albumViewBtn.addEventListener("click", () => {
     if (!albumViewBtn.classList.contains("curr-view")) {
         albumViewBtn.classList.add("curr-view")
@@ -1665,10 +1636,7 @@ nextTrackBtn.addEventListener("click", () => {
 //     changeSortedSongList("trkNme");
 // })
 
-
-
 window.onload = () => {
-    // renderOptions();
     songQueue.populateSongList();
     showAlbumView();
 }
