@@ -1,20 +1,19 @@
-
-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-
+/* Head info */
 #wellHeyThere {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 15px 0;
     font-size: 3vmin;
-    font-family: -webkit-pictograph, serif;
+    font-family: serif;
     background-color: floralwhite;
     text-shadow: 0 2px 3px darkgrey;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /*  */
@@ -26,7 +25,6 @@ header {
     padding: 0;
     border-bottom: 5px solid white;
 }
-
 audio::-webkit-media-controls-panel {
     background-color: rgb(203 249 236);
 }
@@ -53,7 +51,7 @@ audio::-webkit-media-controls-timeline {
 
 
 /*  */
-/* Song info and Queue container */
+/* Song info and Queue containers */
 /*  */
 #trackController {
     display: flex;
@@ -61,14 +59,6 @@ audio::-webkit-media-controls-timeline {
     background-color:rgb(203 249 236);
     overflow: hidden;
 }
-/* #trackController > article {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    padding-left: 5px;
-    
-    
-} */
 
 #anotherPlayer {
     display: grid;
@@ -90,15 +80,21 @@ audio::-webkit-media-controls-timeline {
     width: 100%;
 }
 
-/* Now playing */
+
+/*  */
+/* Now playing container */
+/*  */
+#albumPic {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
 #nowPlayingInfo {
     display: flex;
     flex-direction: column;
-    /* margin: 0 auto; */
     padding: 5px 0px;
 }
-
-
 
 #artistName, #trackName, #albumName {
     margin: 5px;
@@ -108,23 +104,22 @@ audio::-webkit-media-controls-timeline {
 #artistName {
     font-size: 20px;
 }
-
 #trackName {
     font-style: oblique;
     font-weight: bold;
 }
-
 #albumName {
     color:rgb(78, 78, 78);
 }
 
-#albumPic {
-    height: 100px;
-    width: 100px;
-    margin: 10px;
+
+/*  */
+/* Queue List Container */
+/*  */
+.queue-tip {
+    color: grey;
 }
 
-/* Queue List */
 #queueList {
     flex-direction: column;
     width: 100%;
@@ -147,7 +142,9 @@ audio::-webkit-media-controls-timeline {
 }
 
 
+/*  */
 /* Play Pause Next Queue Buttons */
+/*  */
 .controlBtns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -165,32 +162,13 @@ audio::-webkit-media-controls-timeline {
     background-color: darkorange;
 }
 
-#returnToTop {
-    position: fixed;
-    display: none;
-    top: 0;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 5px 15px;
-    background-color: #7fffd4b8;
-}
-
 .glyphicon {
     font-size: 25px;
 }
 
-
-/* toggle queue */
-.menu-flex {
-    display: flex;
-}
-
-.menu-hide {
-    display: none;
-}
-
+/*  */
 /* Options */
+/*  */
 .opt-default {
     border: none;
     color: #fff;
@@ -205,6 +183,46 @@ audio::-webkit-media-controls-timeline {
 .opt-on {
     background-color: green;
 }
+
+#returnToTop {
+    position: fixed;
+    display: none;
+    top: 0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 15px;
+    background-color: #7fffd4b8;
+}
+
+
+/*  */
+/* View Change Controllers */
+/*  */
+#controlers {
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+.view-button {
+    letter-spacing: 5px;
+    border: none;
+    background-color: inherit;
+    width:50%;
+    border-left: 10px double #800808;
+    border-right: 10px double #8e8e8e;
+}
+
+
+.curr-view {
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: #fff;
+}
+
 
 /*  */
 /* Album View */
@@ -222,17 +240,12 @@ audio::-webkit-media-controls-timeline {
 .info-container {
     display: flex;
     margin: 10px 0 0 50px;
-    /* grid-template-columns: 1fr 3fr; */
 }
 
 .info-container > img {
     height: 300px;
     width: 300px;
     margin-right: 15px;
-}
-
-.info-container > h2 {
-    /* margin-left: 10px; */
 }
 
 .info-container > h3 {
@@ -270,7 +283,6 @@ audio::-webkit-media-controls-timeline {
 }
 
 .track-num {
-    /* color: grey; */
     justify-self: left;
 }
 
@@ -278,15 +290,17 @@ audio::-webkit-media-controls-timeline {
     justify-self: left;
 }
 
-.track-time {
-    /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-}
-
-
 
 /*  */
 /* Song View */
 /*  */
+#headerRow {
+    font-family: serif;
+    font-size: 1.4rem;
+    color: #fff;
+    background-color: rgb(78, 78, 78);
+}
+
 .song-list-row {
     display: grid;
     width: 100%;
@@ -300,13 +314,6 @@ audio::-webkit-media-controls-timeline {
     padding: 2px 3px 0 0;
 }
 
-#headerRow {
-    font-family: serif;
-    font-size: 1.4rem;
-    color: #fff;
-    background-color: rgb(78, 78, 78);
-}
-
 .song-list-row:nth-child(2n+1) {
     background-color: white;
 }
@@ -317,45 +324,30 @@ audio::-webkit-media-controls-timeline {
     justify-self: center;
 }
 .song-list-row:nth-child(1) span:hover::after {
-    content: " -- Sort!"
+    content: "...Sort?"
 }
 
 .song-list-row:hover {
-    /* padding: 0 3px; */
     border-bottom: 2px solid black;
 }
 
 
-/* view switch buttons */
-#controlers {
+/* toggle show view and utilities */
+.menu-flex {
     display: flex;
-    padding: 10px 0;
-    justify-content: center;
-    background-color: aquamarine;
 }
 
-.view-button {
-    letter-spacing: 5px;
-    border: none;
-    background-color: inherit;
-    width:50%;
-    border-left: 10px double #800808;
-    border-right: 10px double #8e8e8e;
+.menu-hide {
+    display: none;
 }
-
-
-.curr-view {
-    font-style: oblique;
-    font-weight: bold;
-    font-size: 1.5em;
-    background-color: #fff;
-}
-
 
 .hide {
-    display:none;
+    display: none;
 }
 
+/*  */
+/* Media Events */
+/*  */
 @media screen and (max-width: 1000px) {
     .song-list-row > span {
         font-size: 1.5vmin;
@@ -388,21 +380,6 @@ audio::-webkit-media-controls-timeline {
         font-size: 12px;
     }
 }
-/* 
-@media screen and (max-width: 800px) {
-    .info-container > h3 {
-        margin-right: 25px;
-    }
-    .glyphicon {
-        font-size: 20px;
-    }
-    #trackController {
-        flex-direction: column;
-    }
-    #trackController > article {
-        width: 100%;
-    }
-} */
 
 @media screen and (max-width: 650px) {
     .info-container > h3 {
@@ -435,7 +412,6 @@ audio::-webkit-media-controls-timeline {
 @media screen and (max-width: 450px) {
     .info-container > p {
         font-size: 1vmax;
-        /* font-style: italic; */
         writing-mode: vertical-rl;
     }
     
