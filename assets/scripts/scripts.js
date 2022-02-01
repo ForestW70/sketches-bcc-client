@@ -895,19 +895,25 @@ const sketches = [
 ]
 
 // directory
-const queueListDump = document.getElementById("queueList");
+const headSwap = document.getElementById("wellHeyThere");
+
 const audioPlayer = document.getElementById("player");
-const discoContainer = document.getElementById("disco");
-const currArtistName = document.getElementById("artistName");
+const currAlbumPic = document.getElementById("albumPic");
 const currTrackName = document.getElementById("trackName");
+const currArtistName = document.getElementById("artistName");
 const currTrackTime = document.getElementById("trackTime");
 const currAlbumName = document.getElementById("albumName");
-const currAlbumPic = document.getElementById("albumPic");
-const listViewDump = document.getElementById("list");
-const nowPlaying = document.getElementById("playingInfo");
-const headSwap = document.getElementById("wellHeyThere");
-const testBtn = document.getElementById("testBtn");
+
+const queueListDump = document.getElementById("queueList");
 const qToolCont = document.getElementById("qTools")
+
+const discoContainer = document.getElementById("disco");
+
+const listView = document.getElementById("list");
+const listDump = document.getElementById("listDump");
+
+const optionsContainer = document.getElementById("options");
+const testBtn = document.getElementById("testBtn");
 
 
 // SONGQUEUE CLASS
@@ -1059,7 +1065,7 @@ function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, 
         trackRow.appendChild(trackOgFile);
         trackRow.appendChild(trackDate);
         trackRow.appendChild(trackTimeStamp);
-        listViewDump.appendChild(trackRow);
+        listDump.appendChild(trackRow);
     }
 
     this.createAlbumSongRow = (trackNum) => {
@@ -1112,7 +1118,7 @@ topOfPageBtn.addEventListener("click", () => {
     document.documentElement.scrollTop = 0;
 })
 
-window.onscroll = () => { 
+window.onscroll = () => {
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         topOfPageBtn.style.display = "flex";
     } else {
@@ -1226,8 +1232,11 @@ const buildAlbumCont = (albumInfo) => {
 }
 
 const showAlbumView = () => {
-    discoContainer.innerText = '';
-    listViewDump.innerText = '';
+    listDump.innerText = '';
+    listView.classList.add("hide");
+    optionsContainer.classList.add("hide");
+    discoContainer.classList.remove("hide");
+
 
     sketches.map(album => {
         const idvAlbum = buildAlbumCont(album);
@@ -1240,9 +1249,11 @@ const showAlbumView = () => {
 // SONG VIEW
 // 
 const showSongView = (sortedSongList) => {
-    listViewDump.innerText = '';
-    discoContainer.innerText = '';
-    createHeaderRow();
+    listDump.innerText = "";
+    discoContainer.classList.add('hide');
+    optionsContainer.classList.add("hide");
+    listView.classList.remove("hide");
+    // createHeaderRow();
     sortedSongList.map((song, idx) => {
         let track = new Song(
             song.artist,
@@ -1261,65 +1272,6 @@ const showSongView = (sortedSongList) => {
         track.createListSongRow(idx)
     })
 }
-
-const createHeaderRow = () => {
-    const headerDiv = document.createElement("div");
-    headerDiv.classList.add("song-list-row");
-    headerDiv.id = "headerRow";
-    headerDiv.addEventListener("click", (e) => {
-        changeSortedSongList(e.target.dataset.sortBy)
-        showSongView(songQueue.getSongList())
-    })
-    // 
-    const numberSpan = document.createElement("span");
-    numberSpan.dataset.sortBy = "trkNum";
-    numberSpan.innerText = "#";
-
-    const titleSpan = document.createElement("span");
-    titleSpan.dataset.sortBy = "trkNme";
-    titleSpan.innerText = "Title";
-
-    const lengthSpan = document.createElement("span");
-    lengthSpan.dataset.sortBy = "trkLen";
-    lengthSpan.innerText = "Length";
-
-    const epSpan = document.createElement("span");
-    epSpan.dataset.sortBy = "epTtl";
-    epSpan.innerText = "Ep";
-
-    const artistSpan = document.createElement("span");
-    artistSpan.dataset.sortBy = "artist";
-    artistSpan.innerText = "Artist";
-
-    const urlSpan = document.createElement("span");
-    urlSpan.dataset.sortBy = "trkUrl";
-    urlSpan.innerText = "Track url";
-
-    const fileSpan = document.createElement("span");
-    fileSpan.dataset.sortBy = "trkOg";
-    fileSpan.innerText = "File";
-
-    const dateSpan = document.createElement("span");
-    dateSpan.dataset.sortBy = "trkDte";
-    dateSpan.innerText = "Date";
-
-    const timeStamp = document.createElement("span");
-    timeStamp.dataset.sortBy = "trkTs";
-    timeStamp.innerText = "Timestamp";
-    // 
-    headerDiv.appendChild(numberSpan);
-    headerDiv.appendChild(titleSpan);
-    headerDiv.appendChild(lengthSpan);
-    headerDiv.appendChild(epSpan);
-    headerDiv.appendChild(artistSpan);
-    headerDiv.appendChild(urlSpan);
-    headerDiv.appendChild(fileSpan);
-    headerDiv.appendChild(dateSpan);
-    headerDiv.appendChild(timeStamp);
-    listViewDump.appendChild(headerDiv);
-    return;
-}
-
 
 const getDefaultList = () => {
     let songId = 0;
@@ -1351,12 +1303,111 @@ const getDefaultList = () => {
 // OPTIONS VIEW
 // 
 const showOptionView = () => {
-    listViewDump.innerText = '';
-    discoContainer.innerText = '';
-    const titleSpan = document.createElement("span");
-    titleSpan.innerText = "ooOOOOoooOOooOOoo"
-    discoContainer.appendChild(titleSpan)
+    listView.classList.add('hide');
+    listDump.innerText = '';
+    discoContainer.classList.add('hide');
+    optionsContainer.classList.remove('hide');
+    
 }
+
+
+
+// SORT FUNCTIONALITY
+// 
+const splitLength = (time) => {
+    // "2:32"
+    if (time === "?:??") return 1;
+
+    const els = time.split(":");
+    return new Number((els[0] * 60) + els[1])
+}
+
+const splitDate = (date) => {
+    // "6-23-18"
+    if (date === "--") return 1;
+
+    const els = date.split("-");
+    const utcDate = new Date(Date.UTC(els[2], els[0] - 1, els[1]))
+    return utcDate.getTime();
+}
+
+const splitTimeSpamp = (ts) => {
+    // "12:05 PM"
+    if (ts === "--") return 1;
+
+    const els = ts.split(" ");
+    let mins = els[0].split(":")[0];
+    const secs = els[0].split(":")[1];
+    if (els[1] === "PM") {
+        mins = mins + 12;
+    }
+
+    const totalSecs = new Number((mins * 60) + secs);
+    return totalSecs;
+}
+
+
+// const doMath = (item, split) => {
+//     if (item === "--" || item === "?:??") return 1;
+//     if (split === "date") {
+//         const els = item.split("-");
+//         const utcDate = new Date(Date.UTC(els[2], els[0] - 1, els[1]))
+//         return utcDate.getTime();
+//     } else {
+//         const minSec = item.split(":");
+//         let mins = minSec[0];
+//         let secs = minSec[1];
+//         if (split === "time") {
+//             let ampm = secs.split(" ")[1];
+//             secs = secs.split(" ")[0];
+//             if (ampm === "PM") mins = mins + 12;
+//         }
+//         const totalTime = new Number((mins * 60) + secs);
+//         return totalTime;
+//     }
+// }
+
+// const constructSort = (type, param, split) => {
+
+//     const currentList = songQueue.getSongList();
+//     let nextSort = [];
+//     const pKey = param;
+
+//     if (type === "num") {
+//         if (split == 0) {
+//             nextSort = currentList.sort((a, b) => {
+//                 let el1 = a.pKey;
+//                 let el2 = b.pKey;
+//                 return el2 - el1;
+//             })
+//             return nextSort;
+//         } else {
+//             nextSort = currentList.sort((a, b) => {
+//                 let el1 = doMath(a.pKey, split);
+//                 let el2 = doMath(b.pKey, split);
+//                 return el1 - el2;
+//             })
+//             return nextSort;
+//         }
+//     } else if (type === "string") {
+//         nextSort = currentList.sort((a, b) => {
+//             if (a.pKey === "--" || b.pKey === "--") return 1;
+//             let el1 = a.title.toUpperCase();
+//             let el2 = b.title.toUpperCase();
+
+//             if (el1 > el2) {
+//                 return 1
+//             } else if (el2 > el1) {
+//                 return -1
+//             } else {
+//                 return 0
+//             }
+//         })
+//         return nextSort;
+//     } else {
+//         console.log("doh");
+//     }
+// }
 
 
 // CHANGE SORT 
@@ -1370,12 +1421,11 @@ const changeSortedSongList = (sortBy) => {
             newSort = currentSort.sort((a, b) => {
                 return b.trackNumber - a.trackNumber;
             })
-            
+            // newSort = constructSort('num', 'trackNumber', 0)
             break;
 
-
         case "trkNme":
-            console.log("sorting by track title..")
+            console.log("sorting by track title..");
             newSort = currentSort.sort((a, b) => {
                 let el1 = a.title.toUpperCase();
                 let el2 = b.title.toUpperCase();
@@ -1387,30 +1437,18 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            
+
+
             break;
 
         case "trkLen":
             console.log("sorting by track length..")
             newSort = currentSort.sort((a, b) => {
-                const doTimeMath = (time) => {
-                    if (time === '--' || time === '?:??') return 1;
+                let el1 = splitLength(a.length);
+                let el2 = splitLength(b.length);
+                return el1 - el2;
 
-                    const minSec = time.split(":")
-                    const totalSecs = new Number((minSec[0] * 60) + minSec[1])
-                    return totalSecs;
-                }
-                let el1 = doTimeMath(a.length);
-                let el2 = doTimeMath(b.length);
-                if (el1 > el2) {
-                    return 1
-                }
-                if (el1 < el2) {
-                    return -1
-                }
-                return 0;
             })
-            
             break;
 
         case "epTtl":
@@ -1426,7 +1464,7 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            
+
             break;
 
         case "artist":
@@ -1442,7 +1480,7 @@ const changeSortedSongList = (sortBy) => {
                 }
                 return 0;
             })
-            
+
             break;
 
         case "trkUrl":
@@ -1457,84 +1495,49 @@ const changeSortedSongList = (sortBy) => {
                     return -1
                 }
                 return 0;
+
             })
             break;
 
         case "trkOg":
             console.log("sorting by file name..")
             newSort = currentSort.sort((a, b) => {
-                if (a.fileName === "--" || b.fileName === "--") return 1;
+                if (a.fileName === "--" || b.fileName === "--") return -1;
 
                 let el1 = a.ogFileName.toUpperCase();
                 let el2 = b.ogFileName.toUpperCase();
                 if (el1 > el2) {
-                    return 1
+                    return -1
                 }
                 if (el1 < el2) {
-                    return -1
+                    return 1
                 }
                 return 0;
             })
-            
             break;
 
         case "trkDte":
             console.log("sorting by date created..")
             newSort = currentSort.sort((a, b) => {
-                const findDate = (date) => {
-                    if (date === '--') return 1;
-
-                    const els = date.split("-");
-                    const utcDate = new Date(Date.UTC(els[2], els[0] - 1, els[1]))
-                    return utcDate.getTime() / 1000;
-                }
-                let el1 = findDate(a.dateCreated);
-                let el2 = findDate(b.dateCreated);
+                let el1 = splitDate(a.dateCreated);
+                let el2 = splitDate(b.dateCreated);
                 return el1 - el2;
 
-                // if (el1 > el2) {
-                //     return 1
-                // }
-                // if (el1 < el2) {
-                //     return -1
-                // }
-                // return 0;
             })
             break;
 
         case "trkTs":
             console.log("sorting by timestamp..")
             newSort = currentSort.sort((a, b) => {
-
-                const doMath = (time) => {
-                    if (time === '--') return 1;
-
-                    const timeSplit = time.split(":")
-                    let mins = timeSplit[0];
-                    let secs = timeSplit[1].split(' ')[0]
-                    const ampm = timeSplit[1].split(' ')[1]
-                    if (ampm === "PM") {
-                        console.log(time);
-                        mins = mins + 12
-                    }
-                    const totalSecs = new Number((mins * 60) + secs)
-                    return totalSecs;
-                }
-                let el1 = doMath(a.timeCreated);
-                let el2 = doMath(b.timeCreated);
+                let el1 = splitTimeSpamp(a.timeCreated);
+                let el2 = splitTimeSpamp(b.timeCreated);
                 return el1 - el2;
 
-                // if (el1 > el2) {
-                //     return 1
-                // }
-                // if (el1 < el2) {
-                //     return -1
-                // }
-                // return 0;
             })
             break;
+
         default:
-            console.log("whoops")
+            console.log(";)")
     }
     songQueue.changeSongList(newSort);
 }
@@ -1620,15 +1623,32 @@ nextTrackBtn.addEventListener("click", () => {
     icon.classList.add("glyphicon-play");
     console.log(`You have ${queueLength - 0} items left in your queue!`);
     if (queueLength <= 1) {
-        // songQueue.filterPlayer();
         clearPlayer();
         console.log("nothing queued!")
-        // songQueue.removeQueueButton();
     } else {
         songQueue.filterPlayer();
         songQueue.removeFromQueue();
         songQueue.removeQueueButton();
     }
+})
+
+
+// songview header bar sort buttons
+const headButtons = document.getElementById("headerRow").querySelectorAll("span");
+headButtons.forEach(button => {
+    button.addEventListener("click", async (e) => {
+        e.preventDefault;
+        if (e.target.classList.contains("list-reverse")) {
+            let list = songQueue.getSongList();
+            e.target.classList.remove("list-reverse")
+            return showSongView(list.reverse());
+        }
+
+        await changeSortedSongList(e.target.dataset.sortBy)
+        showSongView(songQueue.getSongList())
+        e.target.classList.add("list-reverse");
+
+    })
 })
 
 // testBtn.addEventListener("click", (e) => {

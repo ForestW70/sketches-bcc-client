@@ -331,6 +331,10 @@ audio::-webkit-media-controls-timeline {
     border-bottom: 2px solid black;
 }
 
+.list-reverse::after {
+    content: ":)";
+}
+
 
 /* toggle show view and utilities */
 .menu-flex {
