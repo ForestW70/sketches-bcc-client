@@ -922,7 +922,7 @@ function SongQueue(pushbox = []) {
     this.allTheSongs = pushbox;
     this.activeQueue = [];
 
-    // song list for sorting
+    // all song list for sorting
     this.populateSongList = () => {
         const listSort = getDefaultList();
         return this.allTheSongs.push(listSort);
@@ -952,21 +952,37 @@ function SongQueue(pushbox = []) {
 
     this.createQItem = (el) => {
         const qButton = document.createElement("button");
+        qButton.addEventListener("click", handleQClick);
         qButton.type = "button"
         qButton.innerText = `${el.url} ~ ${el.ep}`;
         qButton.id = el.url + " " + el.ep;
         queueListDump.appendChild(qButton);
     }
 
-    this.removeQueueButton = () => {
-        const currItem = this.activeQueue[0];
-        const btnSearch = currItem.songUrl + " " + currItem.songEp;
-        document.getElementById(btnSearch).remove();
+    this.removeQueueButton = (btnId) => {
+        document.getElementById(btnId).remove();
         return;
     }
 
-    this.removeFromQueue = () => {
+    this.removePlaceInQueue = (trackId) => {
+        const url = trackId.split(" ")[0]
+        let trackIdx = this.activeQueue.findIndex(item => item.songUrl === url)
+        let removed = this.activeQueue.splice(trackIdx, 1)
+        this.removeQueueButton(trackId);
+        console.log(removed);
+    }
+
+    this.removeFirstFromQueue = () => {
+        const first = this.activeQueue[1];
+        const searchBtn = first.songUrl + " " + first.songEp;
+        this.removeQueueButton(searchBtn)
         return this.activeQueue.shift();
+    }
+
+    this.findButtonSearch = (songUrl) => {
+        const getId = this.activeQueue.find(track => track.songUrl === songUrl)
+        const searchId = getId.songUrl + " " + getId.songEp
+        return searchId;
     }
 
     this.grabNext = () => {
@@ -977,8 +993,11 @@ function SongQueue(pushbox = []) {
         return this.activeQueue.length;
     }
 
-    this.findSong = (url) => {
-        const item = this.activeQueue.find(song => song.name === url);
+    this.findSong = (id) => {
+        const songName = id;
+        // const ep = id.split('~')[1];
+
+        let item = this.allTheSongs[0].find(song => song.url === songName)
         return item;
     }
 
@@ -1151,8 +1170,8 @@ audioPlayer.addEventListener("ended", () => {
     console.log(qtime)
     if (qtime > 1) {
         songQueue.filterPlayer();
-        songQueue.removeFromQueue();
-        songQueue.removeQueueButton();
+        songQueue.removeFirstFromQueue();
+        // songQueue.removeQueueButton(0);
         audioPlayer.play();
     } else if (qtime <= 1) {
         console.log('no more items in queue.')
@@ -1185,6 +1204,20 @@ const handleTrackSelect = (e) => {
 
 //  ALBUM VIEW
 //  
+const showAlbumView = () => {
+    listDump.innerText = '';
+    listView.classList.add("hide");
+    optionsContainer.classList.add("hide");
+    discoContainer.classList.remove("hide");
+
+
+    sketches.map(album => {
+        const idvAlbum = buildAlbumCont(album);
+        discoContainer.appendChild(idvAlbum);
+    })
+
+}
+
 const buildAlbumCont = (albumInfo) => {
     const albumContainer = document.createElement("article");
     const infoContainer = document.createElement("div");
@@ -1231,19 +1264,6 @@ const buildAlbumCont = (albumInfo) => {
     return albumContainer;
 }
 
-const showAlbumView = () => {
-    listDump.innerText = '';
-    listView.classList.add("hide");
-    optionsContainer.classList.add("hide");
-    discoContainer.classList.remove("hide");
-
-
-    sketches.map(album => {
-        const idvAlbum = buildAlbumCont(album);
-        discoContainer.appendChild(idvAlbum);
-    })
-
-}
 
 
 // SONG VIEW
@@ -1300,6 +1320,7 @@ const getDefaultList = () => {
     return sorted;
 }
 
+
 // OPTIONS VIEW
 // 
 const showOptionView = () => {
@@ -1307,7 +1328,7 @@ const showOptionView = () => {
     listDump.innerText = '';
     discoContainer.classList.add('hide');
     optionsContainer.classList.remove('hide');
-    
+
 }
 
 
@@ -1542,8 +1563,55 @@ const changeSortedSongList = (sortBy) => {
     songQueue.changeSongList(newSort);
 }
 
+// localstorage
+window.localStorage.setItem("view", "albumView")
 
-// Buttons
+
+// queue remove
+const modal = document.getElementById("qPrompt")
+const modalDump = document.getElementById("modalDump")
+const modalSong = document.getElementById("modalSong")
+const closeModalBtn = document.getElementById("closeModal")
+const removeBtn = document.getElementById("removeThisSong");
+
+const handleQClick = (e) => {
+    e.preventDefault;
+    const searchUrl = e.target.id.split(" ")[0]
+    const data4Modal = songQueue.findSong(searchUrl)
+    modalDump.innerText = JSON.stringify(data4Modal, null, 10);
+    modalSong.innerText = searchUrl + "= ";
+    removeBtn.dataset.whichSong = searchUrl
+    modal.style.display = "block";
+}
+
+removeBtn.addEventListener("click", (e) => {
+    e.preventDefault;
+    const search = e.target.dataset.whichSong
+    const btnSearch = songQueue.findButtonSearch(search)
+    songQueue.removePlaceInQueue(btnSearch)
+    // songQueue.removeQueueButton(btnSearch)
+    // console.log(search)
+    modal.style.display = "none";
+    removeBtn.dataset.whichSong = ""
+    modalDump.innerText = ""
+})
+
+closeModalBtn.addEventListener("click", (e) => {
+    e.preventDefault;
+    modal.style.display = "none";
+    removeBtn.dataset.whichSong = ""
+    modalDump.innerText = ""
+})
+
+window.onclick = (event) => {
+    if (event.target == modal) {
+        modalDump.innerText = ""
+        modal.style.display = "none";
+    }
+}
+
+// BUTTONS
+// 
 const toggleQueue = document.getElementById("toggleShowQueue")
 const albumViewBtn = document.getElementById("viewAlbums")
 const songViewBtn = document.getElementById("viewSongs")
@@ -1584,7 +1652,6 @@ songViewBtn.addEventListener("click", () => {
         albumViewBtn.classList.remove("curr-view")
         optViewBtn.classList.remove("curr-view")
     }
-    // const defSort = getDefaultList()
     showSongView(songQueue.getSongList());
 })
 optViewBtn.addEventListener("click", () => {
@@ -1627,8 +1694,8 @@ nextTrackBtn.addEventListener("click", () => {
         console.log("nothing queued!")
     } else {
         songQueue.filterPlayer();
-        songQueue.removeFromQueue();
-        songQueue.removeQueueButton();
+        songQueue.removeFirstFromQueue();
+        // songQueue.removeQueueButton(0);
     }
 })
 

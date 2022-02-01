@@ -48,11 +48,7 @@
             </article>
             <span class="queue-tip">queue:</span>
             <article id="qTools">
-                <div class="option-buttons">
-                    <button class="opt-default" type="button" id="autoPlayOption">
-                        ~expirimental autoplay~ -- OFF.  Turn on?
-                    </button>
-                </div>
+                
                 <div id="queueList" class="menu-flex"></div>
             </article>
         </div>
@@ -95,6 +91,22 @@
 
     <section id="options" class="hide">
         <span>OOoooOOOoOOOOOOooOOOO</span>
+        <div class="option-buttons">
+            <button class="opt-default" type="button" id="autoPlayOption">
+                ~expirimental autoplay~ -- OFF.  Turn on?
+            </button>
+        </div>
+    </section>
+
+    <section id="qPrompt">
+        <div class="modal-cont">
+            <span id="modalSong"></span>
+            <span id="modalDump">
+
+            </span>
+            <button type="button" id="closeModal">close box</button>
+            <button type="button" id="removeThisSong">remove from queue?</button>
+        </div>
     </section>
 
     
