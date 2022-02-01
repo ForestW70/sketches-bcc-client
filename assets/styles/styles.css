@@ -273,7 +273,7 @@ audio::-webkit-media-controls-timeline {
     background-color: inherit;
     font-family: sans-serif;
     color: rgb(70, 70, 70);
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 
 .t-row:hover {
