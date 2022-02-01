@@ -306,11 +306,13 @@ audio::-webkit-media-controls-timeline {
     width: 100%;
     /* trkNum, trkName, trkLength, epName, artist, trackurl, ogfilename, date, time */
     grid-template-columns: .5fr 3fr .7fr 1fr 2fr 2fr 2fr 1fr 1fr;
+    border: none;
 }
 
 .song-list-row > span {
     display: flex;
     justify-content: left;
+    text-align: left;
     padding: 2px 3px 0 0;
 }
 
@@ -374,6 +376,8 @@ audio::-webkit-media-controls-timeline {
 #modalDump {
     text-align: center;
     margin: 10px 0;
+    font-family: serif;
+    font-style: italic;
 }
 
 
@@ -394,9 +398,31 @@ audio::-webkit-media-controls-timeline {
 /* Media Events */
 /*  */
 @media screen and (max-width: 1000px) {
+    .song-list-row {
+        grid-template-columns: 3fr .7fr 1fr 1.5fr 2fr 2fr 1.5fr 1fr;
+    }
+    
     .song-list-row > span {
-        font-size: 1.5vmin;
-        padding: 3px 0;
+        font-size: 9px;
+        padding: 2px;
+        height: 30px;
+        align-items: center;
+        border-left: 1px solid white;
+    }
+
+    .song-list-row > span:nth-child(1) {
+        display: none;
+    }
+
+    .song-list-row:hover {
+        border:none;
+        background-color: rgba(255, 105, 180, 0.212);
+    }
+    .song-list-row:nth-child(1):hover {
+        justify-self: center;
+    }
+    .song-list-row:nth-child(1) span:hover::after {
+        content: ""
     }
 }
 
@@ -420,8 +446,12 @@ audio::-webkit-media-controls-timeline {
     }
     #trackController > article {
         width: 100%;
+        height: 45%;
     }
     .t-row {
+        font-size: 12px;
+    }
+    .view-button {
         font-size: 12px;
     }
 }
@@ -429,6 +459,10 @@ audio::-webkit-media-controls-timeline {
 @media screen and (max-width: 750px) {
     .modal-cont {
         width: 80%;
+        font-size: 10px;
+    }
+
+    .view-button {
         font-size: 10px;
     }
 }

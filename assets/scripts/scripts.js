@@ -97,7 +97,7 @@ const sketches = [
                 track: 'Amanda Alarm (wake up hunny)',
                 length: '1:56',
                 url: 'amanda-alarm',
-                fileName: 'bellbottomchords',
+                fileName: 'bell-bottom-chords',
                 daw: 'LogicX',
                 date: '06-17-17',
                 started: '8:13 PM',
@@ -151,7 +151,7 @@ const sketches = [
                 track: 'Amanda Morph (gettin late)',
                 length: '1:46',
                 url: 'amanda-morph',
-                fileName: 'bellbottomchords',
+                fileName: 'bell-bottom-chords',
                 daw: 'LogicX',
                 date: '06-17-17',
                 started: '8:13 PM',
@@ -1564,7 +1564,7 @@ const changeSortedSongList = (sortBy) => {
         case "trkOg":
             console.log("sorting by file name..")
             newSort = currentSort.sort((a, b) => {
-                if (a.fileName === "--" || b.fileName === "--") return -1;
+                if (a.fileName === "--" || b.fileName === "--") return 0;
 
                 let el1 = a.ogFileName.toUpperCase();
                 let el2 = b.ogFileName.toUpperCase();
