@@ -950,13 +950,41 @@ function SongQueue(pushbox = []) {
         return this.activeQueue.push(item)
     }
 
-    this.createQItem = (el) => {
+    this.add2FrontOfQueue = (el) => {
+        const item = {
+            songTitle: el.title,
+            songLength: el.length,
+            songEp: el.ep,
+            songArtist: el.artist,
+            songUrl: el.url,
+            songArt: el.artLink,
+        }
+        this.activeQueue.splice(1, 0, item);
+        
         const qButton = document.createElement("button");
         qButton.addEventListener("click", handleQClick);
         qButton.type = "button"
         qButton.innerText = `${el.url} ~ ${el.ep}`;
         qButton.id = el.url + " " + el.ep;
-        queueListDump.appendChild(qButton);
+
+        const firstChild = queueListDump.firstChild
+        queueListDump.insertBefore(qButton, firstChild);
+    }
+
+    this.createQItem = (el) => {
+        const qId = el.url + " " + el.ep
+        const qButton = document.createElement("button");
+        qButton.addEventListener("click", handleQClick);
+
+        qButton.type = "button"
+        qButton.innerText = `${el.url} ~ ${el.ep}`;
+        qButton.id = qId;
+        if (this.doesButtonExist(qId) === 1) {
+            console.log("already in queue!")
+            return;
+        } else {
+            queueListDump.appendChild(qButton);
+        }
     }
 
     this.removeQueueButton = (btnId) => {
@@ -966,8 +994,9 @@ function SongQueue(pushbox = []) {
 
     this.removePlaceInQueue = (trackId) => {
         const url = trackId.split(" ")[0]
-        let trackIdx = this.activeQueue.findIndex(item => item.songUrl === url)
-        let removed = this.activeQueue.splice(trackIdx, 1)
+        const trackIdx = this.activeQueue.findIndex(item => item.songUrl === url)
+        const removed = this.activeQueue.splice(trackIdx, 1)
+
         this.removeQueueButton(trackId);
         console.log(removed);
     }
@@ -985,6 +1014,15 @@ function SongQueue(pushbox = []) {
         return searchId;
     }
 
+    this.doesButtonExist = (songObj) => {
+        const searchId = songObj.url + " " + songObj.ep;
+        const buttonSearch = document.getElementById(searchId)
+        if (buttonSearch === null) {
+            return 0
+        }
+        return 1;
+    }
+
     this.grabNext = () => {
         return this.activeQueue[0];
     }
@@ -993,8 +1031,8 @@ function SongQueue(pushbox = []) {
         return this.activeQueue.length;
     }
 
-    this.findSong = (id) => {
-        const songName = id;
+    this.findSong = (url) => {
+        const songName = url;
         // const ep = id.split('~')[1];
 
         let item = this.allTheSongs[0].find(song => song.url === songName)
@@ -1149,7 +1187,7 @@ window.onscroll = () => {
 let autoPlayOn = false;
 const autoPlayButton = document.getElementById("autoPlayOption")
 autoPlayButton.addEventListener("click", (e) => {
-    e.preventDefault;
+    e.preventDefault();
     if (!autoPlayOn) {
         autoPlayButton.innerText = "~expirimental autoplay~ -- OFF.  Turn on?"
         autoPlayButton.classList.toggle("opt-on")
@@ -1171,7 +1209,6 @@ audioPlayer.addEventListener("ended", () => {
     if (qtime > 1) {
         songQueue.filterPlayer();
         songQueue.removeFirstFromQueue();
-        // songQueue.removeQueueButton(0);
         audioPlayer.play();
     } else if (qtime <= 1) {
         console.log('no more items in queue.')
@@ -1182,7 +1219,7 @@ audioPlayer.addEventListener("ended", () => {
 //  TRACK SELECT
 // 
 const handleTrackSelect = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     const lookObj = {
         title: e.currentTarget.dataset.title,
         length: e.currentTarget.dataset.length,
@@ -1193,11 +1230,15 @@ const handleTrackSelect = (e) => {
     }
     const currQueueTime = songQueue.grabLength();
     if (currQueueTime === 0) {
-        songQueue.add2queue(lookObj)
+        songQueue.add2queue(lookObj);
         songQueue.filterPlayer();
     } else {
-        songQueue.add2queue(lookObj)
-        songQueue.createQItem(lookObj);
+        if (songQueue.doesButtonExist(lookObj) === 0) {
+            songQueue.add2queue(lookObj);
+            songQueue.createQItem(lookObj);
+        } else {
+            window.alert("song already in queue!")
+        }
     }
 }
 
@@ -1568,36 +1609,53 @@ window.localStorage.setItem("view", "albumView")
 
 
 // queue remove
-const modal = document.getElementById("qPrompt")
-const modalDump = document.getElementById("modalDump")
-const modalSong = document.getElementById("modalSong")
-const closeModalBtn = document.getElementById("closeModal")
+const modal = document.getElementById("qPrompt");
+const modalDump = document.getElementById("modalDump");
+const modalSong = document.getElementById("modalSong");
+const closeModalBtn = document.getElementById("closeModal");
 const removeBtn = document.getElementById("removeThisSong");
+const upNextBtn = document.getElementById("upNextBtn");
 
 const handleQClick = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     const searchUrl = e.target.id.split(" ")[0]
     const data4Modal = songQueue.findSong(searchUrl)
-    modalDump.innerText = JSON.stringify(data4Modal, null, 10);
-    modalSong.innerText = searchUrl + "= ";
+    modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 10)}`;
+    // modalSong.innerText = searchUrl + "= ";
     removeBtn.dataset.whichSong = searchUrl
+    upNextBtn.dataset.whichSong = searchUrl
     modal.style.display = "block";
 }
 
+const closeModal = () => {
+    modal.style.display = "none";
+    removeBtn.dataset.whichSong = ""
+    modalDump.innerText = ""
+}
+
+upNextBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const search = e.target.dataset.whichSong
+    const btnSearch = songQueue.findButtonSearch(search);
+    songQueue.removePlaceInQueue(btnSearch);
+    const songItem = songQueue.findSong(search);
+    
+    songQueue.add2FrontOfQueue(songItem);
+    closeModal();
+})
+
 removeBtn.addEventListener("click", (e) => {
-    e.preventDefault;
+    e.preventDefault();
     const search = e.target.dataset.whichSong
     const btnSearch = songQueue.findButtonSearch(search)
     songQueue.removePlaceInQueue(btnSearch)
-    // songQueue.removeQueueButton(btnSearch)
-    // console.log(search)
     modal.style.display = "none";
     removeBtn.dataset.whichSong = ""
     modalDump.innerText = ""
 })
 
 closeModalBtn.addEventListener("click", (e) => {
-    e.preventDefault;
+    e.preventDefault();
     modal.style.display = "none";
     removeBtn.dataset.whichSong = ""
     modalDump.innerText = ""
@@ -1688,7 +1746,7 @@ nextTrackBtn.addEventListener("click", () => {
     const queueLength = songQueue.grabLength();
     icon.classList.remove("glyphicon-pause");
     icon.classList.add("glyphicon-play");
-    console.log(`You have ${queueLength - 0} items left in your queue!`);
+    console.log(`You have ${queueLength - 2} items left in your queue!`);
     if (queueLength <= 1) {
         clearPlayer();
         console.log("nothing queued!")
@@ -1704,7 +1762,7 @@ nextTrackBtn.addEventListener("click", () => {
 const headButtons = document.getElementById("headerRow").querySelectorAll("span");
 headButtons.forEach(button => {
     button.addEventListener("click", async (e) => {
-        e.preventDefault;
+        e.preventDefault();
         if (e.target.classList.contains("list-reverse")) {
             let list = songQueue.getSongList();
             e.target.classList.remove("list-reverse")
@@ -1719,7 +1777,7 @@ headButtons.forEach(button => {
 })
 
 // testBtn.addEventListener("click", (e) => {
-//     e.preventDefault;
+//     e.preventDefault();
 //     changeSortedSongList("trkNme");
 // })
 

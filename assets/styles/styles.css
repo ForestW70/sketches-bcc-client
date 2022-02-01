@@ -359,12 +359,22 @@ audio::-webkit-media-controls-timeline {
     border: 1px solid #888;
     width: 50%; 
     display: flex;
+    flex-direction: column;
 }
 
-#modalSong {
-    white-space: nowrap;
+.modal-cont > button {
+    width:75%;
+    margin: auto;
 }
 
+#closeModal {
+    background-color: red;
+}
+
+#modalDump {
+    text-align: center;
+    margin: 10px 0;
+}
 
 
 /* toggle show view and utilities */
@@ -413,6 +423,13 @@ audio::-webkit-media-controls-timeline {
     }
     .t-row {
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .modal-cont {
+        width: 80%;
+        font-size: 10px;
     }
 }
 
