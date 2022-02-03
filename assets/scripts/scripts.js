@@ -236,7 +236,7 @@ const sketches = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
-        artLink: './assets/s&ofv4.png',
+        artLink: './assets/s&ofv4.jpg',
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv4.png',
         trackList: [
             {

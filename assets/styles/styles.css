@@ -167,8 +167,22 @@ audio::-webkit-media-controls-timeline {
 }
 
 /*  */
-/* Options */
+/* Options and Info View*/
 /*  */
+.credits > h2, .credits > h3, .credits > h4, .credits > h5 {
+    margin:0;
+    margin-left: 10px;
+}
+
+.credits > span {
+    color:grey;
+}
+
+.wall-o-text {
+    margin:10px;
+}
+
+
 .opt-default {
     border: none;
     color: #fff;
