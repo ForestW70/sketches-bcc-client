@@ -12,6 +12,169 @@
 // }
 const sketches = [
     {
+        title: 'BCC',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
+        releaseDate: 'November 21st, 2021',
+        artLink: './assets/bcc.png',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
+        trackList: [
+            {
+                track: 'Hotmess',
+                length: '3:04',
+                url: 'bcc-hotmess',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Atmosphere (interlude)',
+                length: '0:35',
+                url: 'bcc-atmosphere',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Amanda',
+                length: '1:47',
+                url: 'bcc-amanda',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Dare2Bare',
+                length: '2:35',
+                url: 'bcc-dare2bare',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Quarantine (but its ok)',
+                length: '3:01',
+                url: 'bcc-quarantine',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Stickyhold',
+                length: '1:27',
+                url: 'bcc-stickyhold',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Stargate (reprise)',
+                length: '1:26',
+                url: 'bcc-stargate',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Rap',
+                length: '0:54',
+                url: 'bcc-rap',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: '27th&girard',
+                length: '4:18',
+                url: 'bcc-girard',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Almostinato',
+                length: '2:34',
+                url: 'bcc-it-is-forever',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: '5d',
+                length: '2:08',
+                url: 'bcc-5d',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Probably Wrong',
+                length: '2:58',
+                url: 'bcc-probably',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'S. Balachander (bftb mx)',
+                length: '4:59',
+                url: 'bcc-sbala',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Boc (interlude)',
+                length: '1:22',
+                url: 'bcc-boc',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Toothpicks',
+                length: '2:31',
+                url: 'bcc-toothpicks',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Pilotdrone',
+                length: '2:27',
+                url: 'bcc-pilotdrone',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Faultline',
+                length: '4:54',
+                url: 'bcc-faultline',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+        ]
+    },
+    {
         title: 'S&OFV1',
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
@@ -588,169 +751,7 @@ const sketches = [
             },
         ]
     },
-    {
-        title: 'BCC',
-        artist: 'L. Mauro',
-        longArtist: 'Lukasz Mauro',
-        releaseDate: 'November 21st, 2021',
-        artLink: './assets/bcc.png',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
-        trackList: [
-            {
-                track: 'Hotmess',
-                length: '3:04',
-                url: 'bcc-hotmess',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Atmosphere (interlude)',
-                length: '0:35',
-                url: 'bcc-atmosphere',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Amanda',
-                length: '1:47',
-                url: 'bcc-amanda',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Dare2Bare',
-                length: '2:35',
-                url: 'bcc-dare2bare',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Quarantine (but its ok)',
-                length: '3:01',
-                url: 'bcc-quarantine',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Stickyhold',
-                length: '1:27',
-                url: 'bcc-stickyhold',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Stargate (reprise)',
-                length: '1:26',
-                url: 'bcc-stargate',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Rap',
-                length: '0:54',
-                url: 'bcc-rap',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: '27th&girard',
-                length: '4:18',
-                url: 'bcc-girard',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Almostinato',
-                length: '2:34',
-                url: 'bcc-it-is-forever',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: '5d',
-                length: '2:08',
-                url: 'bcc-5d',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Probably Wrong',
-                length: '2:58',
-                url: 'bcc-probably',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'S. Balachander (bftb mx)',
-                length: '4:59',
-                url: 'bcc-sbala',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Boc (interlude)',
-                length: '1:22',
-                url: 'bcc-boc',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Toothpicks',
-                length: '2:31',
-                url: 'bcc-toothpicks',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Pilotdrone',
-                length: '2:27',
-                url: 'bcc-pilotdrone',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-            {
-                track: 'Faultline',
-                length: '4:54',
-                url: 'bcc-faultline',
-                fileName: '--',
-                daw: '--',
-                date: '--',
-                started: '--',
-            },
-        ]
-    },
+    
     {
         title: "IB",
         artist: 'con',
@@ -806,7 +807,7 @@ const sketches = [
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
         trackList: [
             {
-                track: 'On Line0',
+                track: 'In a room',
                 length: "12:45",
                 url: 'on-line',
                 fileName: '--',
@@ -815,7 +816,7 @@ const sketches = [
                 started: '--',
             },
             {
-                track: 'On Line1',
+                track: 'Untitled (miccheck)',
                 length: '14:19',
                 url: 'on-line1',
                 fileName: '--',
@@ -824,7 +825,7 @@ const sketches = [
                 started: '--',
             },
             {
-                track: 'On Line2',
+                track: 'Untitled (miccheck1)',
                 length: '6:13',
                 url: 'on-line2',
                 fileName: '--',
@@ -836,13 +837,12 @@ const sketches = [
     },
     {
         title: "ECT",
-        artist: 'S. Finder',
-        longArtist: 'Stud Finder',
+        artist: 'L. Mauro',
+        longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
         artLink: './assets/sketches.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ect.png',
         trackList: [
-
             {
                 track: 'This is forever (demo)',
                 length: "2:36",
@@ -862,6 +862,25 @@ const sketches = [
                 started: '--',
             },
             {
+                track: 'HM/FL (survivor)',
+                length: '7:57',
+                url: 'hmfl(survivor)',
+                fileName: '--',
+                daw: 'FLstudio',
+                date: '--',
+                started: '--',
+            },
+        ]
+    },
+    {
+        title: "studs",
+        artist: 'S. Finder',
+        longArtist: 'Stud Finder',
+        releaseDate: 'N/A',
+        artLink: './assets/sketches.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg',
+        trackList: [
+            {
                 track: 'Boiler Room',
                 length: "1:43",
                 url: 'boiler-room',
@@ -879,39 +898,23 @@ const sketches = [
                 date: '--',
                 started: '--',
             },
-
-            {
-                track: 'HM/FL (survivor)',
-                length: '7:57',
-                url: 'hmfl(survivor)',
-                fileName: '--',
-                daw: 'FLstudio',
-                date: '--',
-                started: '--',
-            },
-
         ]
     }
 ]
 
 // directory
 const headSwap = document.getElementById("wellHeyThere");
-
 const audioPlayer = document.getElementById("player");
 const currAlbumPic = document.getElementById("albumPic");
 const currTrackName = document.getElementById("trackName");
 const currArtistName = document.getElementById("artistName");
 const currTrackTime = document.getElementById("trackTime");
 const currAlbumName = document.getElementById("albumName");
-
 const queueListDump = document.getElementById("queueList");
 const qToolCont = document.getElementById("qTools")
-
 const discoContainer = document.getElementById("disco");
-
 const listView = document.getElementById("list");
 const listDump = document.getElementById("listDump");
-
 const optionsContainer = document.getElementById("options");
 const testBtn = document.getElementById("testBtn");
 
@@ -1246,6 +1249,9 @@ const handleTrackSelect = (e) => {
 //  ALBUM VIEW
 //  
 const showAlbumView = () => {
+    localStorage.setItem("currentView", "album")
+
+
     listDump.innerText = '';
     listView.classList.add("hide");
     optionsContainer.classList.add("hide");
@@ -1310,6 +1316,7 @@ const buildAlbumCont = (albumInfo) => {
 // SONG VIEW
 // 
 const showSongView = (sortedSongList) => {
+    localStorage.setItem("currentView", "list")
     listDump.innerText = "";
     discoContainer.classList.add('hide');
     optionsContainer.classList.add("hide");
@@ -1369,6 +1376,7 @@ const showOptionView = () => {
     listDump.innerText = '';
     discoContainer.classList.add('hide');
     optionsContainer.classList.remove('hide');
+    localStorage.setItem("currentView", "option")
 
 }
 
@@ -1722,24 +1730,24 @@ albumViewBtn.addEventListener("click", () => {
         albumViewBtn.classList.add("curr-view")
         optViewBtn.classList.remove("curr-view")
         songViewBtn.classList.remove("curr-view")
+        showAlbumView();
     }
-    showAlbumView();
 })
 songViewBtn.addEventListener("click", () => {
     if (!songViewBtn.classList.contains("curr-view")) {
         songViewBtn.classList.add("curr-view")
         albumViewBtn.classList.remove("curr-view")
         optViewBtn.classList.remove("curr-view")
+        showSongView(songQueue.getSongList());
     }
-    showSongView(songQueue.getSongList());
 })
 optViewBtn.addEventListener("click", () => {
     if (!optViewBtn.classList.contains("curr-view")) {
         optViewBtn.classList.add("curr-view")
         albumViewBtn.classList.remove("curr-view")
         songViewBtn.classList.remove("curr-view")
+        showOptionView();
     }
-    showOptionView();
 })
 
 // Audio Player Buttons
@@ -1804,6 +1812,14 @@ headButtons.forEach(button => {
 
 window.onload = () => {
     songQueue.populateSongList();
-    showAlbumView();
+    const currView = localStorage.getItem("currentView")
+    if (currView === "list") {
+        songViewBtn.classList.add("curr-view")
+        showSongView(songQueue.getSongList());
+    } else {
+        console.log(currView)
+        albumViewBtn.classList.add("curr-view")
+        showAlbumView();
+    }
 }
 
