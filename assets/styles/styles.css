@@ -399,11 +399,11 @@ audio::-webkit-media-controls-timeline {
 /*  */
 @media screen and (max-width: 1000px) {
     .song-list-row {
-        grid-template-columns: 3fr .7fr 1fr 1.5fr 2fr 2fr 1.5fr 1fr;
+        grid-template-columns: 3fr .7fr 1.25fr 1.5fr 2fr 1.75fr 1.5fr 1fr;
     }
     
     .song-list-row > span {
-        font-size: 9px;
+        font-size: 1.8vmin;
         padding: 2px;
         height: 30px;
         align-items: center;
@@ -481,6 +481,11 @@ audio::-webkit-media-controls-timeline {
         writing-mode: vertical-rl;
         margin: 5px;
         padding-top: 5px;
+    }
+
+    #headerRow > span {
+        font-size: 8px;
+        /* writing-mode: vertical-rl; */
     }
 }
 

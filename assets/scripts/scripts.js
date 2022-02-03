@@ -1052,8 +1052,8 @@ function SongQueue(pushbox = []) {
         document.title = newTitle;
         headSwap.innerText = wiper.songArtist + " " + wiper.songUrl + ".mp3 '" + wiper.songTitle + "' " + wiper.songEp + " " + wiper.songLength;
         currArtistName.innerText = wiper.songArtist;
-        currTrackName.innerText = wiper.songTitle;
-        currAlbumName.innerText = `"${wiper.songEp}"`;
+        currTrackName.innerText = `"${wiper.songUrl}"`;
+        currAlbumName.innerText = wiper.songEp;
         currAlbumPic.src = wiper.songArt;
         audioPlayer.src = songHome;
         return console.log("Next track loaded!");
@@ -1615,32 +1615,53 @@ const modalSong = document.getElementById("modalSong");
 const closeModalBtn = document.getElementById("closeModal");
 const removeBtn = document.getElementById("removeThisSong");
 const upNextBtn = document.getElementById("upNextBtn");
+const nowPlayingInfo = document.getElementById("nowPlayingInfo");
+
+
+const handleCurrentTrackClick = (url) => {
+    
+    const data4Modal = songQueue.findSong(url)
+    modalDump.innerText = `${url}=${JSON.stringify(data4Modal, null, 2)}`;
+    removeBtn.style.display = "none"
+    upNextBtn.style.display = "none"
+    modal.style.display = "block";
+}
 
 const handleQClick = (e) => {
     e.preventDefault();
     const searchUrl = e.target.id.split(" ")[0]
     const data4Modal = songQueue.findSong(searchUrl)
-    modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 10)}`;
-    // modalSong.innerText = searchUrl + "= ";
+    modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 2)}`;
     removeBtn.dataset.whichSong = searchUrl
     upNextBtn.dataset.whichSong = searchUrl
     modal.style.display = "block";
+    removeBtn.style.display = "block"
+    upNextBtn.style.display = "block"
 }
 
 const closeModal = () => {
     modal.style.display = "none";
     removeBtn.dataset.whichSong = ""
     modalDump.innerText = ""
+    removeBtn.style.display = "none"
+    upNextBtn.style.display = "none"
 }
+
+nowPlayingInfo.addEventListener("click", (e) => {
+    e.preventDefault();
+    const displayFor = currTrackName.innerText.split('"')[1]
+    handleCurrentTrackClick(displayFor)
+})
 
 upNextBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const search = e.target.dataset.whichSong
     const btnSearch = songQueue.findButtonSearch(search);
     songQueue.removePlaceInQueue(btnSearch);
+
     const songItem = songQueue.findSong(search);
-    
     songQueue.add2FrontOfQueue(songItem);
+    
     closeModal();
 })
 
@@ -1649,16 +1670,12 @@ removeBtn.addEventListener("click", (e) => {
     const search = e.target.dataset.whichSong
     const btnSearch = songQueue.findButtonSearch(search)
     songQueue.removePlaceInQueue(btnSearch)
-    modal.style.display = "none";
-    removeBtn.dataset.whichSong = ""
-    modalDump.innerText = ""
+    closeModal();
 })
 
 closeModalBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    modal.style.display = "none";
-    removeBtn.dataset.whichSong = ""
-    modalDump.innerText = ""
+    closeModal();
 })
 
 window.onclick = (event) => {
@@ -1676,6 +1693,7 @@ const songViewBtn = document.getElementById("viewSongs")
 const optViewBtn = document.getElementById("viewOptions")
 const nextTrackBtn = document.getElementById("nextTrack")
 const playButton = document.getElementById("pause-play")
+const queueTip = document.getElementById("qTip")
 const icon = document.getElementById("pp")
 const queueicon = document.getElementById("sq")
 
@@ -1686,12 +1704,15 @@ toggleQueue.addEventListener("click", () => {
         queueicon.classList.remove("glyphicon-menu-right")
         queueicon.classList.add("glyphicon-menu-down")
         queueListDump.classList.toggle('menu-hide')
+        // queue hidden
+        queueTip.innerText = "Queue Hidden."
 
     } else {
 
         queueListDump.classList.toggle('menu-hide')
         queueicon.classList.remove("glyphicon-menu-down")
         queueicon.classList.add("glyphicon-menu-right")
+        queueTip.innerText = "Queue:"
     }
 })
 
