@@ -1,4 +1,12 @@
 /* Head info */
+
+html {
+    background-image: url(https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg);
+    background-position: right;
+    background-repeat: round;
+    background-size: contain;
+}
+
 #wellHeyThere {
     width: 100%;
     display: flex;
@@ -443,7 +451,8 @@ audio::-webkit-media-controls-timeline {
     .song-list-row:nth-child(1) span:hover::after {
         content: ""
     }
-    #list {
+    
+    #list .song-list-row {
         width: 1000px;
         overflow-x: scroll;
     }
