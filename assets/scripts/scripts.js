@@ -877,8 +877,8 @@ const sketches = [
         artist: 'S. Finder',
         longArtist: 'Stud Finder',
         releaseDate: 'N/A',
-        artLink: './assets/sketches.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg',
+        artLink: './assets/studs.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/studs.jpg',
         trackList: [
             {
                 track: 'Boiler Room',
