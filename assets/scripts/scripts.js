@@ -1251,7 +1251,7 @@ const handleTrackSelect = (e) => {
 const showAlbumView = () => {
     localStorage.setItem("currentView", "album")
 
-
+    discoContainer.innerText = ""
     listDump.innerText = '';
     listView.classList.add("hide");
     optionsContainer.classList.add("hide");

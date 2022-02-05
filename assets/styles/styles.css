@@ -308,11 +308,16 @@ audio::-webkit-media-controls-timeline {
 /*  */
 /* Song View */
 /*  */
+#list {
+    /* overflow-x: scroll; */
+}
+
 #headerRow {
     font-family: serif;
     font-size: 1.4rem;
     color: #fff;
     background-color: rgb(78, 78, 78);
+    
 }
 
 .song-list-row {
@@ -417,7 +422,7 @@ audio::-webkit-media-controls-timeline {
     }
     
     .song-list-row > span {
-        font-size: 1.8vmin;
+        /* font-size: 1.8vmin; */
         padding: 2px;
         height: 30px;
         align-items: center;
@@ -437,6 +442,10 @@ audio::-webkit-media-controls-timeline {
     }
     .song-list-row:nth-child(1) span:hover::after {
         content: ""
+    }
+    #list {
+        width: 1000px;
+        overflow-x: scroll;
     }
 }
 
@@ -468,6 +477,7 @@ audio::-webkit-media-controls-timeline {
     .view-button {
         font-size: 12px;
     }
+    
 }
 
 @media screen and (max-width: 750px) {
@@ -498,7 +508,7 @@ audio::-webkit-media-controls-timeline {
     }
 
     #headerRow > span {
-        font-size: 8px;
+        /* font-size: 8px; */
         /* writing-mode: vertical-rl; */
     }
 }
