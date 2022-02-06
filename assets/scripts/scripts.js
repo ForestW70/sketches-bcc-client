@@ -330,7 +330,7 @@ const sketches = [
         webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv3.jpg',
         trackList: [
             {
-                track: 'Sara / Tonin',
+                track: 'Sara / Tony Tonin',
                 length: '2:22',
                 url: 'sara-tonin',
                 fileName: 'rottunspahetti',
@@ -899,7 +899,44 @@ const sketches = [
                 started: '--',
             },
         ]
-    }
+    },
+    // {
+    //     title: "BRSSF Pods",
+    //     artist: "Burner B",
+    //     longArtist: "DJ Burna B",
+    //     releaseDate: "September 30th, 2018",
+    //     artLink: "./assets/pods.jpg",
+    //     weblink: "https://forestw70.github.io/sketches-bcc-client/assets/images/pods.jpg",
+    //     trackList: [
+    //         {
+    //             track: 'Soundscape Source Feed vol. 1',
+    //             length: "33:33",
+    //             url: 'pod1',
+    //             fileName: 'brssfv1',
+    //             daw: 'FLstudio',
+    //             date: '09-30-18',
+    //             started: '--',
+    //         },
+    //         {
+    //             track: 'Soundscape Source Feed vol. 2',
+    //             length: "55:08",
+    //             url: 'pod2',
+    //             fileName: 'brssfv2',
+    //             daw: 'FLstudio',
+    //             date: '12-26-18',
+    //             started: '--',
+    //         },
+    //         {
+    //             track: 'Soundscape Source Feed vol. 3',
+    //             length: "40:27",
+    //             url: 'pod3',
+    //             fileName: 'brssfv3',
+    //             daw: 'FLstudio',
+    //             date: '03-01-19',
+    //             started: '--',
+    //         }
+    //     ]
+    // }
 ]
 
 // directory
@@ -1166,7 +1203,7 @@ const clearPlayer = () => {
     currTrackName.innerText = "";
     currAlbumName.innerText = "No track queued!";
     currAlbumPic.src = "https://picsum.photos/25";
-    audioPlayer.src = "";
+    audioPlayer.src = "https://forestw70.github.io/sketches-bcc-client/assets/music/mario3.mp3";
     document.title = "Sketches";
     headSwap.innerText = "sum' sketches"
 }
@@ -1192,14 +1229,14 @@ const autoPlayButton = document.getElementById("autoPlayOption")
 autoPlayButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (!autoPlayOn) {
-        autoPlayButton.innerText = "~expirimental autoplay~ -- OFF.  Turn on?"
-        autoPlayButton.classList.toggle("opt-on")
+        autoPlayButton.innerText = "~expirimental autoplay~ -- ON."
+        autoPlayButton.classList.add("opt-on")
         autoPlayOn = true;
         return;
     }
     autoPlayOn = false;
-    autoPlayButton.innerText = "~expirimental autoplay~ -- ON.  Turn off?"
-    autoPlayButton.classList.toggle("opt-on")
+    autoPlayButton.innerText = "~expirimental autoplay~ -- OFF."
+    autoPlayButton.classList.remove("opt-on")
 })
 
 audioPlayer.addEventListener("ended", () => {
@@ -1758,13 +1795,13 @@ playButton.addEventListener("click", () => {
         return window.alert("Please queue up next song.")
     }
     if (audioPlayer.paused) {
-        audioPlayer.play();
-
+        
         icon.classList.remove("glyphicon-play");
         icon.classList.add("glyphicon-pause");
+        audioPlayer.play();
     } else {
+        
         audioPlayer.pause();
-
         icon.classList.remove("glyphicon-pause");
         icon.classList.add("glyphicon-play");
     }
@@ -1782,7 +1819,9 @@ nextTrackBtn.addEventListener("click", () => {
     } else {
         songQueue.filterPlayer();
         songQueue.removeFirstFromQueue();
-        // songQueue.removeQueueButton(0);
+        icon.classList.add("glyphicon-pause");
+        icon.classList.remove("glyphicon-play");
+        audioPlayer.play();
     }
 })
 

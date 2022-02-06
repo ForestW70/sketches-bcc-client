@@ -4,7 +4,11 @@ html {
     background-image: url(https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg);
     background-position: right;
     background-repeat: round;
-    background-size: auto;
+    background-size: cover;
+}
+
+body {
+    /* overflow: hidden; */
 }
 
 #wellHeyThere {
@@ -348,11 +352,7 @@ audio::-webkit-media-controls-timeline {
 }
 
 /* header row */
-.song-list-row:nth-child(1):hover {
-    border: none;
-    justify-self: center;
-}
-.song-list-row:nth-child(1) span:hover::after {
+#headerRow span:hover::after {
     content: "...Sort?"
 }
 
@@ -360,9 +360,7 @@ audio::-webkit-media-controls-timeline {
     border-bottom: 2px solid black;
 }
 
-.list-reverse::after {
-    content: ":)";
-}
+
 
 
 /*  */
@@ -454,7 +452,7 @@ audio::-webkit-media-controls-timeline {
     
     #list {
         width: 1000px;
-        overflow: hidden;
+        /* overflow: hidden; */
         overflow-x: scroll;
     }
 }
