@@ -906,12 +906,12 @@ const sketches = [
     //     longArtist: "DJ Burna B",
     //     releaseDate: "September 30th, 2018",
     //     artLink: "./assets/pods.jpg",
-    //     weblink: "https://forestw70.github.io/sketches-bcc-client/assets/images/pods.jpg",
+    //     webLink: "https://burnthis.space/assets/images/pods.jpg",
     //     trackList: [
     //         {
     //             track: 'Soundscape Source Feed vol. 1',
     //             length: "33:33",
-    //             url: 'pod1',
+    //             url: 'pod1-198',
     //             fileName: 'brssfv1',
     //             daw: 'FLstudio',
     //             date: '09-30-18',
@@ -920,7 +920,7 @@ const sketches = [
     //         {
     //             track: 'Soundscape Source Feed vol. 2',
     //             length: "55:08",
-    //             url: 'pod2',
+    //             url: 'pod2-112',
     //             fileName: 'brssfv2',
     //             daw: 'FLstudio',
     //             date: '12-26-18',
@@ -929,7 +929,7 @@ const sketches = [
     //         {
     //             track: 'Soundscape Source Feed vol. 3',
     //             length: "40:27",
-    //             url: 'pod3',
+    //             url: 'pod3-160',
     //             fileName: 'brssfv3',
     //             daw: 'FLstudio',
     //             date: '03-01-19',

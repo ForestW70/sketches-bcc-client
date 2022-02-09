@@ -1,15 +1,11 @@
 /* Head info */
 
-html {
-    background-image: url(https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg);
-    background-position: right;
-    background-repeat: round;
-    background-size: cover;
-}
 
-body {
-    /* overflow: hidden; */
-}
+/* .body-mod {
+    background-image: url(https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg);
+    background-blend-mode: luminosity;
+    
+} */
 
 #wellHeyThere {
     width: 100%;
@@ -298,8 +294,9 @@ audio::-webkit-media-controls-timeline {
     border: none;
     background-color: inherit;
     font-family: sans-serif;
-    color: rgb(70, 70, 70);
+    color: black;
     letter-spacing: -1px;
+    /* text-shadow: 0px 0px 5px white; */
 }
 
 .t-row:hover {
@@ -357,7 +354,8 @@ audio::-webkit-media-controls-timeline {
 }
 
 .song-list-row:hover {
-    border-bottom: 2px solid black;
+    border: none;
+    background-color: rgba(255, 105, 180, 0.212);
 }
 
 
@@ -405,6 +403,12 @@ audio::-webkit-media-controls-timeline {
     font-style: italic;
 }
 
+/*  */
+/* options page */
+/*  */
+.tutorial {
+    margin-right: 20px;
+}
 
 /* toggle show view and utilities */
 .menu-flex {
