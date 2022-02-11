@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="https://forestw70.github.io/sketches-bcc-client/assets/images/sketches.jpg">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <title>Sketches </title>
+</head>
+
+<body class="body-mod">
+    <div id="wellHeyThere">
+        'Sum Sketches
+        
+    </div>
+    <Header>
+        <audio id="player" controls>
+            <source src="" type="audio/mp3">
+        </audio>
+
+        <div id="trackController">
+            <article id="anotherPlayer">
+
+                <img id="albumPic" src="https://picsum.photos/25">
+                <div id="nowPlayingInfo">
+                    <span id="artistName"></span>
+                    <span id="trackName">No track queued!</span>
+                    <span id="albumName"></span>
+                </div>
+                <div class="controlBtns">
+                    <button type="button" id="pause-play">
+                        <span id="pp" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" id="nextTrack" class="next-song">
+                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="show-queue" id="toggleShowQueue">
+                        <span id="sq" class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </article>
+            <span class="queue-tip" id="qTip">Queue:</span>
+            <article id="qTools">
+                
+                <div id="queueList" class="menu-flex"></div>
+            </article>
+        </div>
+    </Header>
+    
+    <section id="disco">
+    </section>
+</body>
+
+</html>
+
+<script type="module" src="index.js"></script>

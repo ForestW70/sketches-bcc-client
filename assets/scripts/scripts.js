@@ -1,15 +1,4 @@
-// // album information
-// const getRT = () => {
-//     const roll = (x) => Math.floor(Math.random() * x);
 
-
-//     let one = roll(20);
-//     let two = roll(59);
-//     if (two < 10) {
-//         two = `0${two}`
-//     }
-//     return `${one}:${two}`;
-// }
 const sketches = [
     {
         title: 'BCC',
