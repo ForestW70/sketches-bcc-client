@@ -34,7 +34,12 @@ v1.70 - MIT - For Good.
         - Song Download.
 
     * ##### Features yet to add:
-        - only bugs, till v2!
+        - turn script into module and import other files such as data and construction.
+        - refactor code to be uniform
+        - self executing functions that holds root variables.
+        - # bugs
+        - list sort will not display correct sort in certain scenarios. click one sort, then a different one, then click the first sort again, and it will reverse list of previous sort.
+        - queue up next button shows up for next item
 
 * #### Contribution:
     If you enjoyed this project and would like to keep up to date with any new additions, feel free to follow my git hub! If you had any questions, comments, concerns or feedback, shoot me a message!
