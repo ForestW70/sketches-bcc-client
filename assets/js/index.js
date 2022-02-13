@@ -387,7 +387,6 @@ const buildAlbumCont = (albumInfo) => {
     albumContainer.appendChild(infoContainer);
 
     albumInfo.trackList.map((idvTrack, idx) => {
-
         const currSong = {
             trackNum: idx + 1,
             artist: albumInfo.artist,
@@ -404,12 +403,11 @@ const buildAlbumCont = (albumInfo) => {
             startTime: idvTrack.started
         }
 
-        
         const songRow = buildAlbumView(currSong)
         songRow.addEventListener("click", handleTrackSelect);
         trackContainer.appendChild(songRow)
-
     })
+
     albumContainer.appendChild(trackContainer)
     return albumContainer;
 }
@@ -660,13 +658,12 @@ const changeSortedSongList = (sortBy) => {
 }
 
 // localstorage
-window.localStorage.setItem("view", "albumView")
+window.localStorage.setItem("view", "albumView");
 
 
 // queue remove
 const modal = document.getElementById("qPrompt");
 const modalDump = document.getElementById("modalDump");
-const modalSong = document.getElementById("modalSong");
 const closeModalBtn = document.getElementById("closeModal");
 const removeBtn = document.getElementById("removeThisSong");
 const upNextBtn = document.getElementById("upNextBtn");

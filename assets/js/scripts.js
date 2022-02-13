@@ -1,8 +1,8 @@
 import { sketches } from "./sketches.js";
 
-import { createQueueButton, buildSongView, buildAlbumView } from "./renders.js"
+import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
 
-function bigFunction() {
+(function() {
     // global dom pointers
     const queueListDump = document.getElementById("queueList");
 
@@ -37,6 +37,7 @@ function bigFunction() {
         })
     }
 
+
     const changeSongList = (newSongArr) => {
         fullSongList = newSongArr;
     }
@@ -46,7 +47,7 @@ function bigFunction() {
     const handleQueueItemClick = (e) => {
         e.preventDefault();
         const searchUrl = e.target.id.split(" ")[0]
-        const data4Modal = activeSongQueue.findSong(searchUrl)
+        const data4Modal = findSong(searchUrl)
         modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 2)}`;
         removeBtn.dataset.whichSong = searchUrl
         upNextBtn.dataset.whichSong = searchUrl
@@ -79,12 +80,12 @@ function bigFunction() {
 
     const addSong2QueueFront = (el) => {
         const item = {
-            title: el.title,
-            length: el.length,
-            ep: el.ep,
-            artist: el.artist,
-            url: el.url,
-            art: el.artLink,
+            title: el.songTitle,
+            length: el.songLength,
+            ep: el.epName,
+            artist: el.epArtist,
+            url: el.songUrl,
+            art: el.epArtLink,
         }
         activeSongQueue.splice(1, 0, item);
         const newBtn = createQueueButton(item)
@@ -108,36 +109,37 @@ function bigFunction() {
             console.log("already in queue!")
             return;
         } else {
-            queueListDump.appendChild(qButton);
+            queueListDump.appendChild(newBtn);
         }
     }
 
     const removeQueueButton = (btnId) => {
+        console.log(btnId);
         document.getElementById(btnId).remove();
         return;
     }
 
     const removePlaceInQueue = (trackId) => {
-        const url = trackId.split(" ")[0]
-        const trackIdx = activeSongQueue.findIndex(item => item.songUrl === url)
+        const trkUrl = trackId.split(" ")[0]
+        const trackIdx = activeSongQueue.findIndex(item => item.url === trkUrl)
         const removed = activeSongQueue.splice(trackIdx, 1)
 
         removeQueueButton(trackId);
-        console.log(`${removed} has been removed.`);
+        console.log(`${removed[0].title} has been removed.`);
     }
 
     const removeFirstFromQueue = () => {
         const first = activeSongQueue[1];
-        const searchBtn = first.songUrl + " " + first.songEp;
+        const searchBtn = first.url + " " + first.ep;
         removeQueueButton(searchBtn)
         activeSongQueue.shift();
         console.log("Queue shifted.")
         return;
     }
 
-    const findButtonSearch = (url) => {
-        const getId = activeSongQueue.find(track => track.songUrl === url)
-        const searchId = getId.songUrl + " " + getId.songEp
+    const findButtonSearch = (trackUrl) => {
+        const getId = activeSongQueue.find(track => track.url === trackUrl)
+        const searchId = getId.url + " " + getId.ep;
         return searchId;
     }
 
@@ -155,7 +157,7 @@ function bigFunction() {
     const findSong = (url) => {
         const songName = url;
 
-        let item = activeSongQueue[0].find(song => song.url === songName)
+        let item = fullSongList.find(song => song.songUrl === songName)
         return item;
     }
 
@@ -199,18 +201,21 @@ function bigFunction() {
     }
 
     // 
-    // Buttons
-    const topOfPageBtn = document.getElementById("returnToTop")
-    const autoPlayButton = document.getElementById("autoPlayOption");
+    // Buttons / options 
 
     let autoPlayOn = false;
+    window.localStorage.setItem("view", "albumView");
 
+    // top of page
+    const topOfPageBtn = document.getElementById("returnToTop")
     topOfPageBtn.addEventListener("click", (e) => {
         e.preventDefault();
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     })
 
+    // turn on auto play
+    const autoPlayButton = document.getElementById("autoPlayOption");
     autoPlayButton.addEventListener("click", (e) => {
         e.preventDefault();
         if (!autoPlayOn) {
@@ -222,6 +227,117 @@ function bigFunction() {
         autoPlayOn = false;
         autoPlayButton.innerText = "~expirimental autoplay~ -- OFF."
         autoPlayButton.classList.remove("opt-on")
+    })
+
+    // toggle show queue
+    const toggleQueue = document.getElementById("toggleShowQueue")
+    const queueicon = document.getElementById("sq")
+    const queueTip = document.getElementById("qTip")
+    toggleQueue.addEventListener("click", () => {
+        if (!queueListDump.classList.contains("menu-hide")) {
+
+            queueicon.classList.remove("glyphicon-menu-right")
+            queueicon.classList.add("glyphicon-menu-down")
+            queueListDump.classList.toggle('menu-hide')
+            // queue hidden
+            queueTip.innerText = "Queue Hidden."
+
+        } else {
+
+            queueListDump.classList.toggle('menu-hide')
+            queueicon.classList.remove("glyphicon-menu-down")
+            queueicon.classList.add("glyphicon-menu-right")
+            queueTip.innerText = "Queue:"
+        }
+    })
+
+    // change view buttons
+    const albumViewBtn = document.getElementById("viewAlbums")
+    const songViewBtn = document.getElementById("viewSongs")
+    const optViewBtn = document.getElementById("viewOptions")
+    albumViewBtn.addEventListener("click", () => {
+        if (!albumViewBtn.classList.contains("curr-view")) {
+            albumViewBtn.classList.add("curr-view")
+            optViewBtn.classList.remove("curr-view")
+            songViewBtn.classList.remove("curr-view")
+            renderAlbumView();
+        }
+    })
+    songViewBtn.addEventListener("click", () => {
+        if (!songViewBtn.classList.contains("curr-view")) {
+            songViewBtn.classList.add("curr-view")
+            albumViewBtn.classList.remove("curr-view")
+            optViewBtn.classList.remove("curr-view")
+            showSongView(fullSongList);
+        }
+    })
+    optViewBtn.addEventListener("click", () => {
+        if (!optViewBtn.classList.contains("curr-view")) {
+            optViewBtn.classList.add("curr-view")
+            albumViewBtn.classList.remove("curr-view")
+            songViewBtn.classList.remove("curr-view")
+            showOptionView();
+        }
+    })
+
+    // audio player buttons
+    const playButton = document.getElementById("pause-play");
+    const nextTrackBtn = document.getElementById("nextTrack");
+    const icon = document.getElementById("pp");
+    playButton.addEventListener("click", () => {
+        const isLoadedCheck = audioPlayer.src.split(".").pop()
+        // console.log(isLoadedCheck)
+        if (isLoadedCheck !== "mp3") {
+            return window.alert("Please queue up next song.")
+        }
+        if (audioPlayer.paused) {
+
+            icon.classList.remove("glyphicon-play");
+            icon.classList.add("glyphicon-pause");
+            audioPlayer.play();
+        } else {
+
+            audioPlayer.pause();
+            icon.classList.remove("glyphicon-pause");
+            icon.classList.add("glyphicon-play");
+        }
+    })
+
+    nextTrackBtn.addEventListener("click", () => {
+
+        const queueLength = activeSongQueue.length;
+        icon.classList.remove("glyphicon-pause");
+        icon.classList.add("glyphicon-play");
+        console.log(`You have ${queueLength - 2} items left in your queue!`);
+        if (queueLength <= 1) {
+            clearPlayer();
+            console.log("nothing queued!")
+        } else {
+            filterPlayer();
+            removeFirstFromQueue();
+            icon.classList.add("glyphicon-pause");
+            icon.classList.remove("glyphicon-play");
+            audioPlayer.play();
+        }
+    })
+
+    // 
+    // list header buttons (for sorting)
+    const headButtons = document.getElementById("headerRow").querySelectorAll("span");
+    headButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (e.target.classList.contains("list-reverse")) {
+                let list = fullSongList;
+                e.target.classList.remove("list-reverse")
+                return showSongView(list.reverse());
+            }
+
+            changeSortedSongList(e.target.dataset.sortBy)
+            showSongView(fullSongList)
+            e.target.classList.add("list-reverse");
+
+        })
     })
 
 
@@ -237,14 +353,14 @@ function bigFunction() {
             url: e.currentTarget.dataset.url,
             art: e.currentTarget.dataset.albumurl,
         }
-        const currQueueTime = activeSongQueue.length();
+        const currQueueTime = activeSongQueue.length || 0;
         if (currQueueTime === 0) {
             addSong2Queue(lookObj);
             filterPlayer();
         } else {
             if (doesButtonExist(lookObj) === 0) {
                 addSong2Queue(lookObj);
-                createQItem(lookObj);
+                renderButton(lookObj);
             } else {
                 window.alert("song already in queue!")
             }
@@ -274,32 +390,20 @@ function bigFunction() {
         })
     }
 
-    const buildAlbumCont = () => {
+    const buildAlbumCont = (albumInfo) => {
         const albumContainer = document.createElement("article");
-        const infoContainer = document.createElement("div");
         const trackContainer = document.createElement("div");
-        const albumTitle = document.createElement("h3");
-        const albumArtist = document.createElement("h2");
-        const albumRelease = document.createElement("p");
-        const albumArt = document.createElement("img");
-        //
+        const infoContainer = document.createElement("div");
         albumContainer.classList.add("disco-item");
-        infoContainer.classList.add("info-container");
         trackContainer.classList.add("track-container");
+        infoContainer.classList.add("info-container");
         trackContainer.id = albumInfo.title;
-        albumTitle.innerText = `"${albumInfo.title}"`;
-        albumArtist.innerText = albumInfo.artist;
-        albumRelease.innerText = albumInfo.releaseDate;
-        albumArt.src = albumInfo.webLink;
-        //
-        infoContainer.appendChild(albumArt)
-        infoContainer.appendChild(albumArtist)
-        infoContainer.appendChild(albumTitle)
-        infoContainer.appendChild(albumRelease)
-        albumContainer.appendChild(infoContainer)
-        //
-        albumInfo.trackList.map((idvTrack, idx) => {
 
+        const songInfoFrag = buildAlbumTemplate(albumInfo);
+        infoContainer.appendChild(songInfoFrag);
+        albumContainer.appendChild(infoContainer);
+
+        albumInfo.trackList.map((idvTrack, idx) => {
             const currSong = {
                 trackNum: idx + 1,
                 artist: albumInfo.artist,
@@ -316,19 +420,298 @@ function bigFunction() {
                 startTime: idvTrack.started
             }
 
-
             const songRow = buildAlbumView(currSong)
             songRow.addEventListener("click", handleTrackSelect);
             trackContainer.appendChild(songRow)
-
         })
+
         albumContainer.appendChild(trackContainer)
         return albumContainer;
     }
 
 
     // 
+    // song view
+    const showSongView = (sortedSongList) => {
+        localStorage.setItem("currentView", "list")
+
+        listDump.innerText = "";
+        discoContainer.classList.add('hide');
+        optionsContainer.classList.add("hide");
+        listView.classList.remove("hide");
+
+        sortedSongList.map((song, idx) => {
+            const currSong = {
+                trackNum: idx,
+                title: song.title,
+                length: song.length,
+                artist: song.artist,
+                ep: song.ep,
+                art: song.artLink,
+                url: song.url,
+                albumRelease: song.releaseDate,
+                artistLong: song.artistLong,
+                ogFile: song.ogFileName,
+                daw: song.dawUsed,
+                startDate: song.dateCreated,
+                startTime: song.timeCreated
+            }
+
+            const rowFragment = document.createDocumentFragment();
+            const songRow = buildSongView(currSong);
+            songRow.addEventListener("click", handleTrackSelect);
+            rowFragment.appendChild(songRow)
+            listDump.appendChild(rowFragment);
+        })
+    }
+
+    // options view
+    const showOptionView = () => {
+        listView.classList.add('hide');
+        listDump.innerText = '';
+        discoContainer.classList.add('hide');
+        optionsContainer.classList.remove('hide');
+        localStorage.setItem("currentView", "option")
+    }
+
+
+    // 
+    // track sort stuff
+    const splitLength = (time) => {
+        // "2:32"
+        if (time === "?:??") return 1;
+
+        const els = time.split(":");
+        return new Number((els[0] * 60) + els[1])
+    }
+
+    const splitDate = (date) => {
+        // "6-23-18"
+        if (date === "--") return 1;
+
+        const els = date.split("-");
+        const utcDate = new Date(Date.UTC(els[2], els[0] - 1, els[1]))
+        return utcDate.getTime();
+    }
+
+    const splitTimeSpamp = (ts) => {
+        // "12:05 PM"
+        if (ts === "--") return 1;
+
+        const els = ts.split(" ");
+        let mins = els[0].split(":")[0];
+        const secs = els[0].split(":")[1];
+        if (els[1] === "PM") {
+            mins = mins + 12;
+        }
+
+        const totalSecs = new Number((mins * 60) + secs);
+        return totalSecs;
+    }
+
+    const changeSortedSongList = (sortBy) => {
+        const currentSort = fullSongList;
+        let newSort;
+        switch (sortBy) {
+            case "trkNum":
+                console.log("but... why?")
+                break;
+
+            case "trkNme":
+                console.log("sorting by track title..");
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = a.songTitle.toUpperCase();
+                    let el2 = b.songTitle.toUpperCase();
+                    if (el1 > el2) {
+                        return 1
+                    }
+                    if (el1 < el2) {
+                        return -1
+                    }
+                    return 0;
+                })
+                break;
+
+            case "trkLen":
+                console.log("sorting by track length..")
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = splitLength(a.songLength);
+                    let el2 = splitLength(b.songLength);
+                    return el1 - el2;
+
+                })
+                break;
+
+            case "epTtl":
+                console.log("sorting by ep name..")
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = a.epName.toUpperCase();
+                    let el2 = b.epName.toUpperCase();
+                    if (el1 > el2) {
+                        return 1
+                    }
+                    if (el1 < el2) {
+                        return -1
+                    }
+                    return 0;
+                })
+
+                break;
+
+            case "artist":
+                console.log("sorting by track artist..")
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = a.epArtist.toUpperCase();
+                    let el2 = b.epArtist.toUpperCase();
+                    if (el1 > el2) {
+                        return 1
+                    }
+                    if (el1 < el2) {
+                        return -1
+                    }
+                    return 0;
+                })
+
+                break;
+
+            case "trkUrl":
+                console.log("sorting by track url..")
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = a.songUrl.toUpperCase();
+                    let el2 = b.songUrl.toUpperCase();
+                    if (el1 > el2) {
+                        return 1
+                    }
+                    if (el1 < el2) {
+                        return -1
+                    }
+                    return 0;
+
+                })
+                break;
+
+            case "trkOg":
+                console.log("sorting by file name..")
+                newSort = currentSort.sort((a, b) => {
+                    if (a.fileName === "--" || b.fileName === "--") return 0;
+
+                    let el1 = a.songOgFile.toUpperCase();
+                    let el2 = b.songOgFile.toUpperCase();
+                    if (el1 > el2) {
+                        return -1
+                    }
+                    if (el1 < el2) {
+                        return 1
+                    }
+                    return 0;
+                })
+                break;
+
+            case "trkDte":
+                console.log("sorting by date created..")
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = splitDate(a.songStDate);
+                    let el2 = splitDate(b.songStDate);
+                    return el1 - el2;
+
+                })
+                break;
+
+            case "trkTs":
+                console.log("sorting by timestamp..")
+                newSort = currentSort.sort((a, b) => {
+                    let el1 = splitTimeSpamp(a.songStTime);
+                    let el2 = splitTimeSpamp(b.songStTime);
+                    return el1 - el2;
+
+                })
+                break;
+
+            default:
+                console.log(";)")
+        }
+
+        changeSongList(newSort);
+    }
+
+
+    // 
+    // modal view
+    const modal = document.getElementById("qPrompt");
+    const modalDump = document.getElementById("modalDump");
+    const nowPlayingInfo = document.getElementById("nowPlayingInfo");
+    const closeModalBtn = document.getElementById("closeModal");
+    const removeBtn = document.getElementById("removeThisSong");
+    const upNextBtn = document.getElementById("upNextBtn");
+
+
+    const handleCurrentTrackClick = (url) => {
+
+        const data4Modal = findSong(url)
+        modalDump.innerText = `${url}=${JSON.stringify(data4Modal, null, 2)}`;
+        removeBtn.style.display = "none"
+        upNextBtn.style.display = "none"
+        modal.style.display = "block";
+    }
+
+    const handleQClick = (e) => {
+        e.preventDefault();
+        const searchUrl = e.target.id.split(" ")[0]
+        const data4Modal = findSong(searchUrl)
+        modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 2)}`;
+        removeBtn.dataset.whichSong = searchUrl
+        upNextBtn.dataset.whichSong = searchUrl
+        modal.style.display = "block";
+        removeBtn.style.display = "block"
+        upNextBtn.style.display = "block"
+    }
+
+    const closeModal = () => {
+        modal.style.display = "none";
+        removeBtn.dataset.whichSong = ""
+        modalDump.innerText = ""
+        removeBtn.style.display = "none"
+        upNextBtn.style.display = "none"
+    }
+
+    nowPlayingInfo.addEventListener("click", (e) => {
+        e.preventDefault();
+        const displayFor = currTrackName.innerText.split('"')[1]
+        handleCurrentTrackClick(displayFor)
+    })
+
+    upNextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const search = e.target.dataset.whichSong
+        const btnSearch = findButtonSearch(search);
+        removePlaceInQueue(btnSearch);
+        const songItem = findSong(search);
+        addSong2QueueFront(songItem);
+        closeModal();
+    })
+
+    removeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const search = e.target.dataset.whichSong
+        const btnSearch = findButtonSearch(search)
+        removePlaceInQueue(btnSearch)
+        closeModal();
+    })
+
+    closeModalBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeModal();
+    })
+
+    // 
     // window events
+    window.onclick = (event) => {
+        if (event.target == modal) {
+            modalDump.innerText = ""
+            modal.style.display = "none";
+        }
+    }
+
     window.onscroll = () => {
         if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
             topOfPageBtn.style.display = "flex";
@@ -352,4 +735,17 @@ function bigFunction() {
             console.log('no more items in queue.')
         }
     })
-}
+
+    // ok, now do this and load baby
+    converter(sketches);
+    const currView = localStorage.getItem("currentView");
+    if (currView === "list") {
+        songViewBtn.classList.add("curr-view")
+        showSongView(fullSongList);
+    } else {
+        console.log(currView)
+        albumViewBtn.classList.add("curr-view")
+        renderAlbumView();
+    }
+})();
+
