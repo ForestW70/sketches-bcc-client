@@ -38,6 +38,28 @@ const buildAlbumRow = (sketch) => {
     return trackRow;
 }
 
+export const buildAlbumTemplate = (album) => {
+    const infoFrag = document.createDocumentFragment();
+    const infoContainer = document.createElement("div");
+    infoContainer.classList.add("info-container");
+
+    const albumTitle = document.createElement("h3");
+    const albumArtist = document.createElement("h2");
+    const albumRelease = document.createElement("p");
+    const albumArt = document.createElement("img");
+
+    albumTitle.innerText = `"${album.title}"`;
+    albumArtist.innerText = album.artist;
+    albumRelease.innerText = album.releaseDate;
+    albumArt.src = album.webLink;
+
+    infoFrag.appendChild(albumArt)
+    infoFrag.appendChild(albumArtist)
+    infoFrag.appendChild(albumTitle)
+    infoFrag.appendChild(albumRelease)
+    return infoFrag;
+}
+
 // takes in single song object
 export const buildAlbumView = (sketch) => {
     const trackRow = document.createElement("button");
