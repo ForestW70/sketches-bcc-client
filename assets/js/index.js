@@ -1,6 +1,6 @@
 import { sketches } from "./sketches.js";
 
-import { createQueueButton, buildSongView, buildAlbumView } from "./renders.js"
+import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
 
 function bigFunction() {
 
@@ -264,100 +264,6 @@ function SongQueue(pushbox = []) {
 }
 const songQueue = new SongQueue();
 
-// class to control individual song actions 
-// (artist, title, ep, art, url, length, released, artistlong, ogFileName, dawUsed, dateCreated, timeCreated)
-function Song(artist, title, ep, art, url, length, released, long, ogFile, daw, startDate, startTime) {
-    this.artist = artist;
-    this.artistLong = long;
-    this.title = title;
-    this.ep = ep;
-    this.art = art;
-    this.url = url;
-    this.length = length;
-    this.released = released;
-    this.ogFile = ogFile;
-    this.daw = daw;
-    this.startDate = startDate;
-    this.startTime = startTime;
-
-    this.createListSongRow = (trackNum) => {
-        const trackNumber = document.createElement("span");
-        const trackName = document.createElement('span');
-        const trackLength = document.createElement('span');
-        const albumTitle = document.createElement('span');
-        const trackArtist = document.createElement('span');
-        const trackUrl = document.createElement('span');
-        const trackOgFile = document.createElement('span');
-        const trackDate = document.createElement('span');
-        const trackTimeStamp = document.createElement('span');
-        // set info
-        trackNumber.innerText = trackNum;
-        trackName.innerText = this.title;
-        trackLength.innerText = this.length
-        albumTitle.innerText = this.ep;
-        trackArtist.innerText = this.artist;
-        trackUrl.innerText = this.url;
-        trackOgFile.innerText = this.ogFile;
-        trackDate.innerText = this.startDate;
-        trackTimeStamp.innerText = this.startTime;
-        // row button
-        const trackRow = document.createElement("button");
-        trackRow.type = "button";
-        trackRow.classList.add('song-list-row');
-        trackRow.dataset.songId = this.title + '~' + this.ep;
-        trackRow.dataset.albumurl = this.art;
-        trackRow.dataset.title = this.title;
-        trackRow.dataset.length = this.length;
-        trackRow.dataset.epname = this.ep;
-        trackRow.dataset.artist = this.artist;
-        trackRow.dataset.url = this.url;
-        trackRow.dataset.ogFile = this.ogFile;
-        trackRow.dataset.dCreated = this.startDate;
-        trackRow.dataset.tCreated = this.startTime;
-
-        trackRow.addEventListener("click", handleTrackSelect);
-
-        // append
-        trackRow.appendChild(trackNumber);
-        trackRow.appendChild(trackName);
-        trackRow.appendChild(trackLength);
-        trackRow.appendChild(albumTitle);
-        trackRow.appendChild(trackArtist);
-        trackRow.appendChild(trackUrl);
-        trackRow.appendChild(trackOgFile);
-        trackRow.appendChild(trackDate);
-        trackRow.appendChild(trackTimeStamp);
-        listDump.appendChild(trackRow);
-    }
-
-    this.createAlbumSongRow = (trackNum) => {
-        const trackRow = document.createElement("button");
-        trackRow.type = "button";
-        trackRow.classList.add("t-row");
-        trackRow.dataset.url = this.url;
-        trackRow.dataset.length = this.length;
-        trackRow.dataset.epname = this.ep;
-        trackRow.dataset.albumurl = this.art;
-        trackRow.dataset.artist = this.artist;
-        trackRow.dataset.title = this.title;
-        trackRow.addEventListener("click", handleTrackSelect);
-        //
-        const tTitle = document.createElement("span");
-        const tTime = document.createElement("span");
-        const tNum = document.createElement("span");
-        tTitle.classList.add("album-track");
-        tTime.classList.add("track-time");
-        tNum.classList.add("track-num");
-        tTitle.innerText = this.title;
-        tTime.innerText = this.length;
-        tNum.innerText = trackNum;
-        //
-        trackRow.appendChild(tNum);
-        trackRow.appendChild(tTitle);
-        trackRow.appendChild(tTime);
-        return trackRow;
-    }
-}
 
 // UTILITY AND OTHER FEATURES
 //
@@ -469,28 +375,17 @@ const showAlbumView = () => {
 
 const buildAlbumCont = (albumInfo) => {
     const albumContainer = document.createElement("article");
-    const infoContainer = document.createElement("div");
     const trackContainer = document.createElement("div");
-    const albumTitle = document.createElement("h3");
-    const albumArtist = document.createElement("h2");
-    const albumRelease = document.createElement("p");
-    const albumArt = document.createElement("img");
-    //
+    const infoContainer = document.createElement("div");
     albumContainer.classList.add("disco-item");
-    infoContainer.classList.add("info-container");
     trackContainer.classList.add("track-container");
+    infoContainer.classList.add("info-container");
     trackContainer.id = albumInfo.title;
-    albumTitle.innerText = `"${albumInfo.title}"`;
-    albumArtist.innerText = albumInfo.artist;
-    albumRelease.innerText = albumInfo.releaseDate;
-    albumArt.src = albumInfo.webLink;
-    //
-    infoContainer.appendChild(albumArt)
-    infoContainer.appendChild(albumArtist)
-    infoContainer.appendChild(albumTitle)
-    infoContainer.appendChild(albumRelease)
-    albumContainer.appendChild(infoContainer)
-    //
+
+    const songInfoFrag = buildAlbumTemplate(albumInfo);
+    infoContainer.appendChild(songInfoFrag);
+    albumContainer.appendChild(infoContainer);
+
     albumInfo.trackList.map((idvTrack, idx) => {
 
         const currSong = {
