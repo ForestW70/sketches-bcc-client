@@ -10,8 +10,8 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
 
     // 
     // global song arrays
-    const activeSongQueue = [];
-    const fullSongList = [];
+    let activeSongQueue = [];
+    let fullSongList = [];
 
     // 
     // create default song list, manipulate list functions
@@ -114,7 +114,6 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
     }
 
     const removeQueueButton = (btnId) => {
-        console.log(btnId);
         document.getElementById(btnId).remove();
         return;
     }
@@ -443,18 +442,18 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         sortedSongList.map((song, idx) => {
             const currSong = {
                 trackNum: idx,
-                title: song.title,
-                length: song.length,
-                artist: song.artist,
-                ep: song.ep,
-                art: song.artLink,
-                url: song.url,
-                albumRelease: song.releaseDate,
-                artistLong: song.artistLong,
-                ogFile: song.ogFileName,
-                daw: song.dawUsed,
-                startDate: song.dateCreated,
-                startTime: song.timeCreated
+                title: song.songTitle,
+                length: song.songLength,
+                artist: song.epArtist,
+                ep: song.epName,
+                art: song.epArtLink,
+                url: song.songUrl,
+                albumRelease: song.epRelease,
+                artistLong: song.epArtistFull,
+                ogFile: song.songOgFile,
+                daw: song.songDaw,
+                startDate: song.songStDate,
+                startTime: song.songStTime
             }
 
             const rowFragment = document.createDocumentFragment();
@@ -515,6 +514,7 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         switch (sortBy) {
             case "trkNum":
                 console.log("but... why?")
+                newSort = currentSort
                 break;
 
             case "trkNme":
@@ -725,11 +725,10 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
             console.log("auto play is not on.")
             return;
         }
-        const qtime = songQueue.grabLength()
-        console.log(qtime)
+        const qtime = activeSongQueue.length;
         if (qtime > 1) {
-            songQueue.filterPlayer();
-            songQueue.removeFirstFromQueue();
+            filterPlayer();
+            removeFirstFromQueue();
             audioPlayer.play();
         } else if (qtime <= 1) {
             console.log('no more items in queue.')
