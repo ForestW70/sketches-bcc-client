@@ -2,7 +2,7 @@ export const createQueueButton = (el) => {
     const qId = el.url + " " + el.ep
     const qButton = document.createElement("button");
     // qButton.addEventListener("click", handleQClick);
-
+    qButton.classList.add("q-btn");
     qButton.type = "button"
     qButton.innerText = `${el.url} ~ ${el.ep}`;
     qButton.id = qId;

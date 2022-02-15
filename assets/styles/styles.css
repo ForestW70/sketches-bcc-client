@@ -329,6 +329,10 @@ audio::-webkit-media-controls-timeline {
     
 }
 
+.list-reverse {
+    font-style: italic;
+}
+
 .song-list-row {
     display: grid;
     width: 100%;

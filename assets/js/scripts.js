@@ -2,7 +2,9 @@ import { sketches } from "./sketches.js";
 
 import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
 
-(function() {
+import { getNewSortList } from "./sorter.js"
+
+(function () {
     // global dom pointers
     const queueListDump = document.getElementById("queueList");
 
@@ -48,12 +50,21 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         e.preventDefault();
         const searchUrl = e.target.id.split(" ")[0]
         const data4Modal = findSong(searchUrl)
-        modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 2)}`;
+        modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal.data, null, 2)}`;
         removeBtn.dataset.whichSong = searchUrl
         upNextBtn.dataset.whichSong = searchUrl
         modal.style.display = "block";
-        removeBtn.style.display = "block"
-        upNextBtn.style.display = "block"
+
+        if (data4Modal.queue === 1) {
+            removeBtn.style.display = "block"
+            upNextBtn.style.display = "none"
+        } else if (data4Modal.queue < 0) {
+            removeBtn.style.display = "none"
+            upNextBtn.style.display = "none"
+        } else {
+            removeBtn.style.display = "block"
+            upNextBtn.style.display = "block"
+        }
     }
 
     const doesQueueButtonExist = (songObj) => {
@@ -150,13 +161,24 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         }
         return 1;
     }
-    // grabNext = ()
-    // grabLength = ()
 
     const findSong = (url) => {
-        const songName = url;
+        let songName;
+        if (url.split('"').length > 1) {
+            songName = url.split('"')[1]
+        } else {
+            songName = url;
+        }
+        // const songName = url;
+        console.log(songName)
+        const placeInQ = activeSongQueue.findIndex(song => song.url === songName)
+        const foundSong = fullSongList.find(song => song.songUrl === songName)
 
-        let item = fullSongList.find(song => song.songUrl === songName)
+        const item = {
+            queue: placeInQ,
+            data: foundSong
+        }
+        console.log(item)
         return item;
     }
 
@@ -326,15 +348,21 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
     headButtons.forEach(button => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
+
+            let isNextReverse = "";
             if (e.target.classList.contains("list-reverse")) {
-                let list = fullSongList;
-                e.target.classList.remove("list-reverse")
-                return showSongView(list.reverse());
+                isNextReverse = "true"
+                e.target.classList.remove("list-reverse");
+            } else {
+                isNextReverse = "false"
+                e.target.classList.add("list-reverse");
             }
 
-            changeSortedSongList(e.target.dataset.sortBy)
-            showSongView(fullSongList)
-            e.target.classList.add("list-reverse");
+            const sortByIdentifier = e.target.dataset.sortBy;
+            // changeSortedSongList(sortByIdentifier, isNextReverse);
+            const newSort = getNewSortList(sortByIdentifier, isNextReverse, fullSongList);
+            changeSongList(newSort);
+            showSongView(fullSongList);
 
         })
     })
@@ -353,6 +381,7 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
             art: e.currentTarget.dataset.albumurl,
         }
         const currQueueTime = activeSongQueue.length || 0;
+        // addQView()
         if (currQueueTime === 0) {
             addSong2Queue(lookObj);
             filterPlayer();
@@ -368,6 +397,8 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
 
     // 
     // view swap functions and variables
+    // 
+    // album view
     const discoContainer = document.getElementById("disco");
     const listDump = document.getElementById("listDump");
     const listView = document.getElementById("list");
@@ -464,6 +495,7 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         })
     }
 
+    // 
     // options view
     const showOptionView = () => {
         listView.classList.add('hide');
@@ -473,170 +505,11 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         localStorage.setItem("currentView", "option")
     }
 
-
-    // 
-    // track sort stuff
-    const splitLength = (time) => {
-        // "2:32"
-        if (time === "?:??") return 1;
-
-        const els = time.split(":");
-        return new Number((els[0] * 60) + els[1])
-    }
-
-    const splitDate = (date) => {
-        // "6-23-18"
-        if (date === "--") return 1;
-
-        const els = date.split("-");
-        const utcDate = new Date(Date.UTC(els[2], els[0] - 1, els[1]))
-        return utcDate.getTime();
-    }
-
-    const splitTimeSpamp = (ts) => {
-        // "12:05 PM"
-        if (ts === "--") return 1;
-
-        const els = ts.split(" ");
-        let mins = els[0].split(":")[0];
-        const secs = els[0].split(":")[1];
-        if (els[1] === "PM") {
-            mins = mins + 12;
-        }
-
-        const totalSecs = new Number((mins * 60) + secs);
-        return totalSecs;
-    }
-
-    const changeSortedSongList = (sortBy) => {
-        const currentSort = fullSongList;
-        let newSort;
-        switch (sortBy) {
-            case "trkNum":
-                console.log("but... why?")
-                newSort = currentSort
-                break;
-
-            case "trkNme":
-                console.log("sorting by track title..");
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = a.songTitle.toUpperCase();
-                    let el2 = b.songTitle.toUpperCase();
-                    if (el1 > el2) {
-                        return 1
-                    }
-                    if (el1 < el2) {
-                        return -1
-                    }
-                    return 0;
-                })
-                break;
-
-            case "trkLen":
-                console.log("sorting by track length..")
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = splitLength(a.songLength);
-                    let el2 = splitLength(b.songLength);
-                    return el1 - el2;
-
-                })
-                break;
-
-            case "epTtl":
-                console.log("sorting by ep name..")
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = a.epName.toUpperCase();
-                    let el2 = b.epName.toUpperCase();
-                    if (el1 > el2) {
-                        return 1
-                    }
-                    if (el1 < el2) {
-                        return -1
-                    }
-                    return 0;
-                })
-
-                break;
-
-            case "artist":
-                console.log("sorting by track artist..")
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = a.epArtist.toUpperCase();
-                    let el2 = b.epArtist.toUpperCase();
-                    if (el1 > el2) {
-                        return 1
-                    }
-                    if (el1 < el2) {
-                        return -1
-                    }
-                    return 0;
-                })
-
-                break;
-
-            case "trkUrl":
-                console.log("sorting by track url..")
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = a.songUrl.toUpperCase();
-                    let el2 = b.songUrl.toUpperCase();
-                    if (el1 > el2) {
-                        return 1
-                    }
-                    if (el1 < el2) {
-                        return -1
-                    }
-                    return 0;
-
-                })
-                break;
-
-            case "trkOg":
-                console.log("sorting by file name..")
-                newSort = currentSort.sort((a, b) => {
-                    if (a.fileName === "--" || b.fileName === "--") return 0;
-
-                    let el1 = a.songOgFile.toUpperCase();
-                    let el2 = b.songOgFile.toUpperCase();
-                    if (el1 > el2) {
-                        return -1
-                    }
-                    if (el1 < el2) {
-                        return 1
-                    }
-                    return 0;
-                })
-                break;
-
-            case "trkDte":
-                console.log("sorting by date created..")
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = splitDate(a.songStDate);
-                    let el2 = splitDate(b.songStDate);
-                    return el1 - el2;
-
-                })
-                break;
-
-            case "trkTs":
-                console.log("sorting by timestamp..")
-                newSort = currentSort.sort((a, b) => {
-                    let el1 = splitTimeSpamp(a.songStTime);
-                    let el2 = splitTimeSpamp(b.songStTime);
-                    return el1 - el2;
-
-                })
-                break;
-
-            default:
-                console.log(";)")
-        }
-
-        changeSongList(newSort);
-    }
-
-
     // 
     // modal view
+
+
+
     const modal = document.getElementById("qPrompt");
     const modalDump = document.getElementById("modalDump");
     const nowPlayingInfo = document.getElementById("nowPlayingInfo");
@@ -645,26 +518,26 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
     const upNextBtn = document.getElementById("upNextBtn");
 
 
-    const handleCurrentTrackClick = (url) => {
+    // const queueListButtons = document.getElementsByClassName("q-btn");
+    // const addQView = () => {
+    //     if (queueListButtons.length > 0) {
+    //         console.log(queueListButtons + "theres more than one!")
 
-        const data4Modal = findSong(url)
-        modalDump.innerText = `${url}=${JSON.stringify(data4Modal, null, 2)}`;
-        removeBtn.style.display = "none"
-        upNextBtn.style.display = "none"
-        modal.style.display = "block";
-    }
-
-    const handleQClick = (e) => {
-        e.preventDefault();
-        const searchUrl = e.target.id.split(" ")[0]
-        const data4Modal = findSong(searchUrl)
-        modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal, null, 2)}`;
-        removeBtn.dataset.whichSong = searchUrl
-        upNextBtn.dataset.whichSong = searchUrl
-        modal.style.display = "block";
-        removeBtn.style.display = "block"
-        upNextBtn.style.display = "block"
-    }
+    //     } else {
+    //         console.log(queueListButtons)
+    //     }
+    // }
+    // queueListButtons.map(btn => {
+    //     btn.addEventListener("click", handleQueueItemClick);
+    // })
+    // console.log(queueListButtons)
+    // const handleCurrentTrackClick = (url) => {
+    //     const data4Modal = findSong(url)
+    //     modalDump.innerText = `${url}=${JSON.stringify(data4Modal.data, null, 2)}`;
+    //     removeBtn.style.display = "none"
+    //     upNextBtn.style.display = "none"
+    //     modal.style.display = "block";
+    // }
 
     const closeModal = () => {
         modal.style.display = "none";
@@ -676,8 +549,13 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
 
     nowPlayingInfo.addEventListener("click", (e) => {
         e.preventDefault();
-        const displayFor = currTrackName.innerText.split('"')[1]
-        handleCurrentTrackClick(displayFor)
+        const searchUrl = e.target.innerText;
+        const data4Modal = findSong(searchUrl);
+        modalDump.innerText = `${searchUrl}=${JSON.stringify(data4Modal.data, null, 2)}`;
+        modal.style.display = "block";
+        removeBtn.style.display = "none"
+        upNextBtn.style.display = "none"
+        console.log(data4Modal[1]);
     })
 
     upNextBtn.addEventListener("click", (e) => {
@@ -686,7 +564,7 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
         const btnSearch = findButtonSearch(search);
         removePlaceInQueue(btnSearch);
         const songItem = findSong(search);
-        addSong2QueueFront(songItem);
+        addSong2QueueFront(songItem.data);
         closeModal();
     })
 

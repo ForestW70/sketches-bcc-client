@@ -645,7 +645,7 @@ export const sketches = [
                 fileName: 'flaws',
                 daw: 'FLstudio',
                 date: '04-02-19',
-                started: '3:30PM',
+                started: '3:30 PM',
             },
             {
                 track: 'Gabby',
