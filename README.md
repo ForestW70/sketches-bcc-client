@@ -34,7 +34,7 @@ v1.79 - MIT - For Good.
         - Song Download.
 
     * ##### Features yet to add:
-        - refactor code to be uniform
+        - refactor code to be uniform (eslint)
 
 
 * #### Contribution:
@@ -46,5 +46,5 @@ v1.79 - MIT - For Good.
     - Soundcloud - https://soundcloud.com/itsjustaburner
 
 - ###### Links:    
-    - [Visit page](https://forestw70.github.io/sketches-bcc-client/index.html)
+    - [Visit page](https://burnthis.space)
     - [Visit repo](https://github.com/ForestW70/sketches-bcc-client)

@@ -1,5 +1,5 @@
-import { sketches, pods, shhhhhdontsnitch, powerfulSophie } from "./sketches.js";
-import { autoPlayBlurb } from "./textVars.js";
+import { sketches, lilExtras, pods, shhhhhdontsnitch, powerfulSophie } from "./sketches.js";
+import { autoPlayBlurb, xtraTracksBlurb } from "./textVars.js";
 import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
 import { getNewSortList } from "./sorter.js"
 
@@ -37,7 +37,7 @@ import { getNewSortList } from "./sorter.js"
         })
     }
 
-    
+
 
     const changeSongList = (newSongArr) => {
         fullSongList = newSongArr;
@@ -219,9 +219,6 @@ import { getNewSortList } from "./sorter.js"
     // 
     // Buttons / options 
 
-    // let autoPlayOn = false;
-    
-    // window.localStorage.setItem("currentView", "albumView");
     window.localStorage.setItem("autoPlay", "off");
 
     // top of page
@@ -236,15 +233,59 @@ import { getNewSortList } from "./sorter.js"
     const autoPlayButton = document.getElementById("autoPlayOption");
     autoPlayButton.addEventListener("click", (e) => {
         e.preventDefault();
-        if (window.localStorage.getItem("autoPlay") === "off") {
-            autoPlayButton.innerText = autoPlayBlurb[0];
-            autoPlayButton.classList.add("opt-on")
-            window.localStorage.setItem("autoPlay", "on")
+        if (window.localStorage.getItem("autoPlay") === "on") {
+            window.localStorage.setItem("autoPlay", "off")
+            autoPlayButton.innerText = autoPlayBlurb[1];
+            autoPlayButton.classList.remove("opt-on")
             return;
         }
-        window.localStorage.setItem("autoPlay", "off")
-        autoPlayButton.innerText = autoPlayBlurb[1];
-        autoPlayButton.classList.remove("opt-on")
+        autoPlayButton.innerText = autoPlayBlurb[0];
+        autoPlayButton.classList.add("opt-on")
+        window.localStorage.setItem("autoPlay", "on")
+
+    })
+
+    // track pool status button
+    const xtraTracksButton = document.getElementById("extrasOption");
+
+    if (localStorage.getItem("extras") === "on") {
+        xtraTracksButton.classList.add("opt-on");
+        xtraTracksButton.innerText = xtraTracksBlurb[0];
+    }    
+
+    xtraTracksButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // check local storage to show user which tracks are enabled
+        if (window.localStorage.getItem("extras") === "on") {
+            window.localStorage.setItem("extras", "off");
+            xtraTracksButton.innerText = xtraTracksBlurb[1];
+            xtraTracksButton.classList.remove("opt-on");
+            return;
+        }
+
+        // if (
+        //     window.localStorage.getItem("alf") === "on" ||
+        //     window.localStorage.getItem("pods") === "on" ||
+        //     window.localStorage.getItem("pods") === "on"
+        //     ) {
+        //     xtraTracksButton.innerText = xtraTracksBlurb[2];
+
+        // } else if (
+        //     window.localStorage.getItem("alf") === "on" &&
+        //     window.localStorage.getItem("pods") === "on" &&
+        //     window.localStorage.getItem("pods") === "on"
+        //     ) {
+        //     xtraTracksButton.innerText = xtraTracksBlurb[3];
+
+        // } else {
+        //     xtraTracksButton.innerText = xtraTracksBlurb[0];
+        // }
+
+        xtraTracksButton.innerText = xtraTracksBlurb[0];
+        xtraTracksButton.classList.add("opt-on");
+        window.localStorage.setItem("extras", "on");
+
     })
 
     // toggle show queue
@@ -366,6 +407,7 @@ import { getNewSortList } from "./sorter.js"
 
     const addPodsBtn = document.getElementById("addPods");
     addPodsBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         if (addPodsBtn.classList.contains("egg-on")) {
             window.localStorage.setItem("pods", "off")
             addPodsBtn.classList.remove("egg-on")
@@ -610,13 +652,16 @@ import { getNewSortList } from "./sorter.js"
 
     // finalize client song pool function
     const concaterator = () => {
-        if (localStorage.getItem("pods") === "on"){
+        if (localStorage.getItem("extras") === "on") {
+            songPool = songPool.concat(lilExtras);
+        }
+        if (localStorage.getItem("pods") === "on") {
             songPool = songPool.concat(pods);
-        } 
-        if (localStorage.getItem("alf") === "on"){
+        }
+        if (localStorage.getItem("alf") === "on") {
             songPool = songPool.concat(shhhhhdontsnitch);
         }
-        if (localStorage.getItem("soph") === "on"){
+        if (localStorage.getItem("soph") === "on") {
             songPool = songPool.concat(powerfulSophie);
         }
     }
@@ -624,12 +669,12 @@ import { getNewSortList } from "./sorter.js"
     // ok, now do this and load baby
     concaterator();
     converter(songPool);
-    
+
     const currView = localStorage.getItem("currentView");
     if (currView === "list") {
         songViewBtn.classList.add("curr-view")
         showSongView(fullSongList);
-        
+
     } else if (currView === "option") {
         optViewBtn.classList.add("curr-view")
         showOptionView();

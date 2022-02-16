@@ -203,6 +203,8 @@ header {
 }
 
 #maesButton, #aarinsButton {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
     display: block;
     border: none;
     background-color: transparent;
@@ -247,7 +249,7 @@ header {
 /*  */
 @media screen and (max-width: 1000px) {
     .song-list-row {
-        grid-template-columns: 3fr .7fr 1.25fr 1.5fr 2fr 1.75fr 1.5fr 1fr;
+        grid-template-columns: .5fr 3fr .7fr 1.25fr 1.5fr 2fr 1.75fr 1.5fr 1fr;
     }
     
     .song-list-row > span {
@@ -258,9 +260,9 @@ header {
         border-left: 1px solid white;
     }
 
-    .song-list-row > span:nth-child(1) {
+    /* .song-list-row > span:nth-child(1) {
         display: none;
-    }
+    } */
 
     .song-list-row:hover {
         border:none;
