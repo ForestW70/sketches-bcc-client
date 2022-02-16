@@ -1,4 +1,5 @@
 import { sketches, pods, shhhhhdontsnitch } from "./sketches.js";
+import { autoPlayBlurb } from "./textVars.js";
 import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
 import { getNewSortList } from "./sorter.js"
 
@@ -232,13 +233,13 @@ import { getNewSortList } from "./sorter.js"
     autoPlayButton.addEventListener("click", (e) => {
         e.preventDefault();
         if (!autoPlayOn) {
-            autoPlayButton.innerText = "~expirimental autoplay~ -- ON."
+            autoPlayButton.innerText = autoPlayBlurb[0];
             autoPlayButton.classList.add("opt-on")
             autoPlayOn = true;
             return;
         }
         autoPlayOn = false;
-        autoPlayButton.innerText = "~expirimental autoplay~ -- OFF."
+        autoPlayButton.innerText = autoPlayBlurb[1];
         autoPlayButton.classList.remove("opt-on")
     })
 
@@ -591,19 +592,11 @@ import { getNewSortList } from "./sorter.js"
     const snacksOn = localStorage.getItem("xtras");
     
     
+    if (localStorage.getItem("pods") === "on") {
+        songPool = songPool.concat(pods);
+    }
     if (localStorage.getItem("alf") === "on") {
         songPool = songPool.concat(shhhhhdontsnitch);
-    }
-    if (localStorage.getItem("pods") === "on") {
-
-
-
-
-
-
-
-        
-        songPool = songPool.concat(pods);
     }
     converter(songPool);
 
