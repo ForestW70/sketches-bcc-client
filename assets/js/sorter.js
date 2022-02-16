@@ -1,4 +1,3 @@
-
 // number clensing functions
 const splitLength = (time, rev) => {
     // "2:32"
@@ -182,9 +181,14 @@ export const getNewSortList = (sortBy, rev, currentSortedList) => {
 
         default:
             newSort = currentSortedList;
+            if (rev === "true") {
+                localStorage.setItem("alf", "off");
+            } else {
+                localStorage.setItem("alf", "on");
+            } 
+            
             console.log(";)")
     }
 
-    // changeSongList(newSort);
     return newSort;
 }

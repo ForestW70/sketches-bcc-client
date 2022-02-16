@@ -1,19 +1,16 @@
-import { sketches } from "./sketches.js";
-
+import { sketches, pods, shhhhhdontsnitch } from "./sketches.js";
 import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
-
 import { getNewSortList } from "./sorter.js"
 
 (function () {
     // global dom pointers
     const queueListDump = document.getElementById("queueList");
 
-
-
     // 
     // global song arrays
     let activeSongQueue = [];
     let fullSongList = [];
+    let songPool = sketches;
 
     // 
     // create default song list, manipulate list functions
@@ -39,13 +36,14 @@ import { getNewSortList } from "./sorter.js"
         })
     }
 
-
     const changeSongList = (newSongArr) => {
         fullSongList = newSongArr;
     }
 
     // 
     // queue functions
+    // 
+    // click on queue item for info modal
     const handleQueueItemClick = (e) => {
         e.preventDefault();
         const searchUrl = e.target.id.split(" ")[0]
@@ -67,6 +65,7 @@ import { getNewSortList } from "./sorter.js"
         }
     }
 
+    // retrieve info functions
     const doesQueueButtonExist = (songObj) => {
         const searchId = songObj.url + " " + songObj.ep;
         const buttonSearch = document.getElementById(searchId)
@@ -76,6 +75,33 @@ import { getNewSortList } from "./sorter.js"
         return 1;
     }
 
+    const findButtonSearch = (trackUrl) => {
+        const getId = activeSongQueue.find(track => track.url === trackUrl)
+        const searchId = getId.url + " " + getId.ep;
+        return searchId;
+    }
+
+    const findSong = (url) => {
+        let songName;
+        if (url.split('"').length > 1) {
+            songName = url.split('"')[1]
+        } else {
+            songName = url;
+        }
+        // const songName = url;
+        console.log(songName)
+        const placeInQ = activeSongQueue.findIndex(song => song.url === songName)
+        const foundSong = fullSongList.find(song => song.songUrl === songName)
+
+        const item = {
+            queue: placeInQ,
+            data: foundSong
+        }
+        console.log(item)
+        return item;
+    }
+
+    // Queue creation
     const addSong2Queue = (el) => {
         const item = {
             title: el.title,
@@ -107,7 +133,6 @@ import { getNewSortList } from "./sorter.js"
     }
 
     const renderButton = (el) => {
-        // const qId = el.url + " " + el.ep
         const qObj = {
             url: el.url,
             ep: el.ep,
@@ -124,6 +149,7 @@ import { getNewSortList } from "./sorter.js"
         }
     }
 
+    // Queue removal
     const removeQueueButton = (btnId) => {
         document.getElementById(btnId).remove();
         return;
@@ -147,41 +173,7 @@ import { getNewSortList } from "./sorter.js"
         return;
     }
 
-    const findButtonSearch = (trackUrl) => {
-        const getId = activeSongQueue.find(track => track.url === trackUrl)
-        const searchId = getId.url + " " + getId.ep;
-        return searchId;
-    }
-
-    const doesButtonExist = (songObj) => {
-        const searchId = songObj.url + " " + songObj.ep;
-        const buttonSearch = document.getElementById(searchId)
-        if (buttonSearch === null) {
-            return 0
-        }
-        return 1;
-    }
-
-    const findSong = (url) => {
-        let songName;
-        if (url.split('"').length > 1) {
-            songName = url.split('"')[1]
-        } else {
-            songName = url;
-        }
-        // const songName = url;
-        console.log(songName)
-        const placeInQ = activeSongQueue.findIndex(song => song.url === songName)
-        const foundSong = fullSongList.find(song => song.songUrl === songName)
-
-        const item = {
-            queue: placeInQ,
-            data: foundSong
-        }
-        console.log(item)
-        return item;
-    }
-
+    // 
     // audio player functions and poitners
     const currAlbumPic = document.getElementById("albumPic");
     const currTrackName = document.getElementById("trackName");
@@ -225,7 +217,7 @@ import { getNewSortList } from "./sorter.js"
     // Buttons / options 
 
     let autoPlayOn = false;
-    window.localStorage.setItem("view", "albumView");
+    window.localStorage.setItem("currentView", "albumView");
 
     // top of page
     const topOfPageBtn = document.getElementById("returnToTop")
@@ -367,6 +359,12 @@ import { getNewSortList } from "./sorter.js"
         })
     })
 
+    const addPodsBtn = document.getElementById("addPods");
+    addPodsBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.setItem("pods", "on")
+    })
+
 
     // 
     // track select functions
@@ -386,7 +384,7 @@ import { getNewSortList } from "./sorter.js"
             addSong2Queue(lookObj);
             filterPlayer();
         } else {
-            if (doesButtonExist(lookObj) === 0) {
+            if (doesQueueButtonExist(lookObj) === 0) {
                 addSong2Queue(lookObj);
                 renderButton(lookObj);
             } else {
@@ -407,14 +405,14 @@ import { getNewSortList } from "./sorter.js"
     const renderAlbumView = () => {
         localStorage.setItem("currentView", "album")
 
-        discoContainer.innerText = ""
-        listDump.innerText = '';
+        discoContainer.innerText = "";
+        listDump.innerText = "";
         listView.classList.add("hide");
         optionsContainer.classList.add("hide");
         discoContainer.classList.remove("hide");
 
 
-        sketches.map(album => {
+        songPool.map(album => {
             const idvAlbum = buildAlbumCont(album);
             discoContainer.appendChild(idvAlbum);
         })
@@ -507,9 +505,6 @@ import { getNewSortList } from "./sorter.js"
 
     // 
     // modal view
-
-
-
     const modal = document.getElementById("qPrompt");
     const modalDump = document.getElementById("modalDump");
     const nowPlayingInfo = document.getElementById("nowPlayingInfo");
@@ -592,8 +587,26 @@ import { getNewSortList } from "./sorter.js"
     })
 
     // ok, now do this and load baby
-    converter(sketches);
     const currView = localStorage.getItem("currentView");
+    const snacksOn = localStorage.getItem("xtras");
+    
+    
+    if (localStorage.getItem("alf") === "on") {
+        songPool = songPool.concat(shhhhhdontsnitch);
+    }
+    if (localStorage.getItem("pods") === "on") {
+
+
+
+
+
+
+
+        
+        songPool = songPool.concat(pods);
+    }
+    converter(songPool);
+
     if (currView === "list") {
         songViewBtn.classList.add("curr-view")
         showSongView(fullSongList);

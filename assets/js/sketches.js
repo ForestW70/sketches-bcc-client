@@ -740,7 +740,7 @@ export const sketches = [
             },
         ]
     },
-    
+
     {
         title: "IB",
         artist: 'con',
@@ -889,43 +889,7 @@ export const sketches = [
             },
         ]
     },
-    {
-        title: "BRSSF Pods",
-        artist: "Burner B",
-        longArtist: "DJ Burna B",
-        releaseDate: "September 30th, 2018",
-        artLink: "./assets/pods.jpg",
-        webLink: "https://burnthis.space/assets/images/pods.jpg",
-        trackList: [
-            {
-                track: 'Soundscape Source Feed vol. 1',
-                length: "33:33",
-                url: 'pod1-198',
-                fileName: 'brssfv1',
-                daw: 'FLstudio',
-                date: '09-30-18',
-                started: '--',
-            },
-            {
-                track: 'Soundscape Source Feed vol. 2',
-                length: "55:08",
-                url: 'pod2-112',
-                fileName: 'brssfv2',
-                daw: 'FLstudio',
-                date: '12-26-18',
-                started: '--',
-            },
-            {
-                track: 'Soundscape Source Feed vol. 3',
-                length: "40:27",
-                url: 'pod3-160',
-                fileName: 'brssfv3',
-                daw: 'FLstudio',
-                date: '03-01-19',
-                started: '--',
-            }
-        ]
-    },
+
     // {
     //     title: 'ALF',
     //     artist: 'Not Us',
@@ -1089,4 +1053,210 @@ export const sketches = [
     //         },
     //     ]
     // },
+]
+
+export const pods = [
+    {
+        title: "BRSSF Pods",
+        artist: "Burner B",
+        longArtist: "DJ Burna B",
+        releaseDate: "September 30th, 2018",
+        artLink: "./assets/pods.jpg",
+        webLink: "https://burnthis.space/assets/images/pods.jpg",
+        trackList: [
+            {
+                track: 'Soundscape Source Feed vol. 1',
+                length: "33:33",
+                url: 'pod1-198',
+                fileName: 'brssfv1',
+                daw: 'FLstudio',
+                date: '09-30-18',
+                started: '--',
+            },
+            {
+                track: 'Soundscape Source Feed vol. 2',
+                length: "55:08",
+                url: 'pod2-112',
+                fileName: 'brssfv2',
+                daw: 'FLstudio',
+                date: '12-26-18',
+                started: '--',
+            },
+            {
+                track: 'Soundscape Source Feed vol. 3',
+                length: "40:27",
+                url: 'pod3-160',
+                fileName: 'brssfv3',
+                daw: 'FLstudio',
+                date: '03-01-19',
+                started: '--',
+            }
+        ]
+    }
+]
+
+export const shhhhhdontsnitch = [
+    {
+        title: 'ALF',
+        artist: 'Not Us',
+        longArtist: 'Definitly not us',
+        releaseDate: 'N/A',
+        artLink: './assets/alf.jpg',
+        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/alf.jpg',
+        trackList: [
+            {
+                track: 'drifting into open',
+                length: '0:49',
+                url: 'shhhhh/01',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'shot thru tubes',
+                length: '0:36',
+                url: 'shhhhh/02',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: '333 pt. 1',
+                length: '0:37',
+                url: 'shhhhh/03',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'random luvly moncton blues',
+                length: '3:15',
+                url: 'shhhhh/15',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'dadmomdaddy',
+                length: '2:40',
+                url: 'shhhhh/16',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'untitled',
+                length: '1:01',
+                url: 'shhhhh/17',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: '333fps intro',
+                length: '0:37',
+                url: 'shhhhh/18',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: '333fps',
+                length: '2:51',
+                url: 'shhhhh/19',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'RAWTTHCHH',
+                length: '2:05',
+                url: 'shhhhh/20',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'ditty for moya',
+                length: '1:06',
+                url: 'shhhhh/21',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'buried ton',
+                length: '3:23',
+                url: 'shhhhh/22',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'ATHGS',
+                length: '2:05',
+                url: 'shhhhh/23',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'ATHGS cont. / hoarding',
+                length: '3:46',
+                url: 'shhhhh/24',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'deterior 23',
+                length: '1:47',
+                url: 'shhhhh/25',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'AAG',
+                length: '6:00',
+                url: 'shhhhh/26',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'deterior 17',
+                length: '3:13',
+                url: 'shhhhh/27',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'deterior three',
+                length: '2:49',
+                url: 'shhhhh/28',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+        ]
+    },
 ]
