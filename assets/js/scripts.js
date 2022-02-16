@@ -37,6 +37,8 @@ import { getNewSortList } from "./sorter.js"
         })
     }
 
+    
+
     const changeSongList = (newSongArr) => {
         fullSongList = newSongArr;
     }
@@ -219,7 +221,7 @@ import { getNewSortList } from "./sorter.js"
 
     // let autoPlayOn = false;
     
-    window.localStorage.setItem("currentView", "albumView");
+    // window.localStorage.setItem("currentView", "albumView");
     window.localStorage.setItem("autoPlay", "off");
 
     // top of page
@@ -364,8 +366,13 @@ import { getNewSortList } from "./sorter.js"
 
     const addPodsBtn = document.getElementById("addPods");
     addPodsBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        localStorage.setItem("pods", "on")
+        if (addPodsBtn.classList.contains("egg-on")) {
+            window.localStorage.setItem("pods", "off")
+            addPodsBtn.classList.remove("egg-on")
+        } else {
+            window.localStorage.setItem("pods", "on")
+            addPodsBtn.classList.add("egg-on")
+        }
     })
 
 
@@ -557,6 +564,18 @@ import { getNewSortList } from "./sorter.js"
         closeModal();
     })
 
+    const maeBtn = document.getElementById("maesButton");
+
+    maeBtn.addEventListener("click", () => {
+        if (maeBtn.classList.contains("egg-on")) {
+            window.localStorage.setItem("soph", "off");
+            maeBtn.classList.remove("egg-on");
+        } else {
+            window.localStorage.setItem("soph", "on");
+            maeBtn.classList.add("egg-on");
+        }
+    })
+
     // 
     // window events
     window.onclick = (event) => {
@@ -589,23 +608,32 @@ import { getNewSortList } from "./sorter.js"
         }
     })
 
-    // ok, now do this and load baby
-    const currView = localStorage.getItem("currentView");
-    const snacksOn = localStorage.getItem("xtras");
-    
-    
-    if (localStorage.getItem("pods") === "on") {
-        songPool = songPool.concat(pods);
+    // finalize client song pool function
+    const concaterator = () => {
+        if (localStorage.getItem("pods") === "on"){
+            songPool = songPool.concat(pods);
+        } 
+        if (localStorage.getItem("alf") === "on"){
+            songPool = songPool.concat(shhhhhdontsnitch);
+        }
+        if (localStorage.getItem("soph") === "on"){
+            songPool = songPool.concat(powerfulSophie);
+        }
     }
-    if (localStorage.getItem("alf") === "on") {
-        songPool = songPool.concat(shhhhhdontsnitch);
-    }
-    converter(songPool);
 
+    // ok, now do this and load baby
+    concaterator();
+    converter(songPool);
+    
+    const currView = localStorage.getItem("currentView");
     if (currView === "list") {
         songViewBtn.classList.add("curr-view")
         showSongView(fullSongList);
         
+    } else if (currView === "option") {
+        optViewBtn.classList.add("curr-view")
+        showOptionView();
+
     } else {
         albumViewBtn.classList.add("curr-view")
         renderAlbumView();

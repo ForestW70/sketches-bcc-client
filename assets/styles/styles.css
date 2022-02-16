@@ -170,7 +170,7 @@ header {
 /*  */
 /* Options and Info View*/
 /*  */
-.credits > h2, .credits > h3, .credits > h4, .credits > h5 {
+.credits > h2, .credits > h3, .credits h4, .credits > h5 {
     margin:0;
     margin-left: 10px;
 }
@@ -198,9 +198,24 @@ header {
     background-color: green;
 }
 
-
 .tutorial {
     margin-right: 20px;
+}
+
+#maesButton, #aarinsButton {
+    display: block;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    /* margin-left: 10px; */
+}
+
+#maesButton:hover, #aarinsButton:hover {
+    font-style: italic;
+}
+
+.egg-on {
+    color: pink;
 }
 
 /* utilities */
