@@ -1,4 +1,4 @@
-import { sketches, pods, shhhhhdontsnitch } from "./sketches.js";
+import { sketches, pods, shhhhhdontsnitch, powerfulSophie } from "./sketches.js";
 import { autoPlayBlurb } from "./textVars.js";
 import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } from "./renders.js"
 import { getNewSortList } from "./sorter.js"
@@ -217,8 +217,10 @@ import { getNewSortList } from "./sorter.js"
     // 
     // Buttons / options 
 
-    let autoPlayOn = false;
+    // let autoPlayOn = false;
+    
     window.localStorage.setItem("currentView", "albumView");
+    window.localStorage.setItem("autoPlay", "off");
 
     // top of page
     const topOfPageBtn = document.getElementById("returnToTop")
@@ -232,13 +234,13 @@ import { getNewSortList } from "./sorter.js"
     const autoPlayButton = document.getElementById("autoPlayOption");
     autoPlayButton.addEventListener("click", (e) => {
         e.preventDefault();
-        if (!autoPlayOn) {
+        if (window.localStorage.getItem("autoPlay") === "off") {
             autoPlayButton.innerText = autoPlayBlurb[0];
             autoPlayButton.classList.add("opt-on")
-            autoPlayOn = true;
+            window.localStorage.setItem("autoPlay", "on")
             return;
         }
-        autoPlayOn = false;
+        window.localStorage.setItem("autoPlay", "off")
         autoPlayButton.innerText = autoPlayBlurb[1];
         autoPlayButton.classList.remove("opt-on")
     })
@@ -573,7 +575,7 @@ import { getNewSortList } from "./sorter.js"
     };
 
     audioPlayer.addEventListener("ended", () => {
-        if (!autoPlayOn) {
+        if (window.localStorage.getItem("autoPlay") === "off") {
             console.log("auto play is not on.")
             return;
         }
@@ -603,8 +605,8 @@ import { getNewSortList } from "./sorter.js"
     if (currView === "list") {
         songViewBtn.classList.add("curr-view")
         showSongView(fullSongList);
+        
     } else {
-        console.log(currView)
         albumViewBtn.classList.add("curr-view")
         renderAlbumView();
     }
