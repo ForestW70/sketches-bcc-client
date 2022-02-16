@@ -1,6 +1,3 @@
-/* Head info */
-
-
 /* .body-mod {
     background-image: url(https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg);
     background-blend-mode: luminosity;
@@ -22,199 +19,6 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
-}
-
-/*  */
-/* Audio player */
-/*  */
-#player {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-bottom: 5px solid white;
-}
-audio::-webkit-media-controls-panel {
-    background-color: rgb(203 249 236);
-}
-audio::-webkit-media-controls-enclosure {
-    border-radius: 0px;
-}
-audio::-webkit-media-controls-timeline-container {
-    color:green;
-    border: 1px solid black;
-}
-audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display {
-    color:black;
-    font-family: serif;
-    padding: 0 3px;
-    margin: auto;
-}
-audio::-webkit-media-controls-timeline {
-    color: black;
-    background-color: white;
-    border-radius: 50px;
-    padding: 20px;
-    margin-top:10px;
-}
-
-
-/*  */
-/* Song info and Queue containers */
-/*  */
-#trackController {
-    display: flex;
-    height:200px;
-    background-color:rgb(203 249 236);
-    overflow: hidden;
-}
-
-#anotherPlayer {
-    display: grid;
-    width: 50%;
-    grid-template-columns: 1fr 2fr 3fr;
-    padding-left: 5px;
-}
-
-#qTools {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding-left: 5px;
-    overflow-y: scroll;
-}
-
-
-.option-buttons {
-    width: 100%;
-}
-
-
-/*  */
-/* Now playing container */
-/*  */
-#albumPic {
-    height: 100px;
-    width: 100px;
-    margin: 10px;
-}
-
-#nowPlayingInfo {
-    display: flex;
-    flex-direction: column;
-    padding: 5px 0px;
-}
-
-#artistName, #trackName, #albumName {
-    margin: 5px;
-    border-bottom: 1px solid #9ebb00;
-}
-
-#artistName {
-    font-size: 20px;
-}
-#trackName {
-    font-style: oblique;
-    font-weight: bold;
-}
-#albumName {
-    color:rgb(78, 78, 78);
-}
-
-
-/*  */
-/* Queue List Container */
-/*  */
-.queue-tip {
-    color: grey;
-}
-
-#queueList {
-    flex-direction: column;
-    width: 100%;
-}
-
-#queueList > button {
-    background-color: orange;
-    border: none;
-    border-left: 15px dotted #000000;
-    cursor: pointer;
-}
-#queueList > button:first-child::before {
-    content: " up next! ~~ ";
-    font-weight: bold;
-}
-
-#queueList > button:hover {
-    border-bottom: 2px solid #c1c2c3;
-    border-top: 1px solid #c1c2c3;
-}
-
-
-/*  */
-/* Play Pause Next Queue Buttons */
-/*  */
-.controlBtns {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: 0 40px;
-}
-
-.controlBtns > button {
-    padding: 10px;
-    height: 60px;
-    width: 60px;
-    margin: auto;
-}
-
-#nextTrack {
-    background-color: darkorange;
-}
-
-.glyphicon {
-    font-size: 25px;
-}
-
-/*  */
-/* Options and Info View*/
-/*  */
-.credits > h2, .credits > h3, .credits > h4, .credits > h5 {
-    margin:0;
-    margin-left: 10px;
-}
-
-.credits > span {
-    color:grey;
-}
-
-.wall-o-text {
-    margin:10px;
-}
-
-
-.opt-default {
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    border: 1px solid black;
-    cursor: alias;
-    font-family: sans-serif;
-    background-color: red;
-    width: 100%;
-}
-
-.opt-on {
-    background-color: green;
-}
-
-#returnToTop {
-    position: fixed;
-    display: none;
-    top: 0;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 5px 15px;
-    background-color: #7fffd4b8;
 }
 
 
@@ -363,58 +167,54 @@ audio::-webkit-media-controls-timeline {
 }
 
 
-
-
 /*  */
-/* Queue modal */
+/* Options and Info View*/
 /*  */
-#qPrompt {
-    display: none; 
-    position: fixed; 
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+.credits > h2, .credits > h3, .credits > h4, .credits > h5 {
+    margin:0;
+    margin-left: 10px;
 }
 
-.modal-cont {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; 
-    display: flex;
-    flex-direction: column;
+.credits > span {
+    color:grey;
 }
 
-.modal-cont > button {
-    width:75%;
-    margin: auto;
+.wall-o-text {
+    margin:10px;
 }
 
-#closeModal {
+.opt-default {
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid black;
+    cursor: alias;
+    font-family: sans-serif;
     background-color: red;
+    width: 100%;
 }
 
-#modalDump {
-    text-align: center;
-    margin: 10px 0;
-    font-family: serif;
-    font-style: italic;
+.opt-on {
+    background-color: green;
 }
 
-/*  */
-/* options page */
-/*  */
+
 .tutorial {
     margin-right: 20px;
 }
 
-/* toggle show view and utilities */
+/* utilities */
+#returnToTop {
+    position: fixed;
+    display: none;
+    top: 0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 15px;
+    background-color: #7fffd4b8;
+}
+
 .menu-flex {
     display: flex;
 }
@@ -428,7 +228,7 @@ audio::-webkit-media-controls-timeline {
 }
 
 /*  */
-/* Media Events */
+/* Screen Events */
 /*  */
 @media screen and (max-width: 1000px) {
     .song-list-row {

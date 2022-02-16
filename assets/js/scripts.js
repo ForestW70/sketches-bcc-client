@@ -517,28 +517,6 @@ import { getNewSortList } from "./sorter.js"
     const removeBtn = document.getElementById("removeThisSong");
     const upNextBtn = document.getElementById("upNextBtn");
 
-
-    // const queueListButtons = document.getElementsByClassName("q-btn");
-    // const addQView = () => {
-    //     if (queueListButtons.length > 0) {
-    //         console.log(queueListButtons + "theres more than one!")
-
-    //     } else {
-    //         console.log(queueListButtons)
-    //     }
-    // }
-    // queueListButtons.map(btn => {
-    //     btn.addEventListener("click", handleQueueItemClick);
-    // })
-    // console.log(queueListButtons)
-    // const handleCurrentTrackClick = (url) => {
-    //     const data4Modal = findSong(url)
-    //     modalDump.innerText = `${url}=${JSON.stringify(data4Modal.data, null, 2)}`;
-    //     removeBtn.style.display = "none"
-    //     upNextBtn.style.display = "none"
-    //     modal.style.display = "block";
-    // }
-
     const closeModal = () => {
         modal.style.display = "none";
         removeBtn.dataset.whichSong = ""
