@@ -44,7 +44,7 @@ audio::-webkit-media-controls-timeline {
 
 #anotherPlayer {
     display: grid;
-    width: 50%;
+    width: 65%;
     grid-template-columns: 1fr 2fr 3fr;
     padding-left: 5px;
 }
@@ -52,8 +52,8 @@ audio::-webkit-media-controls-timeline {
 #qTools {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    padding-left: 5px;
+    width: 35%;
+    
     overflow-y: scroll;
 }
 
@@ -128,16 +128,20 @@ audio::-webkit-media-controls-timeline {
 /* Play Pause Next Queue Buttons */
 /*  */
 .controlBtns {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
     margin: 0 40px;
 }
 
 .controlBtns > button {
-    padding: 10px;
-    height: 60px;
-    width: 60px;
-    margin: auto;
+    -webkit-appearance: none;
+    padding: 15px;
+    background-color: transparent;
+    border: none;
+}
+
+.controlBtns > button:hover {
+    color: pink;
 }
 
 #nextTrack {
@@ -147,3 +151,7 @@ audio::-webkit-media-controls-timeline {
 .glyphicon {
     font-size: 25px;
 }
+
+/* @media screen and (max-width: 1200px) {
+
+} */

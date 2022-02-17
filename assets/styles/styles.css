@@ -249,7 +249,7 @@ header {
 /*  */
 @media screen and (max-width: 1000px) {
     .song-list-row {
-        grid-template-columns: .5fr 3fr .7fr 1.25fr 1.5fr 2fr 1.75fr 1.5fr 1fr;
+        grid-template-columns: .25fr 3fr .7fr 1.25fr 1.5fr 2fr 1.75fr 1.5fr 1fr;
     }
     
     .song-list-row > span {
@@ -353,9 +353,8 @@ header {
         writing-mode: vertical-rl;
         
     }
-    .controlBtns > button {
-        height: 45px;
-        width: 45px;
+    #nowPlayingInfo > span {
+        font-size: 12px;
     }
 }
 

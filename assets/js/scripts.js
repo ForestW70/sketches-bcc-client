@@ -251,7 +251,7 @@ import { getNewSortList } from "./sorter.js"
     if (localStorage.getItem("extras") === "on") {
         xtraTracksButton.classList.add("opt-on");
         xtraTracksButton.innerText = xtraTracksBlurb[0];
-    }    
+    }
 
     xtraTracksButton.addEventListener("click", (e) => {
         e.preventDefault();
@@ -341,7 +341,8 @@ import { getNewSortList } from "./sorter.js"
 
     // audio player buttons
     const playButton = document.getElementById("pause-play");
-    const nextTrackBtn = document.getElementById("nextTrack");
+    const nextTrackButton = document.getElementById("nextTrack");
+    const startOverButton = document.getElementById("backBtn")
     const icon = document.getElementById("pp");
     playButton.addEventListener("click", () => {
         const isLoadedCheck = audioPlayer.src.split(".").pop()
@@ -362,7 +363,7 @@ import { getNewSortList } from "./sorter.js"
         }
     })
 
-    nextTrackBtn.addEventListener("click", () => {
+    nextTrackButton.addEventListener("click", () => {
 
         const queueLength = activeSongQueue.length;
         icon.classList.remove("glyphicon-pause");
@@ -378,6 +379,13 @@ import { getNewSortList } from "./sorter.js"
             icon.classList.remove("glyphicon-play");
             audioPlayer.play();
         }
+    })
+
+    startOverButton.addEventListener("click", () => {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        icon.classList.remove("glyphicon-pause");
+        icon.classList.add("glyphicon-play");
     })
 
     // 

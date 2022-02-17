@@ -1070,7 +1070,7 @@ export const powerfulSophie = [
             {
                 track: 'Get higher',
                 length: '3:00',
-                url: 'shhhh2/s_higher',
+                url: 'shhhhh2/s_higher',
                 fileName: '--',
                 daw: '--',
                 date: '--',

@@ -182,12 +182,12 @@ export const getNewSortList = (sortBy, rev, currentSortedList) => {
         default:
             newSort = currentSortedList;
             if (rev === "true") {
-                localStorage.setItem("alf", "off");
-            } else {
+                console.log(";)")
                 localStorage.setItem("alf", "on");
-            } 
-            
-            console.log(";)")
+            } else {
+                console.log(";(")
+                localStorage.setItem("alf", "off");
+            }
     }
 
     return newSort;
