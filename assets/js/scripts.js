@@ -4,6 +4,13 @@ import { createQueueButton, buildAlbumTemplate, buildSongView, buildAlbumView } 
 import { getNewSortList } from "./sorter.js"
 
 (function () {
+    
+    
+    
+    
+    
+    
+    
     // global dom pointers
     const queueListDump = document.getElementById("queueList");
 

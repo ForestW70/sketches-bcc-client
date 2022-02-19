@@ -51,9 +51,9 @@ audio::-webkit-media-controls-timeline {
 
 #qTools {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 35%;
-    
+    position: relative;
     overflow-y: scroll;
 }
 
@@ -76,6 +76,7 @@ audio::-webkit-media-controls-timeline {
     display: flex;
     flex-direction: column;
     padding: 5px 0px;
+    min-width: 115px;
 }
 
 #artistName, #trackName, #albumName {
@@ -100,11 +101,29 @@ audio::-webkit-media-controls-timeline {
 /*  */
 .queue-tip {
     color: grey;
+    margin: 20px 5px 0 0;
+}
+
+.command {
+    margin: 10px auto;
+}
+
+.command > span {
+    position: absolute;
+    z-index: 0;
+    left: 200px;
+    bottom: 25px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #cbf9ec;
+    text-shadow: 0 0 69px powderblue;
+    font-family: fantasy;
 }
 
 #queueList {
     flex-direction: column;
     width: 100%;
+    z-index: 10;
 }
 
 #queueList > button {
@@ -130,10 +149,9 @@ audio::-webkit-media-controls-timeline {
 .controlBtns {
     display: flex;
     justify-content: center;
-    margin: 0 40px;
 }
 
-.controlBtns > button {
+.controlBtns > button, #toggleShowQueue {
     -webkit-appearance: none;
     padding: 15px;
     background-color: transparent;
@@ -144,8 +162,10 @@ audio::-webkit-media-controls-timeline {
     color: pink;
 }
 
-#nextTrack {
+#toggleShowQueue {
     background-color: darkorange;
+    position: sticky;
+    top: 0;
 }
 
 .glyphicon {

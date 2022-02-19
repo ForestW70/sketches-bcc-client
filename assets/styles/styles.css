@@ -260,9 +260,9 @@ header {
         border-left: 1px solid white;
     }
 
-    /* .song-list-row > span:nth-child(1) {
+    .command {
         display: none;
-    } */
+    }
 
     .song-list-row:hover {
         border:none;
@@ -287,10 +287,10 @@ header {
         height: 150px;
         width: 150px;
     }
-    #albumPic {
+    /* #albumPic {
         height: 70px;
         width: 70px;
-    }
+    } */
     .info-container > h3 {
         margin: 5px;
     }
