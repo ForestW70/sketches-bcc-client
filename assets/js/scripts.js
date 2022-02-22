@@ -30,7 +30,8 @@ import { getNewSortList } from "./sorter.js"
                     epArtist: ep.artist,
                     epArtistFull: ep.longArtist,
                     epRelease: ep.releaseDate,
-                    epArtLink: ep.webLink,
+                    artLink: ep.artLink,
+                    // epArtLink: ep.webLink,
                     songTitle: song.track,
                     songLength: song.length,
                     songUrl: song.url,
@@ -119,7 +120,7 @@ import { getNewSortList } from "./sorter.js"
             ep: el.ep,
             artist: el.artist,
             url: el.url,
-            art: el.art,
+            art: el.artLink,
         }
         activeSongQueue.push(item);
         return;
@@ -132,7 +133,7 @@ import { getNewSortList } from "./sorter.js"
             ep: el.epName,
             artist: el.epArtist,
             url: el.songUrl,
-            art: el.epArtLink,
+            art: el.artLink,
         }
         activeSongQueue.splice(1, 0, item);
         const newBtn = createQueueButton(item)
@@ -207,7 +208,8 @@ import { getNewSortList } from "./sorter.js"
         if (activeSongQueue.length > 1) {
             wiper = activeSongQueue[1]
         }
-        const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.url}.mp3`
+        const songHome = `https://forestw70.github.io/sketches-bcc-client/assets/music/${wiper.url}.mp3`;
+        const albumHome = `https://forestw70.github.io/sketches-bcc-client/assets/images/${wiper.art}`
         const newTitle = `${wiper.artist} ~ ${wiper.url}`
 
         // clear page title and replace with song info
@@ -217,7 +219,7 @@ import { getNewSortList } from "./sorter.js"
         currArtistName.innerText = wiper.artist;
         currTrackName.innerText = `"${wiper.url}"`;
         currAlbumName.innerText = wiper.ep;
-        currAlbumPic.src = wiper.art;
+        currAlbumPic.src = albumHome;
         audioPlayer.src = songHome;
         console.log("Next track loaded!");
         return;
@@ -443,7 +445,8 @@ import { getNewSortList } from "./sorter.js"
             ep: e.currentTarget.dataset.epname,
             artist: e.currentTarget.dataset.artist,
             url: e.currentTarget.dataset.url,
-            art: e.currentTarget.dataset.albumurl,
+            // art: e.currentTarget.dataset.albumurl,
+            artLink: e.currentTarget.dataset.artLink,
         }
         const currQueueTime = activeSongQueue.length || 0;
         // addQView()
@@ -504,7 +507,8 @@ import { getNewSortList } from "./sorter.js"
                 artist: albumInfo.artist,
                 title: idvTrack.track,
                 ep: albumInfo.title,
-                art: albumInfo.webLink,
+                // art: albumInfo.webLink,
+                artLink: albumInfo.artLink,
                 url: idvTrack.url,
                 length: idvTrack.length,
                 albumRelease: albumInfo.releaseDate,
@@ -542,7 +546,8 @@ import { getNewSortList } from "./sorter.js"
                 length: song.songLength,
                 artist: song.epArtist,
                 ep: song.epName,
-                art: song.epArtLink,
+                // art: song.epArtLink,
+                artLink: song.artLink,
                 url: song.songUrl,
                 albumRelease: song.epRelease,
                 artistLong: song.epArtistFull,

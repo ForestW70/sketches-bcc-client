@@ -5,8 +5,8 @@ export const sketches = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'November 21st, 2021',
-        artLink: './assets/bcc.png',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
+        artLink: 'bcc.png',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/bcc.png',
         trackList: [
             {
                 track: 'Hotmess',
@@ -168,8 +168,8 @@ export const sketches = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'August 28th, 2017',
-        artLink: './assets/s&ofv1.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg',
+        artLink: 's&ofv1.jpg',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv1.jpg',
         trackList: [
             {
                 track: 'Quarantine (but its ok)',
@@ -242,8 +242,8 @@ export const sketches = [
         artist: 'S. Finder',
         longArtist: 'Stud Finder',
         releaseDate: 'N/A',
-        artLink: './assets/studs.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/studs.jpg',
+        artLink: 'studs.jpg',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/studs.jpg',
         trackList: [
             {
                 track: 'Sara / Tony Tonin',
@@ -361,8 +361,8 @@ export const sketches = [
         artist: 'con',
         longArtist: 'con',
         releaseDate: 'Avril 4th, 2014',
-        artLink: './assets/ib.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ib.jpg',
+        artLink: 'ib.jpg',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ib.jpg',
         trackList: [
             {
                 track: 'Ferox Recieved',
@@ -407,8 +407,8 @@ export const sketches = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
-        artLink: './assets/redact.png',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
+        artLink: 'redact.png',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
         trackList: [
             {
                 track: 'In a room',
@@ -447,8 +447,8 @@ export const lilExtras = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
-        artLink: './assets/s&ofv2.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv2.jpg',
+        artLink: 's&ofv2.jpg',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv2.jpg',
         trackList: [
 
             {
@@ -764,8 +764,8 @@ export const lilExtras = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
-        artLink: './assets/ect.png',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ect.png',
+        artLink: 'ect.png',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/ect.png',
         trackList: [
             {
                 track: 'Girard (demo)',
@@ -831,8 +831,8 @@ export const pods = [
         artist: "Burner B",
         longArtist: "DJ Burna B",
         releaseDate: "September 30th, 2018",
-        artLink: "./assets/pods.jpg",
-        webLink: "https://burnthis.space/assets/images/pods.jpg",
+        artLink: "pods.jpg",
+        // webLink: "https://burnthis.space/assets/images/pods.jpg",
         trackList: [
             {
                 track: 'Soundscape Source Feed vol. 1',
@@ -871,8 +871,8 @@ export const shhhhhdontsnitch = [
         artist: 'Not Us',
         longArtist: 'Definitly not us',
         releaseDate: 'N/A',
-        artLink: './assets/alf.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/alf.jpg',
+        artLink: 'alf.jpg',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/alf.jpg',
         trackList: [
             {
                 track: 'drifting into open',
@@ -1037,8 +1037,8 @@ export const powerfulSophie = [
         artist: 'Sophie',
         longArtist: 'Sophie Xeon',
         releaseDate: 'N/A',
-        artLink: './assets/twia.jpg',
-        webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/twia.jpg',
+        artLink: 'twia.jpg',
+        // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/twia.jpg',
         trackList: [
             {
                 track: 'DRY',

@@ -10,34 +10,6 @@ export const createQueueButton = (el) => {
     return qButton;
 }
 
-const buildAlbumRow = (sketch) => {
-    const trackRow = document.createElement("button");
-    trackRow.type = "button";
-    trackRow.classList.add("t-row");
-    trackRow.dataset.url = sketch.url;
-    trackRow.dataset.length = sketch.length;
-    trackRow.dataset.epname = sketch.ep;
-    trackRow.dataset.albumurl = sketch.art;
-    trackRow.dataset.artist = sketch.artist;
-    trackRow.dataset.title = sketch.title;
-    trackRow.addEventListener("click", handleTrackSelect);
-    //
-    const tTitle = document.createElement("span");
-    const tTime = document.createElement("span");
-    const tNum = document.createElement("span");
-    tTitle.classList.add("album-track");
-    tTime.classList.add("track-time");
-    tNum.classList.add("track-num");
-    tTitle.innerText = sketch.title;
-    tTime.innerText = sketch.length;
-    tNum.innerText = sketch.trackNum;
-    //
-    trackRow.appendChild(tNum);
-    trackRow.appendChild(tTitle);
-    trackRow.appendChild(tTime);
-    return trackRow;
-}
-
 export const buildAlbumTemplate = (album) => {
     const infoFrag = document.createDocumentFragment();
     const infoContainer = document.createElement("div");
@@ -51,7 +23,9 @@ export const buildAlbumTemplate = (album) => {
     albumTitle.innerText = `"${album.title}"`;
     albumArtist.innerText = album.artist;
     albumRelease.innerText = album.releaseDate;
-    albumArt.src = album.webLink;
+
+    // const artHome = `https://forestw70.github.io/sketches-bcc-client/assets/images/${album.artLink}`
+    albumArt.src = `https://forestw70.github.io/sketches-bcc-client/assets/images/${album.artLink}`;
 
     infoFrag.appendChild(albumArt)
     infoFrag.appendChild(albumArtist)
@@ -68,7 +42,8 @@ export const buildAlbumView = (sketch) => {
     trackRow.dataset.url = sketch.url;
     trackRow.dataset.length = sketch.length;
     trackRow.dataset.epname = sketch.ep;
-    trackRow.dataset.albumurl = sketch.art;
+    // trackRow.dataset.albumurl = sketch.art;
+    trackRow.dataset.artLink = sketch.artLink;
     trackRow.dataset.artist = sketch.artist;
     trackRow.dataset.title = sketch.title;
     // trackRow.addEventListener("click", handleTrackSelect);
@@ -116,7 +91,8 @@ export const buildSongView = (songRow) => {
     trackRow.type = "button";
     trackRow.classList.add('song-list-row');
     trackRow.dataset.songId = songRow.title + '~' + songRow.ep;
-    trackRow.dataset.albumurl = songRow.art;
+    // trackRow.dataset.albumurl = songRow.art;
+    trackRow.dataset.artLink = songRow.artLink;
     trackRow.dataset.title = songRow.title;
     trackRow.dataset.length = songRow.length;
     trackRow.dataset.epname = songRow.ep;
