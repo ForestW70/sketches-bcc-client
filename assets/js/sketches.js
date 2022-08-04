@@ -394,7 +394,7 @@ export const sketches = [
             {
                 track: 'Knavish Drone (cut)',
                 length: "16:07",
-                url: 'knavish-drone',
+                url: 'knavish-drode',
                 fileName: '--',
                 daw: 'FLstudio',
                 date: '--',
@@ -1103,6 +1103,53 @@ export const powerfulSophie = [
                 date: '--',
                 started: '--',
             },
+            {
+                track: 'Hard Rinse FM',
+                length: '5:11',
+                url: 'shhhhh2/s_hard_rinse',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Cum (16 minute remix)',
+                length: '15:43',
+                url: 'shhhhh2/s_cum_16min',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Baby Steps',
+                length: '1:15',
+                url: 'shhhhh2/',
+                fileName: 's_baby',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'FriendZone',
+                length: '3:22',
+                url: 'shhhhh2/s_fzone',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            {
+                track: 'Screw It Up (No Boyz)',
+                length: '4:57',
+                url: 'shhhhh2/s_noboyz',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
+            
+
         ]
     },
 ]
