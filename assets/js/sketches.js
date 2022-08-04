@@ -1148,7 +1148,15 @@ export const powerfulSophie = [
                 date: '--',
                 started: '--',
             },
-            
+            {
+                track: 'Sweet n Sour',
+                length: '2:07',
+                url: 'shhhhh2/s_sns',
+                fileName: '--',
+                daw: '--',
+                date: '--',
+                started: '--',
+            },
 
         ]
     },
