@@ -497,10 +497,24 @@ import { getNewSortList } from "./sorter.js"
         infoContainer.classList.add("info-container");
         trackContainer.id = albumInfo.title;
 
+        // collapse button for one day 
+
+        // infoContainer.addEventListener("click", (e) =>{
+        //     let trckCont = e.currentTarget.parentElement.lastChild;
+        //     let bigOrNaw = e.currentTarget.parentElement.parentElement;
+            
+        //     trckCont.style.display = trckCont.style.display === "none" ? "flex" : "none";
+        //     bigOrNaw.style.display = bigOrNaw.style.display === "flex" ? "block" : "flex";
+        //     console.log(trckCont)
+
+
+        // })
+
         const songInfoFrag = buildAlbumTemplate(albumInfo);
         infoContainer.appendChild(songInfoFrag);
         albumContainer.appendChild(infoContainer);
 
+        
         albumInfo.trackList.map((idvTrack, idx) => {
             const currSong = {
                 trackNum: idx + 1,
@@ -583,6 +597,7 @@ import { getNewSortList } from "./sorter.js"
     const closeModalBtn = document.getElementById("closeModal");
     const removeBtn = document.getElementById("removeThisSong");
     const upNextBtn = document.getElementById("upNextBtn");
+    const collapseAlbum = document.querySelectorAll(".info-container")
 
     const closeModal = () => {
         modal.style.display = "none";
@@ -591,6 +606,16 @@ import { getNewSortList } from "./sorter.js"
         removeBtn.style.display = "none"
         upNextBtn.style.display = "none"
     }
+
+    // if (!albumIdvBtn){
+    //     return;
+    // } else {
+        // collapseAlbum.addEventListener("click", () => {
+        //     console.log("butts");
+        //     // e.style.display = "flex";
+        // })
+
+    // }
 
     nowPlayingInfo.addEventListener("click", (e) => {
         e.preventDefault();

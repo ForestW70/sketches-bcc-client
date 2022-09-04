@@ -15,10 +15,13 @@ export const buildAlbumTemplate = (album) => {
     const infoContainer = document.createElement("div");
     infoContainer.classList.add("info-container");
 
+
     const albumTitle = document.createElement("h3");
     const albumArtist = document.createElement("h2");
     const albumRelease = document.createElement("p");
     const albumArt = document.createElement("img");
+    // albumArt.classList.add("hide")
+
 
     albumTitle.innerText = `"${album.title}"`;
     albumArtist.innerText = album.artist;

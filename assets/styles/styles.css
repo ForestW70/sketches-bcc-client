@@ -49,6 +49,15 @@ header {
     background-color: #fff;
 }
 
+/*  */
+/* hide disco */
+/*  */
+/* .info-container *:nth-child(n+2) {
+    display: inline-block;
+    margin: auto;
+    background-color: red;
+} */
+
 
 /*  */
 /* Album View */
@@ -56,22 +65,27 @@ header {
 #disco {
     font-size: 20px;
     margin-top: 0px;
+    /*  */
+    display: block;
+    flex-wrap: wrap;
 }
 
 .disco-item {
-    margin-bottom: 50px;
+    margin: 30px 50px;
     border-top: 3px solid #c1c2c3;
 }
 
 .info-container {
     display: flex;
+    cursor: alias;
     margin: 10px 0 0 50px;
+    /* width: 400px; */
 }
 
 .info-container > img {
-    height: 300px;
-    width: 300px;
-    margin-right: 15px;
+    height: 250px;
+    width: 250px;
+    /* margin-right: 15px; */
 }
 
 .info-container > h3 {
@@ -87,6 +101,8 @@ header {
 
 .track-container {
     margin: 20px 0 20px 50px;
+    /*  */
+    /*  */
     display: flex;
     flex-direction: column;
 }
@@ -238,6 +254,10 @@ header {
 
 .menu-hide {
     display: none;
+}
+
+.menu-block {
+    display: block;
 }
 
 .hide {
