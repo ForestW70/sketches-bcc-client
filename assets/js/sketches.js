@@ -242,7 +242,7 @@ export const sketches = [
         artist: 'S. Finder',
         longArtist: 'Stud Finder',
         releaseDate: 'N/A',
-        artLink: 'studs.jpg',
+        artLink: 'Studs.png',
         // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/studs.jpg',
         trackList: [
             {
@@ -387,7 +387,7 @@ export const sketches = [
         artist: "S. Finder",
         longArtist: "Stud Finder",
         releaseDate: "September 30th, 2022",
-        artLink: "s&ofv7.jpg",
+        artLink: "ll.png",
         // webLink: "https://burnthis.space/assets/images/pods.jpg",
         trackList: [
             {
@@ -523,7 +523,7 @@ export const sketches = [
         artist: 'S. Finder',
         longArtist: 'Stud Finder',
         releaseDate: 'N/A',
-        artLink: 's&ofv2.jpg',
+        artLink: 'hmp.png',
         // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/s&ofv2.jpg',
         trackList: [
             {
@@ -659,7 +659,7 @@ export const sketches = [
         artist: 'S. Finder',
         longArtist: 'Stud Finder',
         releaseDate: 'N/A',
-        artLink: 's&ofv4.jpg',
+        artLink: 'brch.png',
         trackList: [
             {
                 track: 'Boiler Room',
@@ -732,7 +732,7 @@ export const sketches = [
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
-        artLink: 'redact.png',
+        artLink: 'unredacted.png',
         // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
         trackList: [
             {
@@ -777,7 +777,7 @@ export const sketches = [
 
 export const lilExtras = [
     {
-        title: "ECT",
+        title: "Sum Demos",
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
         releaseDate: 'N/A',
