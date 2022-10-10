@@ -264,6 +264,20 @@ header {
     display: none;
 }
 
+
+/* mock itunes album view */
+/* .track-container, .info-container h2, .info-container h3, .info-container p {
+    display: none;
+}
+
+.disco-item {
+    border: none;
+}
+
+#disco {
+    display: flex;
+} */
+
 /*  */
 /* Screen Events */
 /*  */
