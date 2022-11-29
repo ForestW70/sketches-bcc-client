@@ -149,7 +149,7 @@ export const sketches = [
         title: "Redacter",
         artist: 'L. Mauro',
         longArtist: 'Lukasz Mauro',
-        releaseDate: 'October 3rd, 2022',
+        releaseDate: 'November 8th, 2022',
         artLink: 'unredacted.png',
         // webLink: 'https://forestw70.github.io/sketches-bcc-client/assets/images/redact.png',
         trackList: [
@@ -181,7 +181,7 @@ export const sketches = [
                 started: '--',
             },
             {
-                track: 'PF',
+                track: 'G,A16YOWAAR15A600ROA/PF',
                 length: "4:06",
                 url: 'RE-4-PF',
                 fileName: '--',
@@ -208,7 +208,7 @@ export const sketches = [
                 started: '--',
             },
             {
-                track: 'MBS',
+                track: 'RS,LL,TC,TROYG;TONEAS,IJWYTK',
                 length: '5:15',
                 url: 'RE-7-MBS',
                 fileName: '--',
